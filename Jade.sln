@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JadeLib", "JadeLib\JadeLib.csproj", "{A62CD976-75DF-4185-A6C4-5AB8D4EFC0BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A62CD976-75DF-4185-A6C4-5AB8D4EFC0BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A62CD976-75DF-4185-A6C4-5AB8D4EFC0BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A62CD976-75DF-4185-A6C4-5AB8D4EFC0BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A62CD976-75DF-4185-A6C4-5AB8D4EFC0BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
