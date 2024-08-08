@@ -3,7 +3,7 @@ using CommandSystem;
 using Exiled.API.Features;
 using UnityEngine;
 
-namespace JadeLib.API.RoomPoint;
+namespace JadeLib.Features.API.RoomPoint;
 
 [CommandHandler(typeof(RemoteAdminCommandHandler))]
 public class RoomPoint : ICommand

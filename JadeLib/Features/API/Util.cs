@@ -1,15 +1,11 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
+using System.Reflection;
 using UnityEngine;
 
-namespace JadeLib.API
+namespace JadeLib.Features.API
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Reflection;
-    using Exiled.API.Features;
-
     /// <summary>
     /// A set of various extension functions for utility purposes.
     /// </summary>
@@ -87,22 +83,6 @@ namespace JadeLib.API
                 case false:
                     break;
             }
-        }
-        
-        public static MethodBase GetCallingMethod()
-        {
-            var stackTrace = new StackTrace();
-            for (int i = 0; i < stackTrace.FrameCount; i++)
-            {
-                var frame = stackTrace.GetFrame(i);
-                var method = frame.GetMethod();
-                // Skip until we find the method that called this Harmony-patched method
-                if (method.DeclaringType != typeof(Player) && method.DeclaringType != typeof(HarmonyMethod))
-                {
-                    return method;
-                }
-            }
-            return null;
         }
 
         public static bool ContainsTuple<TKey, TValue>(this IEnumerable<Tuple<TKey, TValue>> enumerable, TKey check)

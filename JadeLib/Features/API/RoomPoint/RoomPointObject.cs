@@ -3,7 +3,7 @@ using Exiled.API.Enums;
 using Exiled.API.Features;
 using UnityEngine;
 
-namespace JadeLib.API.RoomPoint;
+namespace JadeLib.Features.API.RoomPoint;
 
 [Serializable]
 public class RoomPointObject

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace JadeLib.API.RoomPoint;
+namespace JadeLib.Features.API.RoomPoint;
 
 [Serializable]
 public class SerializedVector3

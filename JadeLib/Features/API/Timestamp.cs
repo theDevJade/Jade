@@ -1,7 +1,7 @@
-﻿namespace JadeLib.API
-{
-    using System;
+﻿using System;
 
+namespace JadeLib.Features.API
+{
     public static class TimestampUtility
     {
         // Method to create a timestamp in minutes since the Unix epoch

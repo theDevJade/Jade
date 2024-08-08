@@ -1,5 +1,13 @@
-﻿using HarmonyLib;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using Exiled.API.Features;
+using HarmonyLib;
+using JadeLib.Features;
 using JadeLib.Features.API.Reflection;
+using JadeLib.Features.Audio;
+using JadeLib.Features.Extensions;
+using MEC;
 using Utils.NonAllocLINQ;
 
 namespace JadeLib;
@@ -9,12 +17,14 @@ namespace JadeLib;
 /// </summary>
 public static class Jade
 {
-    private static Harmony harmony;
+    private static Harmony _harmony;
 
     /// <summary>
     /// Gets a value indicating whether JadeLib is initialized or not.
     /// </summary>
     public static bool Initialized { get; private set; } = false;
+
+    internal static List<Assembly> UsingAssemblies = [];
 
     /// <summary>
     /// A function that initializes JadeLib.
@@ -22,13 +32,32 @@ public static class Jade
     /// <returns>A bool indicating if it was successfully initialized or not.</returns>
     public static bool Initialize()
     {
+        UsingAssemblies.Add(Assembly.GetCallingAssembly());
         if (Initialized)
         {
             return false;
         }
 
-        harmony = new Harmony("jadelib");
-        harmony.PatchAll();
+        Log.Info("Initializing JadeLib");
+        CosturaUtility.Initialize();
+        Log.Info("Initialized Embedded DLL's");
+
+        _harmony = new Harmony("jade");
+        _harmony.PatchAll();
+        Log.Info("All harmony patches have been applied");
+
+        Timing.RunCoroutine(
+            FfmpegUtility.DownloadAndExtractFfmpegAsync(
+            Log.Info));
+        Log.Info("Ffmpeg has been installed.");
+
+        JadeFeature.Register();
+
+        var banner = Assembly.GetExecutingAssembly().ReadEmbeddedResource("JadeLib.banner.txt");
+        ServerConsole.AddLog("JadeLib is ready to go! \n" + banner, ConsoleColor.White);
+
+        Initialized = true;
+
         return true;
     }
 
@@ -49,7 +78,8 @@ public static class Jade
                 e.Value.Unregister();
             });
 
-        harmony.UnpatchAll(harmony.Id);
+        _harmony.UnpatchAll(_harmony.Id);
+        Initialized = false;
         return true;
     }
 }
