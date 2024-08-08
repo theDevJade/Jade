@@ -466,6 +466,7 @@
         <Compile Include="Features\Audio\VoiceRedirections.cs" />
         <Compile Include="Features\Audio\YoutubeUtility.cs" />
         <Compile Include="Features\Extensions\GeneralExtensions.cs" />
+        <Compile Include="Features\Extensions\PlayerExtensions.cs" />
         <Compile Include="Features\Extensions\ReflectionExtensions.cs" />
         <Compile Include="Features\JadeFeature.cs" />
         <Compile Include="Features\Registers\914.cs" />
