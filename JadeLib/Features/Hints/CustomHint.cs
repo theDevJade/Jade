@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Exiled.API.Features;
 using HintServiceMeow.Core.Enum;
+using HintServiceMeow.Core.Extension;
 using HintServiceMeow.Core.Models.Hints;
 using JadeLib.Features.Abstract;
 using JadeLib.Features.API.Reflection;
@@ -117,6 +118,7 @@ public abstract class CustomHint() : ModuleSystem<CustomHint>, IHint
                 XCoordinate = this.Horizontal,
                 YCoordinate = this.Vertical,
             };
+            player.GetPlayerDisplay().AddHint(element);
             this.Elements.Add(new Tuple<AbstractHint, Player>(element, player));
 
             return true;
