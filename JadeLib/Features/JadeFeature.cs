@@ -13,7 +13,7 @@ using System.Linq;
 using System.Reflection;
 using Exiled.API.Features;
 
-internal abstract class JadeFeature
+public abstract class JadeFeature
 {
     public abstract void Enable();
 

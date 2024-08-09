@@ -5,7 +5,7 @@ using Exiled.API.Interfaces;
 
 namespace HintServiceMeow
 {
-    internal class PluginConfig
+    public class PluginConfig
     {
         public static PluginConfig Instance => Plugin.Config;
 

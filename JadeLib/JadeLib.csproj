@@ -450,6 +450,7 @@
         <Compile Include="Config.cs" />
         <Compile Include="Features\914\Manager914.cs" />
         <Compile Include="Features\914\Recipe914.cs" />
+        <Compile Include="Features\Abstract\ModuleSystem.cs" />
         <Compile Include="Features\API\Reflection\CoroutineManager.cs" />
         <Compile Include="Features\API\Reflection\Events\EventGroup.cs" />
         <Compile Include="Features\API\Reflection\Events\EventScanner.cs" />
@@ -468,8 +469,14 @@
         <Compile Include="Features\Extensions\GeneralExtensions.cs" />
         <Compile Include="Features\Extensions\PlayerExtensions.cs" />
         <Compile Include="Features\Extensions\ReflectionExtensions.cs" />
+        <Compile Include="Features\Hints\CustomHint.cs" />
+        <Compile Include="Features\Hints\Hints\ConditionalHint.cs" />
+        <Compile Include="Features\Hints\Hints\GlobalHint.cs" />
+        <Compile Include="Features\Hints\IHint.cs" />
         <Compile Include="Features\JadeFeature.cs" />
         <Compile Include="Features\Registers\914.cs" />
+        <Compile Include="Features\Registers\Hints.cs" />
+        <Compile Include="Features\Registers\HintService.cs" />
         <Compile Include="Features\Registers\Redirections.cs" />
         <Compile Include="Jade.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

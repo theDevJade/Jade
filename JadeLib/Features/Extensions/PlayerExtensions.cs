@@ -5,7 +5,6 @@
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
-using JadeLib.Features.API;
 using PlayerRoles;
 
 namespace JadeLib.Features.Extensions;

@@ -11,6 +11,7 @@ namespace HintServiceMeow.Core.Utilities
     {
         static bool Prefix(ref Hint hint, ref HintDisplay __instance)
         {
+            Log.Warning("A hint was attempted to be shown that is not using JadeLib!", "JadeLib");
             return false;
         }
     }

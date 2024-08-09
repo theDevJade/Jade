@@ -2,7 +2,7 @@
 
 namespace HintServiceMeow
 {
-    internal class PlayerUIConfig
+    public class PlayerUIConfig
     {
         [Description("The default time to show for each type of common hint.\n" +
                      "Short means that the hint has on title but not decription")]
