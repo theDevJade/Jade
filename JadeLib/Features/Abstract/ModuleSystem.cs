@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using PluginAPI.Core;
 
 namespace JadeLib.Features.Abstract;
 
@@ -46,6 +47,7 @@ public abstract class ModuleSystem<T>
         foreach (var type in Jade.UsingAssemblies.SelectMany(
                      assembly => assembly.GetTypes().Where(e => e.IsSubclassOf(typeof(T)))))
         {
+            Log.Info($"Reflective Register, current type {typeof(T).Name}, subclass {type.Name}");
             if (Activator.CreateInstance(type) is T instance)
             {
                 RegisteredInstances.Add(instance);

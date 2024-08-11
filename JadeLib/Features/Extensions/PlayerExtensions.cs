@@ -14,11 +14,11 @@ public static class PlayerExtensions
     public static void CopyPlayer(this Player player, Player target)
     {
         var items = player.Inventory.UserInventory.Items.Values.ToList().Select(e => new Item(e));
-        var ammo = target.Inventory.UserInventory.ReserveAmmo;
-        player.Role.Set(player.Role, RoleSpawnFlags.None);
-        player.Teleport(player.Position);
-        player.ResetInventory(items);
-        player.Inventory.UserInventory.ReserveAmmo = ammo;
+        var ammo = player.Inventory.UserInventory.ReserveAmmo;
+        target.Role.Set(player.Role, RoleSpawnFlags.None);
+        target.Teleport(player.Position);
+        target.ResetInventory(items);
+        target.Inventory.UserInventory.ReserveAmmo = ammo;
         player.CopyAllProperties(target, "ReferenceHub");
     }
 }

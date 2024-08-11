@@ -13,6 +13,5 @@ public class HintService : JadeFeature
     public override void Enable()
     {
         Log.Info("Enabling Hint System.");
-        Loader.CreatePlugin(Assembly.GetAssembly(typeof(HintServiceMeow.PluginConfig)));
     }
 }

@@ -117,6 +117,7 @@
         <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
           <HintPath>..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
         </Reference>
+        <Reference Include="System.Drawing" />
         <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
           <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
         </Reference>
@@ -467,15 +468,87 @@
         <Compile Include="Features\Audio\VoiceRedirections.cs" />
         <Compile Include="Features\Audio\YoutubeUtility.cs" />
         <Compile Include="Features\Extensions\GeneralExtensions.cs" />
+        <Compile Include="Features\Extensions\NetworkExtensions.cs" />
         <Compile Include="Features\Extensions\PlayerExtensions.cs" />
         <Compile Include="Features\Extensions\ReflectionExtensions.cs" />
-        <Compile Include="Features\Hints\CustomHint.cs" />
-        <Compile Include="Features\Hints\Hints\ConditionalHint.cs" />
-        <Compile Include="Features\Hints\Hints\GlobalHint.cs" />
-        <Compile Include="Features\Hints\IHint.cs" />
+        <Compile Include="Features\Hints\CharacterLengths.cs" />
+        <Compile Include="Features\Hints\Constants.cs" />
+        <Compile Include="Features\Hints\Elements\Element.cs" />
+        <Compile Include="Features\Hints\Enums\ElementOptions.cs" />
+        <Compile Include="Features\Hints\Extensions\EnumExtensions.cs" />
+        <Compile Include="Features\Hints\Extensions\HintBuilding.cs" />
+        <Compile Include="Features\Hints\Extensions\HintTility.cs" />
+        <Compile Include="Features\Hints\Extensions\IComparableExtensions.cs" />
+        <Compile Include="Features\Hints\Extensions\IEnumerableExtensions.cs" />
+        <Compile Include="Features\Hints\Extensions\UniversalExtensions.cs" />
+        <Compile Include="Features\Hints\Parsing\ElemCombiner.cs" />
+        <Compile Include="Features\Hints\Parsing\Enums\CaseStyle.cs" />
+        <Compile Include="Features\Hints\Parsing\Enums\ColorStyle.cs" />
+        <Compile Include="Features\Hints\Parsing\Enums\MeasurementUnit.cs" />
+        <Compile Include="Features\Hints\Parsing\Enums\ParserState.cs" />
+        <Compile Include="Features\Hints\Parsing\Enums\TagStyle.cs" />
+        <Compile Include="Features\Hints\Parsing\Parser.cs" />
+        <Compile Include="Features\Hints\Parsing\ParserBuilder.cs" />
+        <Compile Include="Features\Hints\Parsing\ParserContext.cs" />
+        <Compile Include="Features\Hints\Parsing\Records\MeasurementInfo.cs" />
+        <Compile Include="Features\Hints\Parsing\Records\ParsedData.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ClosingTag{T}.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\AlignTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\AlphaTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\BoldTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\BrTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CaseTags.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseAlignTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseAlphaTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseBoldTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseColorTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseCSpace.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseIndent.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseItalicsTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseLineHeightTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseLineIndentTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseMarkTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseNobrTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseNoparseTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseRotateTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseScaleTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseSizeTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseStrikethroughTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseSubscriptTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseSuperscriptTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseUnderlineTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CloseVOffsetTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\ColorTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\CSpaceTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\IndentTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\ItalicsAngleTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\ItalicsTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\LineHeightTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\LineIndentTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\MarginTags.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\MarkTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\NobrTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\NoparseTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\PageTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\PosTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\RotateTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\ScaleTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\SizeTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\SpaceTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\StrikethroughTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\SubscriptTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\SuperscriptTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\UnderlineTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\ConcreteTags\VOffsetTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\MeasurementTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\NoParamsTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\RichTextTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\RichTextTagAttribute.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\SharedTag.cs" />
+        <Compile Include="Features\Hints\Parsing\Tags\TagHelpers.cs" />
+        <Compile Include="Features\Hints\Parsing\TextInfo.cs" />
         <Compile Include="Features\JadeFeature.cs" />
         <Compile Include="Features\Registers\914.cs" />
-        <Compile Include="Features\Registers\Hints.cs" />
         <Compile Include="Features\Registers\HintService.cs" />
         <Compile Include="Features\Registers\Redirections.cs" />
         <Compile Include="Jade.cs" />
@@ -491,6 +564,7 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Commands\" />
+      <Folder Include="Features\Hints\Hints\" />
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Include="banner.txt" />
@@ -503,10 +577,6 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="VideoLibrary" Version="3.2.5" />
-      <ProjectReference Include="..\HintServiceMeow\HintServiceMeow.csproj">
-        <Project>{097b585f-438d-4d50-a8ac-0fe0e3a7de77}</Project>
-        <Name>HintServiceMeow</Name>
-      </ProjectReference>
         <PackageReference Include="Fody" Version="xxx" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
