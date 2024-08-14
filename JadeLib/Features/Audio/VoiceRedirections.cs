@@ -12,7 +12,7 @@ using JadeLib.Features.API.Reflection.Events;
 using VoiceChat;
 using VoiceChat.Networking;
 
-namespace JadeLib.Features;
+namespace JadeLib.Features.Audio;
 
 /// <summary>
 /// Voice Redirections to be used with voice chatting event.

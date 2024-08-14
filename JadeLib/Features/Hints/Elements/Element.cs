@@ -2,9 +2,9 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-using RueI.Elements.Enums;
-using RueI.Parsing;
-using RueI.Parsing.Records;
+using JadeLib.Features.Hints.Enums;
+using JadeLib.Features.Hints.Parsing;
+using JadeLib.Features.Hints.Parsing.Records;
 
 namespace JadeLib.Features.Hints.Elements;
 

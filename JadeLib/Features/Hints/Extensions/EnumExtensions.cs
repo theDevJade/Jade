@@ -1,6 +1,6 @@
-﻿namespace RueI.Extensions;
+﻿using JadeLib.Features.Hints.Enums;
 
-using Elements.Enums;
+namespace JadeLib.Features.Hints.Extensions;
 
 /// <summary>
 /// Provides extensions for working with RueI <see cref="Enum"/>s.

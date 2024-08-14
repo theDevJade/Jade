@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-
-namespace RueI.Parsing;
-
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
+
+namespace JadeLib.Features.Hints;
 
 /// <summary>
 /// Provides lengths for characters in hints.

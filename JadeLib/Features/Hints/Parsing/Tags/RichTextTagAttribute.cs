@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RueI.Parsing.Tags;
+namespace JadeLib.Features.Hints.Parsing.Tags;
 
 /// <summary>
 /// Defines a <see cref="RichTextTag"/> for RueI.

@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Linq;
-using RueI.Elements.Enums;
-using RueI.Extensions;
-
-namespace RueI.Parsing;
-
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
-
+using JadeLib.Features.Hints.Enums;
+using JadeLib.Features.Hints.Extensions;
+using JadeLib.Features.Hints.Parsing.Enums;
+using JadeLib.Features.Hints.Parsing.Records;
+using JadeLib.Features.Hints.Parsing.Tags;
+using JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 using NorthwoodLib.Pools;
-using RueI.Parsing.Enums;
-using RueI.Parsing.Records;
-using RueI.Parsing.Tags.ConcreteTags;
+
+namespace JadeLib.Features.Hints.Parsing;
 
 /// <summary>
 /// Helps parse the content of elements. This class cannot be inherited.
@@ -34,8 +33,8 @@ public sealed class Parser
     internal Parser(IEnumerable<RichTextTag> tags, IEnumerable<Parser> backups)
     {
         IEnumerable<ValueTuple<string, RichTextTag>> tuplePairs = tags.SelectMany(x => x.Names.Select(y => (y, x)));
-        Tags = (Lookup<string, RichTextTag>)tuplePairs.ToLookup(x => x.Item1, x => x.Item2);
-        TagBackups = new(backups.ToList());
+        this.Tags = (Lookup<string, RichTextTag>)tuplePairs.ToLookup(x => x.Item1, x => x.Item2);
+        this.TagBackups = new(backups.ToList());
     }
 
     /// <summary>
@@ -302,7 +301,7 @@ public sealed class Parser
                 }
                 else if (ch == '>')
                 {
-                    if (TryGetBestMatch(tagBuffer.ToString(), TagStyle.NoParams, out RichTextTag? tag))
+                    if (this.TryGetBestMatch(tagBuffer.ToString(), TagStyle.NoParams, out RichTextTag? tag))
                     {
                         if (context.ShouldParse || tag is CloseNoparseTag)
                         {
@@ -337,7 +336,7 @@ public sealed class Parser
                             _ => throw new ArgumentOutOfRangeException(nameof(ch)),
                         };
 
-                        if (TryGetBestMatch(tagBuffer.ToString(), style, out RichTextTag? tag))
+                        if (this.TryGetBestMatch(tagBuffer.ToString(), style, out RichTextTag? tag))
                         {
                             currentTag = tag;
                             delimiter = ch;
@@ -469,12 +468,12 @@ public sealed class Parser
     {
         // lookups return an empty ienumerable if theres no value with the key
         // so this is perfectly safe :3
-        tag = Tags[name].FirstOrDefault(x => x.TagStyle == style);
+        tag = this.Tags[name].FirstOrDefault(x => x.TagStyle == style);
         if (tag == null)
         {
-            foreach (Parser parser in TagBackups)
+            foreach (Parser parser in this.TagBackups)
             {
-                tag = Tags[name].FirstOrDefault(x => x.TagStyle == style);
+                tag = this.Tags[name].FirstOrDefault(x => x.TagStyle == style);
 
                 if (tag != null)
                 {
@@ -488,23 +487,23 @@ public sealed class Parser
 
     private RichTextTag? GetBestMatch(string name, TagStyle style)
     {
-        foreach (Parser parser in TagBackups)
+        foreach (Parser parser in this.TagBackups)
         {
-            RichTextTag? tag = Tags[name].FirstOrDefault(x => x.TagStyle == style);
+            RichTextTag? tag = this.Tags[name].FirstOrDefault(x => x.TagStyle == style);
             if (tag != null)
             {
                 return tag;
             }
         }
 
-        return Tags[name].FirstOrDefault(x => x.TagStyle == style) ?? GetTagBackups(name, style);
+        return this.Tags[name].FirstOrDefault(x => x.TagStyle == style) ?? this.GetTagBackups(name, style);
     }
 
     private RichTextTag? GetTagBackups(string name, TagStyle style)
     {
-        foreach (Parser parser in TagBackups)
+        foreach (Parser parser in this.TagBackups)
         {
-            RichTextTag? tag = Tags[name].FirstOrDefault(x => x.TagStyle == style);
+            RichTextTag? tag = this.Tags[name].FirstOrDefault(x => x.TagStyle == style);
             if (tag != null)
             {
                 return tag;

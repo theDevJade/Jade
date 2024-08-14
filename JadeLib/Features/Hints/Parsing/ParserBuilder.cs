@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Exiled.API.Features;
-
-namespace RueI.Parsing;
-
 using System.Reflection;
-
+using Exiled.API.Features;
+using JadeLib.Features.Hints.Parsing.Tags;
 using NorthwoodLib.Pools;
 
-using RueI.Parsing.Tags;
+namespace JadeLib.Features.Hints.Parsing;
 
 /// <summary>
 /// Builds <see cref="Parser"/>s.
@@ -29,7 +26,7 @@ public sealed class ParserBuilder
     /// <summary>
     /// Gets the number of tags within this <see cref="ParserBuilder"/>.
     /// </summary>
-    public int TagsCount => currentTags.Count;
+    public int TagsCount => this.currentTags.Count;
 
     /// <summary>
     /// Adds new <see cref="RichTextTag"/>s from an assembly by getting all of the <see cref="RichTextTagAttribute"/> classes.
@@ -38,7 +35,7 @@ public sealed class ParserBuilder
     /// <returns>A reference to this <see cref="ParserBuilder"/>.</returns>
     public ParserBuilder AddFromAssembly(Assembly assembly)
     {
-        MethodInfo addTag = typeof(ParserBuilder).GetMethod(nameof(AddTag));
+        MethodInfo addTag = typeof(ParserBuilder).GetMethod(nameof(this.AddTag));
 
         foreach (Type type in assembly.GetTypes())
         {
@@ -72,7 +69,7 @@ public sealed class ParserBuilder
         where T : RichTextTag, new()
     {
         T tag = SharedTag<T>.Singleton;
-        currentTags.Add(tag);
+        this.currentTags.Add(tag);
 
         return this;
     }
@@ -84,7 +81,7 @@ public sealed class ParserBuilder
     /// <returns>A reference to this <see cref="ParserBuilder"/>.</returns>
     public ParserBuilder ImportFrom(Parser parser)
     {
-        backups.Add(parser);
+        this.backups.Add(parser);
         return this;
     }
 
@@ -92,7 +89,7 @@ public sealed class ParserBuilder
     /// Builds this <see cref="ParserBuilder"/> into a <see cref="Parser"/>.
     /// </summary>
     /// <returns>The built <see cref="Parser"/>.</returns>
-    public Parser Build() => new(currentTags, backups);
+    public Parser Build() => new(this.currentTags, this.backups);
 
     /// <summary>
     /// Adds all of the tags from an <see cref="IEnumerable{RichTextTag}"/>.
@@ -102,7 +99,7 @@ public sealed class ParserBuilder
     {
         foreach (RichTextTag tag in tags)
         {
-            currentTags.Add(tag);
+            this.currentTags.Add(tag);
         }
     }
 }

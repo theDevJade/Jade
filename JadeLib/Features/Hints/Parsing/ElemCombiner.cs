@@ -1,15 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using JadeLib.Features.Hints.Elements;
-using RueI.Extensions.HintBuilding;
-
-namespace RueI.Displays;
-
-using System.Text;
+using JadeLib.Features.Hints.Enums;
+using JadeLib.Features.Hints.Extensions;
 using NorthwoodLib.Pools;
-using Elements;
-using Extensions;
-using Parsing.Records;
+
+namespace JadeLib.Features.Hints.Parsing;
 
 /// <summary>
 /// Provides a means of combining <see cref="Element"/>s.
@@ -50,7 +46,7 @@ public static class ElemCombiner
             var parsedData = curElement.GetParsedData();
 
             var funcPos = curElement.GetFunctionalPosition();
-            if (curElement.Options.HasFlagFast(Elements.Enums.ElementOptions.PreserveSpacing))
+            if (curElement.Options.HasFlagFast(ElementOptions.PreserveSpacing))
             {
                 funcPos -= parsedData.Offset;
             }

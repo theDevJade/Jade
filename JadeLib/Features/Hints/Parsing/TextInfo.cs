@@ -1,6 +1,6 @@
-﻿namespace RueI.Parsing;
+﻿using JadeLib.Features.Hints.Parsing.Enums;
 
-using RueI.Parsing.Enums;
+namespace JadeLib.Features.Hints.Parsing;
 
 /// <summary>
 /// Provides information about TMP text at a certain point.

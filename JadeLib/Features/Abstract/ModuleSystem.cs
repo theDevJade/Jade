@@ -45,9 +45,9 @@ public abstract class ModuleSystem<T>
     public static void ReflectiveRegister()
     {
         foreach (var type in Jade.UsingAssemblies.SelectMany(
-                     assembly => assembly.GetTypes().Where(e => e.IsSubclassOf(typeof(T)))))
+                     assembly => assembly.GetTypes().Where(e => !e.IsAbstract & e.IsSubclassOf(typeof(T)))))
         {
-            Log.Info($"Reflective Register, current type {typeof(T).Name}, subclass {type.Name}");
+            Log.Debug($"Reflective Register, current type {typeof(T).Name}, subclass {type.Name}");
             if (Activator.CreateInstance(type) is T instance)
             {
                 RegisteredInstances.Add(instance);

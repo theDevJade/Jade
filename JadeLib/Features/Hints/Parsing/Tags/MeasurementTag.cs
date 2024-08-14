@@ -1,7 +1,7 @@
-﻿namespace RueI.Parsing.Tags;
+﻿using JadeLib.Features.Hints.Parsing.Enums;
+using JadeLib.Features.Hints.Parsing.Records;
 
-using RueI.Parsing.Enums;
-using RueI.Parsing.Records;
+namespace JadeLib.Features.Hints.Parsing.Tags;
 
 /// <summary>
 /// Defines a <see cref="RichTextTag"/> that only takes in a measurement.
@@ -19,9 +19,9 @@ public abstract class MeasurementTag : RichTextTag
     /// <inheritdoc/>
     public sealed override bool HandleTag(ParserContext context, string content)
     {
-        if (MeasurementInfo.TryParse(content, out MeasurementInfo info) && (info.style != MeasurementUnit.Percentage || AllowPercentages))
+        if (MeasurementInfo.TryParse(content, out MeasurementInfo info) && (info.style != MeasurementUnit.Percentage || this.AllowPercentages))
         {
-            return HandleTag(context, info);
+            return this.HandleTag(context, info);
         }
         else
         {

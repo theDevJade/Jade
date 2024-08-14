@@ -1,4 +1,4 @@
-﻿namespace RueI.Parsing.Records;
+﻿namespace JadeLib.Features.Hints.Parsing.Records;
 
 /// <summary>
 /// Defines a class that contains parsed information about a single element, used for displaying multiple at a time.
@@ -12,8 +12,8 @@ public class ParsedData
     /// <param name="offset">The offset that should be applied. Equivalent to the total linebreaks within the element.</param>
     internal ParsedData(string content, float offset)
     {
-        Content = content;
-        Offset = offset;
+        this.Content = content;
+        this.Offset = offset;
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ public class ParsedData
     /// <param name="offset">The returned offset of the element.</param>
     public void Deconstruct(out string content, out float offset)
     {
-        content = Content;
-        offset = Offset;
+        content = this.Content;
+        offset = this.Offset;
     }
 }

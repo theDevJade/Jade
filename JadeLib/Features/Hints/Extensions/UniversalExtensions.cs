@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RueI.Extensions;
+namespace JadeLib.Features.Hints.Extensions;
 
 /// <summary>
 /// Provides extensions for working with all types.

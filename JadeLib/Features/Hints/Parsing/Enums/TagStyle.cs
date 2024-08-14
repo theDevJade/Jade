@@ -1,4 +1,4 @@
-﻿namespace RueI.Parsing.Enums;
+﻿namespace JadeLib.Features.Hints.Parsing.Enums;
 
 /// <summary>
 /// Represents the valid characters for a delimiter.

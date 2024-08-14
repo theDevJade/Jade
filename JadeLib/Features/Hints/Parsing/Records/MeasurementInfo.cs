@@ -1,8 +1,8 @@
-﻿namespace RueI.Parsing.Records;
-
-using System.Text;
+﻿using System.Text;
+using JadeLib.Features.Hints.Parsing.Enums;
 using NorthwoodLib.Pools;
-using RueI.Parsing.Enums;
+
+namespace JadeLib.Features.Hints.Parsing.Records;
 
 /// <summary>
 /// Defines a record that contains information about measurement info.

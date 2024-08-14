@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RueI.Extensions;
+namespace JadeLib.Features.Hints.Extensions;
 
 /// <summary>
 /// Provides extensions for working with collections.

@@ -1,6 +1,6 @@
-﻿namespace RueI.Parsing.Tags.ConcreteTags;
+﻿using JadeLib.Features.Hints.Parsing.Enums;
 
-using RueI.Parsing.Enums;
+namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
 /// Provides a way to handle scale tags.

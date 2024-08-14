@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-namespace RueI.Parsing;
-
 using System.Text;
-
+using JadeLib.Features.Hints.Parsing.Tags;
 using NorthwoodLib.Pools;
 
-using RueI.Parsing.Tags;
+namespace JadeLib.Features.Hints.Parsing;
 
 /// <summary>
 /// Describes the state of a parser at a time.
@@ -43,7 +40,7 @@ public class ParserContext : TextInfo, IDisposable
     /// <summary>
     /// Gets the current functional width of the text.
     /// </summary>
-    public float FunctionalWidth => DisplayAreaWidth - LeftMargin - RightMargin;
+    public float FunctionalWidth => this.DisplayAreaWidth - this.LeftMargin - this.RightMargin;
 
     /// <summary>
     /// Gets a stack containing all of the nested sizes.
@@ -135,12 +132,12 @@ public class ParserContext : TextInfo, IDisposable
     {
         NoParamsTag singleton = SharedTag<T>.Singleton;
 
-        if (!allowDuplicates && endingTags.Contains(singleton))
+        if (!allowDuplicates && this.endingTags.Contains(singleton))
         {
             return;
         }
 
-        endingTags.Add(singleton);
+        this.endingTags.Add(singleton);
     }
 
     /// <summary>
@@ -150,7 +147,7 @@ public class ParserContext : TextInfo, IDisposable
     public void RemoveEndingTag<T>()
         where T : NoParamsTag, new()
     {
-        endingTags.Remove(SharedTag<T>.Singleton);
+        this.endingTags.Remove(SharedTag<T>.Singleton);
     }
 
     /// <summary>
@@ -158,18 +155,18 @@ public class ParserContext : TextInfo, IDisposable
     /// </summary>
     public void ApplyClosingTags()
     {
-        foreach (NoParamsTag tag in endingTags.ToList())
+        foreach (NoParamsTag tag in this.endingTags.ToList())
         {
             tag.HandleTag(this);
         }
 
-        foreach (float t in SizeTags)
+        foreach (float t in this.SizeTags)
         {
-            ResultBuilder.Append("</size>");
+            this.ResultBuilder.Append("</size>");
         }
 
-        SizeTags.Clear();
-        endingTags.Clear();
+        this.SizeTags.Clear();
+        this.endingTags.Clear();
     }
 
     /// <summary>
@@ -177,6 +174,6 @@ public class ParserContext : TextInfo, IDisposable
     /// </summary>
     public void Dispose()
     {
-        StringBuilderPool.Shared.Return(ResultBuilder);
+        StringBuilderPool.Shared.Return(this.ResultBuilder);
     }
 }

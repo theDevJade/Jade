@@ -1,6 +1,6 @@
-﻿namespace RueI.Parsing;
+﻿using JadeLib.Features.Hints.Parsing.Enums;
 
-using RueI.Parsing.Enums;
+namespace JadeLib.Features.Hints.Parsing.Tags;
 
 /// <summary>
 /// Defines a <see cref="RichTextTag"/> that does not take in parameters.
@@ -11,7 +11,7 @@ public abstract class NoParamsTag : RichTextTag
     public sealed override TagStyle TagStyle { get; } = TagStyle.NoParams;
 
     /// <inheritdoc/>
-    public sealed override bool HandleTag(ParserContext context, string parameters) => HandleTag(context);
+    public sealed override bool HandleTag(ParserContext context, string parameters) => this.HandleTag(context);
 
     /// <summary>
     /// Applies this tag (without parameters) to a <see cref="ParserContext"/>.

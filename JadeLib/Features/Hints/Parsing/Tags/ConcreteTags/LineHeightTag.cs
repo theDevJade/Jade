@@ -1,7 +1,7 @@
-﻿namespace RueI.Parsing.Tags.ConcreteTags;
+﻿using JadeLib.Features.Hints.Parsing.Enums;
+using JadeLib.Features.Hints.Parsing.Records;
 
-using RueI.Parsing.Enums;
-using RueI.Parsing.Records;
+namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
 /// Provides a way to handle line-height tags.

@@ -1,11 +1,10 @@
-using JadeLib.Features.Hints.Elements;
-
-namespace RueI.Extensions.HintBuilding;
-
 using System.Drawing;
 using System.Text;
+using JadeLib.Features.Hints.Elements;
+using JadeLib.Features.Hints.Enums;
+using JadeLib.Features.Hints.Parsing.Enums;
 
-using RueI.Parsing.Enums;
+namespace JadeLib.Features.Hints.Extensions;
 
 /// <summary>
 /// Provides extensions for adding rich text tags to <see cref="StringBuilder"/>s.
@@ -66,7 +65,7 @@ public static class HintBuilding
     /// <returns>The un-scaled position.</returns>
     public static float GetFunctionalPosition(this Element element)
     {
-        if (element.Options.HasFlagFast(Elements.Enums.ElementOptions.UseFunctionalPosition))
+        if (element.Options.HasFlagFast(ElementOptions.UseFunctionalPosition))
         {
             return element.Position;
         }

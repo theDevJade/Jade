@@ -1,6 +1,7 @@
 ﻿using System;
+using JadeLib.Features.Hints.Extensions;
 
-namespace RueI.Elements.Enums;
+namespace JadeLib.Features.Hints.Enums;
 
 /// <summary>
 /// Provides options for elements.
@@ -26,7 +27,7 @@ public enum ElementOptions
     /// <summary>
     /// Indicates whether or not to automatically use functional positioning for the element.
     /// </summary>
-    /// <seealso cref="HintTility.FunctionalToScaledPosition(float)"/>
+    /// <seealso cref="HintTility.FunctionalToScaledPosition"/>
     UseFunctionalPosition = 1 << 2,
 
     /// <summary>

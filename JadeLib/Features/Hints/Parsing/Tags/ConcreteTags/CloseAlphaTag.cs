@@ -1,4 +1,4 @@
-﻿namespace RueI.Parsing.Tags.ConcreteTags;
+﻿namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
 /// Provides a way to handle closing alpha tags.

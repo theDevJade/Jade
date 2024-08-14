@@ -1,10 +1,8 @@
 ﻿using System;
-
-namespace RueI;
-
 using System.Collections.ObjectModel;
+using JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
-using RueI.Parsing.Tags.ConcreteTags;
+namespace JadeLib.Features.Hints;
 
 /// <summary>
 /// Provides a variety of constant values.

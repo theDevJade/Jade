@@ -473,6 +473,10 @@
         <Compile Include="Features\Extensions\ReflectionExtensions.cs" />
         <Compile Include="Features\Hints\CharacterLengths.cs" />
         <Compile Include="Features\Hints\Constants.cs" />
+        <Compile Include="Features\Hints\Display\DisplayEvents.cs" />
+        <Compile Include="Features\Hints\Display\DisplayExtensions.cs" />
+        <Compile Include="Features\Hints\Display\PlayerDisplay.cs" />
+        <Compile Include="Features\Hints\Display\Screen.cs" />
         <Compile Include="Features\Hints\Elements\Element.cs" />
         <Compile Include="Features\Hints\Enums\ElementOptions.cs" />
         <Compile Include="Features\Hints\Extensions\EnumExtensions.cs" />
@@ -551,6 +555,11 @@
         <Compile Include="Features\Registers\914.cs" />
         <Compile Include="Features\Registers\HintService.cs" />
         <Compile Include="Features\Registers\Redirections.cs" />
+        <Compile Include="Features\Registers\StatsRegister.cs" />
+        <Compile Include="Features\Stats\BuiltinStats\KillsStat.cs" />
+        <Compile Include="Features\Stats\PlayerStat.cs" />
+        <Compile Include="Features\Stats\PlayerStats.cs" />
+        <Compile Include="Features\Stats\StatEvents.cs" />
         <Compile Include="Jade.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>

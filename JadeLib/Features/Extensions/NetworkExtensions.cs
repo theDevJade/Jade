@@ -27,9 +27,7 @@ public static class NetworkExtensions
         foreach (var ply in Player.List)
         {
             ply.Connection.Send(objectDestroyMessage);
-            typeof(NetworkServer).GetMethod("SendSpawnMessage", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)?.Invoke(
-                null,
-                [identity, ply.Connection]);
+            NetworkServer.SendSpawnMessage(identity, ply.Connection);
         }
     }
 
@@ -50,9 +48,7 @@ public static class NetworkExtensions
         foreach (var ply in players)
         {
             ply.Connection.Send(objectDestroyMessage);
-            typeof(NetworkServer).GetMethod("SendSpawnMessage", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)?.Invoke(
-                null,
-                [identity, ply.Connection]);
+            NetworkServer.SendSpawnMessage(identity, ply.Connection);
         }
     }
 

@@ -3,6 +3,7 @@
 // </copyright>
 
 using Exiled.API.Features;
+using JadeLib.Features.Audio;
 
 namespace JadeLib.Features.Registers;
 

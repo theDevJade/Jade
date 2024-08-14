@@ -1,4 +1,4 @@
-﻿namespace RueI;
+﻿namespace JadeLib.Features.Hints.Extensions;
 
 /// <summary>
 /// Provides helpful functions for dealing with elements and hints.

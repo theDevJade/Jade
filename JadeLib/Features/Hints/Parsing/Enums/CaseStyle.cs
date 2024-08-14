@@ -1,4 +1,4 @@
-﻿namespace RueI.Parsing.Enums;
+﻿namespace JadeLib.Features.Hints.Parsing.Enums;
 
 /// <summary>
 /// Represents the case style of the parser.

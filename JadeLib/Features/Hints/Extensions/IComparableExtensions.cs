@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RueI.Extensions;
+namespace JadeLib.Features.Hints.Extensions;
 
 /// <summary>
 /// Provides extensions and helpers for working with classes that implement <see cref="IComparable"/>.

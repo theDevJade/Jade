@@ -1,4 +1,4 @@
-﻿namespace RueI.Parsing;
+﻿namespace JadeLib.Features.Hints.Parsing.Tags;
 
 /// <summary>
 /// Defines the base class for all rich text tags.
@@ -13,13 +13,13 @@ public abstract class ClosingTag<T> : NoParamsTag
     public abstract string Name { get; }
 
     /// <inheritdoc/>
-    public sealed override string[] Names => new[] { Name };
+    public sealed override string[] Names => new[] { this.Name };
 
     /// <inheritdoc/>
     public sealed override bool HandleTag(ParserContext context)
     {
-        ApplyTo(context);
-        context.ResultBuilder.Append($"<{Name}>");
+        this.ApplyTo(context);
+        context.ResultBuilder.Append($"<{this.Name}>");
         context.RemoveEndingTag<T>();
         return true;
     }

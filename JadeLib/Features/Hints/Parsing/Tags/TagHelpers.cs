@@ -1,4 +1,4 @@
-﻿namespace RueI.Parsing.Tags;
+﻿namespace JadeLib.Features.Hints.Parsing.Tags;
 
 /// <summary>
 /// Provides a number of helper functions for <see cref="RichTextTag"/>s.

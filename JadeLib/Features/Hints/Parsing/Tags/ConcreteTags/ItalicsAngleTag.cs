@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using RueI.Extensions;
+using JadeLib.Features.Hints.Extensions;
+using JadeLib.Features.Hints.Parsing.Enums;
 
-namespace RueI.Parsing.Tags.ConcreteTags;
-
-using RueI.Parsing.Enums;
+namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
 /// Provides a way to handle italic angles tags.
