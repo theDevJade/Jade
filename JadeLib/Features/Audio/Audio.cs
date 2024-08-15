@@ -16,7 +16,7 @@ public class Audio(Npc npc)
 
     public void AddPlayer(params Player[] players)
     {
-        this.Player.broadcastTo.AddRange(players.Select(e => e.Id));
+        this.Player.Targets.AddRange(players.Select(e => e.ReferenceHub));
     }
 
     /// <summary>
@@ -26,7 +26,7 @@ public class Audio(Npc npc)
     /// <param name="role">The role to spawn the npc as.</param>
     /// <param name="id">The ID, do not change if you want to follow VSR.</param>
     /// <param name="userID">User ID.</param>
-    /// <returns></returns>
+    /// <returns>The audio.</returns>
     public static Audio CreateNpc(
         string name,
         RoleTypeId role = RoleTypeId.None,
@@ -59,8 +59,10 @@ public class Audio(Npc npc)
             Log.Debug($"Ignore: {e}");
         }
 
-        var audio = new Audio(npc);
-        audio.Player = AudioPlayer.GetOrCreate(npc.ReferenceHub, audio);
+        var audio = new Audio(npc)
+        {
+            Player = npc.GameObject.AddComponent<AudioPlayer>().Initialize(npc.ReferenceHub),
+        };
         return audio;
     }
 }

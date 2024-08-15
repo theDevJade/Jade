@@ -26,7 +26,6 @@ Either compile the source or use one of the releases, drop into dependencies and
 Ensure you don't have duplicate assemblies, check `FodyWeavers.xml` for any already downloaded dependencies and removed. They are bundled.
 
 ### Credits:
-- Cedmod for audio player
 - RueI for hint parsing and ElemCombiner
 - Fody Weavers w/ Costura.
 
