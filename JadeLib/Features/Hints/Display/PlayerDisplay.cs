@@ -3,9 +3,6 @@
 // </copyright>
 
 using System.Collections.Generic;
-using Hints;
-using JadeLib.Features.Hints.Elements;
-using Utils.NonAllocLINQ;
 
 namespace JadeLib.Features.Hints.Display;
 

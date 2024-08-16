@@ -11,7 +11,7 @@ using NAudio.Lame;
 using NAudio.Wave;
 using VideoLibrary;
 
-namespace JadeLib.Features.Audio;
+namespace JadeLib.Features.Audio.Utilities;
 
 /// <summary>
 /// A set of functions that provide interaction with YouTube.

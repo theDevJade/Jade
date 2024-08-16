@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Exiled.API.Features;
 using JadeLib.Features.Hints.Elements;
 using JadeLib.Features.Hints.Enums;
 using JadeLib.Features.Hints.Extensions;
@@ -21,7 +22,7 @@ public static class ElemCombiner
     /// </summary>
     /// <param name="elems">The <see cref="IEnumerable{T}"/> of <see cref="Element"/>s to combine.</param>
     /// <returns>A <see cref="string"/> with all of the combined <see cref="Element"/>s.</returns>
-    public static string Combine(IEnumerable<Element> elems)
+    public static string Combine(IEnumerable<Element> elems, ReferenceHub player)
     {
         var elements = ListPool<Element>.Shared.Rent(elems);
 
@@ -43,7 +44,7 @@ public static class ElemCombiner
         {
             var curElement = elements[i];
 
-            var parsedData = curElement.GetParsedData();
+            var parsedData = curElement.GetParsedData(player);
 
             var funcPos = curElement.GetFunctionalPosition();
             if (curElement.Options.HasFlagFast(ElementOptions.PreserveSpacing))

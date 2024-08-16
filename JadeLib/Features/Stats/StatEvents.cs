@@ -12,7 +12,10 @@ public sealed class StatEvents
     [Listener]
     public void Join(VerifiedEventArgs args)
     {
-        PlayerStats.StatPools.Add(args.Player.ReferenceHub, new StatPool(args.Player.ReferenceHub));
+        if (!args.Player.DoNotTrack)
+        {
+            PlayerStats.StatPools.Add(args.Player.ReferenceHub, new StatPool(args.Player.ReferenceHub));
+        }
     }
 
     [Listener]

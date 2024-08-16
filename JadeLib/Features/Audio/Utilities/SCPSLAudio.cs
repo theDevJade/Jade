@@ -4,10 +4,9 @@
 
 using Exiled.API.Features;
 using NVorbis;
-using UnityEngine;
 using VoiceChat;
 
-namespace JadeLib.Features.Audio;
+namespace JadeLib.Features.Audio.Utilities;
 
 public static class SCPSLAudio
 {

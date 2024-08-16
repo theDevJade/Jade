@@ -2,22 +2,21 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Exiled.API.Features;
-
-namespace JadeLib.Features.Audio;
-
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
-using MEC;
-using ICSharpCode.SharpZipLib.Tar;
+using System.Text;
+using Exiled.API.Features;
 using ICSharpCode.SharpZipLib.GZip;
+using ICSharpCode.SharpZipLib.Tar;
+using MEC;
+
+namespace JadeLib.Features.Audio.Utilities;
 
 /// <summary>
 /// A utility class for downloading, extracting, and using FFmpeg to convert audio files to OGG format.
@@ -63,8 +62,7 @@ public static class FfmpegUtility
                 client.DownloadFile(new Uri(ffmpegUrl), ffmpegArchive);
             }
 
-            yield return Timing.WaitUntilTrue(
-                () => File.Exists(ffmpegArchive));
+            yield return Timing.WaitUntilTrue(() => File.Exists(ffmpegArchive));
 
             Log.Info("Extracting ffmpeg...");
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -85,7 +83,10 @@ public static class FfmpegUtility
 
         // Find the first folder inside the extracted folder and locate the ffmpeg binary
         var firstFolder = Directory.GetDirectories(ffmpegExtractPath).First();
-        var ffmpegBinary = Path.Combine(firstFolder, "bin", "ffmpeg" + (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? ".exe" : string.Empty));
+        var ffmpegBinary = Path.Combine(
+            firstFolder,
+            "bin",
+            "ffmpeg" + (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? ".exe" : string.Empty));
         Log.Info($"Binary: {ffmpegBinary}");
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
@@ -150,7 +151,7 @@ public static class FfmpegUtility
             Arguments = $"-i \"{inputFile}\" -ar 48000 -ac 1 \"{outputFile}\"",
             RedirectStandardOutput = true,
             UseShellExecute = false,
-            CreateNoWindow = true,
+            CreateNoWindow = true
         };
 
         using var process = new Process();

@@ -6,6 +6,7 @@ using HarmonyLib;
 using JadeLib.Features;
 using JadeLib.Features.API.Reflection;
 using JadeLib.Features.Audio;
+using JadeLib.Features.Audio.Utilities;
 using JadeLib.Features.Extensions;
 using MEC;
 using Utils.NonAllocLINQ;
@@ -46,9 +47,7 @@ public static class Jade
         _harmony.PatchAll();
         Log.Info("All harmony patches have been applied");
 
-        Timing.RunCoroutine(
-            FfmpegUtility.DownloadAndExtractFfmpegAsync(
-            Log.Info));
+        Timing.RunCoroutine(FfmpegUtility.DownloadAndExtractFfmpegAsync(Log.Info));
         Log.Info("Ffmpeg has been installed.");
 
         JadeFeature.Register();
@@ -72,11 +71,7 @@ public static class Jade
             return false;
         }
 
-        FeatureGroup.Features.ForEach(
-            e =>
-            {
-                e.Value.Unregister();
-            });
+        FeatureGroup.Features.ForEach(e => { e.Value.Unregister(); });
 
         _harmony.UnpatchAll(_harmony.Id);
         Initialized = false;

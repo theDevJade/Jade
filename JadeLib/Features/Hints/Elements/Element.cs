@@ -2,6 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+using Exiled.API.Features;
 using JadeLib.Features.Hints.Enums;
 using JadeLib.Features.Hints.Parsing;
 using JadeLib.Features.Hints.Parsing.Records;
@@ -23,12 +24,12 @@ public abstract class Element
     /// <summary>
     /// Gets or sets the position of the element on a scale from 0-1000, where 0 represents the bottom of the screen and 1000 represents the top.
     /// </summary>
-    public float Position { get; set; }
+    public abstract float Position { get; set; }
 
     /// <summary>
     /// Gets or sets the priority of the hint (determining if it shows above another hint).
     /// </summary>
-    public int ZIndex { get; set; } = 1;
+    public virtual int ZIndex { get; set; } = 1;
 
     /// <summary>
     /// Gets or sets the <see cref="Parser"/> currently in use by this <see cref="Element"/>.
@@ -38,10 +39,14 @@ public abstract class Element
     /// </remarks>
     public Parser Parser { get; set; } = Parser.DefaultParser;
 
-    public abstract string GetText();
+    public abstract string GetText(HintCtx ctx);
 
-    public virtual ParsedData GetParsedData()
+    public virtual ParsedData GetParsedData(ReferenceHub player)
     {
-        return Parser.DefaultParser.Parse(this.GetText());
+        return Parser.DefaultParser.Parse(this.GetText(new HintCtx(this, player)));
     }
+
+    public delegate string HintContent(HintCtx ctx);
 }
+
+public record HintCtx(Element element, ReferenceHub Player);

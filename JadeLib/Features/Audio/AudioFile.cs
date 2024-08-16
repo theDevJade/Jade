@@ -3,7 +3,6 @@
 // </copyright>
 
 using System;
-using System.IO;
 using Exiled.API.Features;
 
 namespace JadeLib.Features.Audio;

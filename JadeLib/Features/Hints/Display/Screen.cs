@@ -17,9 +17,10 @@ public sealed class Screen(PlayerDisplay display, string identifier)
 
     public List<Element> Elements { get; private set; } = [];
 
-    public void AddElement(Element element)
+    public Element AddElement(Element element)
     {
         this.Elements.AddIfNotContains(element);
+        return element;
     }
 
     public bool RemoveElement(Element element)
@@ -32,7 +33,7 @@ public sealed class Screen(PlayerDisplay display, string identifier)
     /// </summary>
     public void ForceUpdate()
     {
-        var text = ElemCombiner.Combine(this.Elements);
+        var text = ElemCombiner.Combine(this.Elements, this.OwningDisplay.Owner);
 
         var parameter = new HintParameter[] { new StringHintParameter(text) };
         var effect = new HintEffect[] { HintEffectPresets.TrailingPulseAlpha(1, 1, 1) };
