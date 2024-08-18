@@ -7,6 +7,7 @@ using JadeLib.Features;
 using JadeLib.Features.API.Reflection;
 using JadeLib.Features.Audio;
 using JadeLib.Features.Audio.Utilities;
+using JadeLib.Features.Credit;
 using JadeLib.Features.Extensions;
 using MEC;
 using Utils.NonAllocLINQ;
@@ -39,18 +40,18 @@ public static class Jade
             return false;
         }
 
+        Patch();
+
         Log.Info("Initializing JadeLib");
         CosturaUtility.Initialize();
         Log.Info("Initialized Embedded DLL's");
-
-        _harmony = new Harmony("jade");
-        _harmony.PatchAll();
-        Log.Info("All harmony patches have been applied");
 
         Timing.RunCoroutine(FfmpegUtility.DownloadAndExtractFfmpegAsync(Log.Info));
         Log.Info("Ffmpeg has been installed.");
 
         JadeFeature.Register();
+
+        new FeatureGroup("creditjadelib").Supply(new JadeCredit()).Register();
 
         var banner = Assembly.GetExecutingAssembly().ReadEmbeddedResource("JadeLib.banner.txt");
         ServerConsole.AddLog("JadeLib is ready to go! \n" + banner, ConsoleColor.White);
@@ -71,10 +72,24 @@ public static class Jade
             return false;
         }
 
+        Unpatch();
+
         FeatureGroup.Features.ForEach(e => { e.Value.Unregister(); });
 
         _harmony.UnpatchAll(_harmony.Id);
         Initialized = false;
         return true;
+    }
+
+    internal static void Patch()
+    {
+        _harmony = new Harmony("jade");
+        _harmony.PatchAll();
+        Log.Info("All harmony patches have been applied");
+    }
+
+    internal static void Unpatch()
+    {
+        _harmony.UnpatchAll(_harmony.Id);
     }
 }

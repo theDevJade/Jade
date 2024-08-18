@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using Exiled.API.Features;
 using JadeLib.Features.Hints.Elements;
 using JadeLib.Features.Hints.Hints.Base.CustomHints;
+using Mirror;
+using RemoteAdmin.Communication;
 
 namespace JadeLib.Features.Hints.Hints.GeneralUse;
 

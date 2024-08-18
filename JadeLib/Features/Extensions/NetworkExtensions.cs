@@ -66,4 +66,12 @@ public static class NetworkExtensions
         var mouse = squeakSpawner.mice.First();
         mouse.GetComponent<NetworkIdentity>().MoveNetworkIdentityObject(pos);
     }
+
+    public static void HidePlayerFromPlayers(this Player player, params Player[] targets)
+    {
+        foreach (var target in targets)
+        {
+            target.NetworkIdentity.RemoveObserver(target.Connection);
+        }
+    }
 }

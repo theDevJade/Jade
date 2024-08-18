@@ -88,7 +88,9 @@
         <Reference Include="Mono.Posix">
             <HintPath>..\..\..\Useful\assemblies\Mono.Posix.dll</HintPath>
         </Reference>
-        <Reference Include="mscorlib"/>
+        <Reference Include="mscorlib">
+            <HintPath>..\..\..\Useful\assemblies\mscorlib-Publicized.dll</HintPath>
+        </Reference>
         <Reference Include="NorthwoodLib, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
             <HintPath>..\packages\EXILED.8.9.11\lib\net48\NorthwoodLib.dll</HintPath>
         </Reference>
@@ -448,7 +450,6 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Config.cs"/>
         <Compile Include="Features\914\Manager914.cs"/>
         <Compile Include="Features\914\Recipe914.cs"/>
         <Compile Include="Features\Abstract\ModuleSystem.cs"/>
@@ -469,6 +470,7 @@
         <Compile Include="Features\Audio\Utilities\SCPSLAudio.cs"/>
         <Compile Include="Features\Audio\Utilities\YoutubeUtility.cs"/>
         <Compile Include="Features\Audio\VoiceRedirections.cs"/>
+        <Compile Include="Features\Credit\JadeCredit.cs"/>
         <Compile Include="Features\Extensions\GeneralExtensions.cs"/>
         <Compile Include="Features\Extensions\NetworkExtensions.cs"/>
         <Compile Include="Features\Extensions\PlayerExtensions.cs"/>
@@ -563,6 +565,8 @@
         <Compile Include="Features\Hints\Parsing\Tags\TagHelpers.cs"/>
         <Compile Include="Features\Hints\Parsing\TextInfo.cs"/>
         <Compile Include="Features\JadeFeature.cs"/>
+        <Compile Include="Features\PlayerVisibility\HidePlayerPatch.cs"/>
+        <Compile Include="Features\PlayerVisibility\PlayerHiderMirror.cs"/>
         <Compile Include="Features\Registers\914.cs"/>
         <Compile Include="Features\Registers\HintService.cs"/>
         <Compile Include="Features\Registers\Redirections.cs"/>
