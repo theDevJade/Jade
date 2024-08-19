@@ -17,7 +17,10 @@ public sealed class PlayerDisplay
 
     internal static void AddDisplay(ReferenceHub hub, PlayerDisplay display)
     {
-        displays.Add(hub, display);
+        if (!displays.ContainsKey(hub))
+        {
+            displays.Add(hub, display);
+        }
     }
 
     internal static void RemoveDisplay(ReferenceHub hub)

@@ -19,12 +19,14 @@ namespace JadeLib;
 /// </summary>
 public static class Jade
 {
-    private static Harmony _harmony;
+    internal static Harmony _harmony;
 
     /// <summary>
     /// Gets a value indicating whether JadeLib is initialized or not.
     /// </summary>
     public static bool Initialized { get; private set; } = false;
+
+    public static JadeSettings Settings { get; set; } = JadeSettings.Default;
 
     internal static List<Assembly> UsingAssemblies = [];
 
@@ -32,26 +34,35 @@ public static class Jade
     /// A function that initializes JadeLib.
     /// </summary>
     /// <returns>A bool indicating if it was successfully initialized or not.</returns>
-    public static bool Initialize()
+    public static bool Initialize(JadeSettings settings = null)
     {
+        settings ??= Settings;
+
+        Settings = settings;
+
         UsingAssemblies.Add(Assembly.GetCallingAssembly());
         if (Initialized)
         {
             return false;
         }
 
-        Patch();
-
         Log.Info("Initializing JadeLib");
         CosturaUtility.Initialize();
         Log.Info("Initialized Embedded DLL's");
+
+        _harmony = new Harmony("jade");
+        _harmony.PatchAll();
+        Log.Info("All harmony patches have been applied");
 
         Timing.RunCoroutine(FfmpegUtility.DownloadAndExtractFfmpegAsync(Log.Info));
         Log.Info("Ffmpeg has been installed.");
 
         JadeFeature.Register();
 
-        new FeatureGroup("creditjadelib").Supply(new JadeCredit()).Register();
+        if (settings.JadeCredit)
+        {
+            new FeatureGroup("creditjadelib").Supply(new JadeCredit()).Register();
+        }
 
         var banner = Assembly.GetExecutingAssembly().ReadEmbeddedResource("JadeLib.banner.txt");
         ServerConsole.AddLog("JadeLib is ready to go! \n" + banner, ConsoleColor.White);
@@ -72,24 +83,12 @@ public static class Jade
             return false;
         }
 
-        Unpatch();
+        _harmony.UnpatchAll(_harmony.Id);
 
         FeatureGroup.Features.ForEach(e => { e.Value.Unregister(); });
 
         _harmony.UnpatchAll(_harmony.Id);
         Initialized = false;
         return true;
-    }
-
-    internal static void Patch()
-    {
-        _harmony = new Harmony("jade");
-        _harmony.PatchAll();
-        Log.Info("All harmony patches have been applied");
-    }
-
-    internal static void Unpatch()
-    {
-        _harmony.UnpatchAll(_harmony.Id);
     }
 }

@@ -15,6 +15,11 @@ public static class DisplayExtensions
 
     public static PlayerDisplay GetDisplay(this ReferenceHub hub)
     {
+        if (!PlayerDisplay.Displays.ContainsKey(hub))
+        {
+            PlayerDisplay.AddDisplay(hub, new PlayerDisplay(hub));
+        }
+
         return PlayerDisplay.Displays[hub];
     }
 }

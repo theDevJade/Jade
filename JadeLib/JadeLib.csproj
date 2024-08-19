@@ -23,6 +23,7 @@
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +33,7 @@
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
         <DebugType>embedded</DebugType>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="0Harmony, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -470,7 +472,9 @@
         <Compile Include="Features\Audio\Utilities\SCPSLAudio.cs"/>
         <Compile Include="Features\Audio\Utilities\YoutubeUtility.cs"/>
         <Compile Include="Features\Audio\VoiceRedirections.cs"/>
+        <Compile Include="Features\Commands\SizerCommand.cs"/>
         <Compile Include="Features\Credit\JadeCredit.cs"/>
+        <Compile Include="Features\Extensions\Extensions.cs"/>
         <Compile Include="Features\Extensions\GeneralExtensions.cs"/>
         <Compile Include="Features\Extensions\NetworkExtensions.cs"/>
         <Compile Include="Features\Extensions\PlayerExtensions.cs"/>
@@ -491,6 +495,7 @@
         <Compile Include="Features\Hints\Extensions\IComparableExtensions.cs"/>
         <Compile Include="Features\Hints\Extensions\IEnumerableExtensions.cs"/>
         <Compile Include="Features\Hints\Extensions\UniversalExtensions.cs"/>
+        <Compile Include="Features\Hints\HintPatch.cs"/>
         <Compile Include="Features\Hints\HintScheduler.cs"/>
         <Compile Include="Features\Hints\Hints\Base\CustomHint.cs"/>
         <Compile Include="Features\Hints\Hints\Base\CustomHints\ConditionalHint.cs"/>
@@ -498,6 +503,7 @@
         <Compile Include="Features\Hints\Hints\Base\IHint.cs"/>
         <Compile Include="Features\Hints\Hints\GeneralUse\ListBasedHint.cs"/>
         <Compile Include="Features\Hints\Hints\GeneralUse\ServerNameHint.cs"/>
+        <Compile Include="Features\Hints\Hints\VanillaHint.cs"/>
         <Compile Include="Features\Hints\Parsing\ElemCombiner.cs"/>
         <Compile Include="Features\Hints\Parsing\Enums\CaseStyle.cs"/>
         <Compile Include="Features\Hints\Parsing\Enums\ColorStyle.cs"/>
@@ -568,6 +574,7 @@
         <Compile Include="Features\PlayerVisibility\HidePlayerPatch.cs"/>
         <Compile Include="Features\PlayerVisibility\PlayerHiderMirror.cs"/>
         <Compile Include="Features\Registers\914.cs"/>
+        <Compile Include="Features\Registers\Commands.cs"/>
         <Compile Include="Features\Registers\HintService.cs"/>
         <Compile Include="Features\Registers\Redirections.cs"/>
         <Compile Include="Features\Registers\StatsRegister.cs"/>
@@ -576,6 +583,7 @@
         <Compile Include="Features\Stats\PlayerStats.cs"/>
         <Compile Include="Features\Stats\StatEvents.cs"/>
         <Compile Include="Jade.cs"/>
+        <Compile Include="JadeSettings.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>

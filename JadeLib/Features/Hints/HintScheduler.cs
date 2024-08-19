@@ -24,13 +24,23 @@ public static class HintScheduler
         Handler = Timing.RunCoroutine(Hint());
     }
 
+    internal static void RunIfNot()
+    {
+        if (Handler is { IsRunning: true })
+        {
+            return;
+        }
+
+        Handler = Timing.RunCoroutine(Hint());
+    }
+
     private static IEnumerator<float> Hint()
     {
         for (;;)
         {
-            foreach (var player in Player.List.Where(e => !e.IsNPC & e.IsConnected))
+            foreach (var keyValuePair in PlayerDisplay.Displays)
             {
-                PlayerDisplay.Displays[player.ReferenceHub].ForceUpdate();
+                keyValuePair.Value.ForceUpdate();
             }
 
             yield return Timing.WaitForSeconds(0.527f);

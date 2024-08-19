@@ -5,17 +5,27 @@
 using System.Collections.Generic;
 using Hints;
 using JadeLib.Features.Hints.Elements;
+using JadeLib.Features.Hints.Hints;
 using JadeLib.Features.Hints.Parsing;
 using Utils.NonAllocLINQ;
 
 namespace JadeLib.Features.Hints.Display;
 
-public sealed class Screen(PlayerDisplay display, string identifier)
+public sealed class Screen
 {
-    public readonly PlayerDisplay OwningDisplay = display;
-    public readonly string Identifier = identifier;
+    public readonly PlayerDisplay OwningDisplay;
+    public readonly string Identifier;
+
+    public Screen(PlayerDisplay display, string identifier)
+    {
+        this.OwningDisplay = display;
+        this.Identifier = identifier;
+        this.VanillaHint = new VanillaHint(this);
+    }
 
     public List<Element> Elements { get; private set; } = [];
+
+    public VanillaHint VanillaHint { get; }
 
     public Element AddElement(Element element)
     {
@@ -33,6 +43,7 @@ public sealed class Screen(PlayerDisplay display, string identifier)
     /// </summary>
     public void ForceUpdate()
     {
+        this.Elements.Add(this.VanillaHint.Element);
         var text = ElemCombiner.Combine(this.Elements, this.OwningDisplay.Owner);
 
         var parameter = new HintParameter[] { new StringHintParameter(text) };
@@ -40,5 +51,6 @@ public sealed class Screen(PlayerDisplay display, string identifier)
         var hint = new TextHint(text, parameter, effect, float.MaxValue);
 
         this.OwningDisplay.Owner.connectionToClient.Send(new HintMessage(hint));
+        this.Elements.Remove(this.VanillaHint.Element);
     }
 }

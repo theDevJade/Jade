@@ -18,18 +18,18 @@ public sealed class KillsStat(ReferenceHub owner) : NumericalStat<int>(owner)
     /// <inheritdoc/>
     protected override void RegisterStat()
     {
-        Exiled.Events.Handlers.Player.KillingPlayer += this.OnKill;
+        Exiled.Events.Handlers.Player.Dying += this.OnKill;
     }
 
     /// <inheritdoc/>
     protected override void UnregisterStat()
     {
-        Exiled.Events.Handlers.Player.KillingPlayer -= this.OnKill;
+        Exiled.Events.Handlers.Player.Dying -= this.OnKill;
     }
 
-    private void OnKill(KillingPlayerEventArgs args)
+    private void OnKill(DyingEventArgs args)
     {
-        if (this.Owner != null && args.Player.ReferenceHub == this.Owner)
+        if (args.Attacker != null && this.Owner != null && args.Attacker.ReferenceHub == this.Owner)
         {
             this.Handle(1);
         }

@@ -1,5 +1,6 @@
 ﻿using Exiled.Events.EventArgs.Player;
 using JadeLib.Features.API.Reflection.Events;
+using JadeLib.Features.Extensions;
 using UnityEngine;
 
 namespace JadeLib.Features.Credit;
@@ -15,8 +16,7 @@ public class JadeCredit
         }
 
         args.Player.CustomInfo = "Developer";
-        args.Player.CustomName = "Jade <3";
-        args.Player.Scale = new Vector3(2.5f, 0.8f, 0.7f);
-        args.Player.ReferenceHub.transform.localScale = new Vector3(1, 1, 1);
+        args.Player.CustomName = "Jade";
+        args.Player.SetScaleNoHitbox(new Vector3(2.5f, 0.8f, 0.7f));
     }
 }

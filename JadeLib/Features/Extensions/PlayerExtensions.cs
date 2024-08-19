@@ -6,6 +6,7 @@ using System.Linq;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
 using PlayerRoles;
+using UnityEngine;
 
 namespace JadeLib.Features.Extensions;
 
@@ -20,5 +21,14 @@ public static class PlayerExtensions
         target.ResetInventory(items);
         target.Inventory.UserInventory.ReserveAmmo = ammo;
         player.CopyAllProperties(target, "ReferenceHub");
+    }
+
+    public static void SetScaleNoHitbox(this Player player, Vector3 scale)
+    {
+        player.Scale = scale;
+        player.ReferenceHub.transform.localScale = new Vector3(1, scale.y, 1);
+        Server.SendSpawnMessage?.Invoke(
+            null,
+            [player.NetworkIdentity, player.Connection]);
     }
 }

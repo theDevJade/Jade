@@ -55,6 +55,8 @@ public abstract class CustomHint : ModuleSystem<CustomHint>, IHint
             return;
         }
 
+        Log.Info($"Registering Custom Hint {this.UniqueIdentifier}");
+
         this.featureGroup = new FeatureGroup(this.UniqueIdentifier);
         this.SupplyEvents(ref this.featureGroup);
         this.featureGroup.Supply(this);

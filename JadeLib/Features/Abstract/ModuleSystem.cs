@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PluginAPI.Core;
+using Exiled.API.Features;
 
 namespace JadeLib.Features.Abstract;
 
@@ -44,10 +44,11 @@ public abstract class ModuleSystem<T>
     /// </summary>
     public static void ReflectiveRegister()
     {
+        Log.Info($"Reflective Register {nameof(T)}");
         foreach (var type in Jade.UsingAssemblies.SelectMany(
                      assembly => assembly.GetTypes().Where(e => !e.IsAbstract & e.IsSubclassOf(typeof(T)))))
         {
-            Log.Debug($"Reflective Register, current type {typeof(T).Name}, subclass {type.Name}");
+            Log.Info($"Reflective Register, current type {typeof(T).Name}, subclass {type.Name}");
             if (Activator.CreateInstance(type) is T instance)
             {
                 RegisteredInstances.Add(instance);
