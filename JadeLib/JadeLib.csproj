@@ -579,9 +579,12 @@
         <Compile Include="Features\Registers\Redirections.cs"/>
         <Compile Include="Features\Registers\StatsRegister.cs"/>
         <Compile Include="Features\Stats\BuiltinStats\KillsStat.cs"/>
+        <Compile Include="Features\Stats\CustomStat.cs"/>
         <Compile Include="Features\Stats\PlayerStat.cs"/>
         <Compile Include="Features\Stats\PlayerStats.cs"/>
         <Compile Include="Features\Stats\StatEvents.cs"/>
+        <Compile Include="Features\Stats\StatList.cs"/>
+        <Compile Include="Features\UtilityClasses\NullableObject.cs"/>
         <Compile Include="Jade.cs"/>
         <Compile Include="JadeSettings.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>

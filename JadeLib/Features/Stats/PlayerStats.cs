@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using Exiled.API.Features;
 using HarmonyLib;
 using JadeLib.Features.Stats.BuiltinStats;
+using JadeLib.Features.UtilityClasses;
 
 namespace JadeLib.Features.Stats;
 
@@ -33,14 +34,20 @@ public static class PlayerStats
     /// </summary>
     /// <param name="hub">The reference hub.</param>
     /// <returns>The statistic pool.</returns>
-    public static StatPool GetStatisticsHub(this ReferenceHub hub) => StatPools.GetValueSafe(hub);
+    public static StatPool GetStatisticsHub(this ReferenceHub hub)
+    {
+        return StatPools.GetValueSafe(hub);
+    }
 
     /// <summary>
     /// Gets the statistic pool for a player.
     /// </summary>
     /// <param name="player">The player.</param>
     /// <returns>The statistic pool.</returns>
-    public static StatPool GetStatistics(this Player player) => StatPools.GetValueSafe(player.ReferenceHub);
+    public static StatPool GetStatistics(this Player player)
+    {
+        return StatPools.GetValueSafe(player.ReferenceHub);
+    }
 }
 
 /// <summary>
@@ -55,6 +62,18 @@ public sealed class StatPool(ReferenceHub owner)
     public readonly ReferenceHub Owner = owner;
 
     /// <summary>
+    /// Get a custom statistic based on a type.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <typeparam name="T">The typeparam (Defaulted to type).</typeparam>
+    /// <returns>A <see cref="NullableObject{T}"/> (possibly) containing the custom stat.</returns>
+    public NullableObject<Stat> GetCustomStat<T>(T type)
+        where T : Stat
+    {
+        return this.CustomStats.Get(type);
+    }
+
+    /// <summary>
     /// The <see cref="KillsStat"/> for this player.
     /// </summary>
     public KillsStat Kills { get; } = new(owner);
@@ -62,5 +81,5 @@ public sealed class StatPool(ReferenceHub owner)
     /// <summary>
     /// Gets a list of custom statistics for this pool.
     /// </summary>
-    public List<Stat> CustomStats { get; } = [];
+    public CustomList<Stat> CustomStats { get; } = [];
 }

@@ -11,10 +11,15 @@ namespace JadeLib.Features.Stats;
 /// A statistic for a player.
 /// </summary>
 /// <param name="owner">The Owner of this statistic.</param>
-public abstract class Stat(ReferenceHub owner) : ModuleSystem<Stat>
+public abstract class Stat : ModuleSystem<Stat>
 {
-    [CanBeNull]
-    public readonly ReferenceHub Owner = owner;
+    [CanBeNull] public readonly ReferenceHub Owner;
+
+    protected Stat(ReferenceHub owner)
+    {
+        this.Owner = owner;
+        this.RegisterStat();
+    }
 
     /// <inheritdoc/>
     protected override void Register()

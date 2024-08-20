@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Features;
 using JadeLib.Features.Hints.Display;
+using JadeLib.Features.Hints.Elements;
 using MEC;
 
 namespace JadeLib.Features.Hints;
@@ -21,7 +22,7 @@ public static class HintScheduler
             Timing.KillCoroutines(Handler.Value);
         }
 
-        Handler = Timing.RunCoroutine(Hint());
+        Handler = Timing.RunCoroutine(Hint(), Segment.Update);
     }
 
     internal static void RunIfNot()
@@ -31,7 +32,7 @@ public static class HintScheduler
             return;
         }
 
-        Handler = Timing.RunCoroutine(Hint());
+        Handler = Timing.RunCoroutine(Hint(), Segment.Update);
     }
 
     private static IEnumerator<float> Hint()
@@ -40,6 +41,8 @@ public static class HintScheduler
         {
             foreach (var keyValuePair in PlayerDisplay.Displays)
             {
+                Log.Info(
+                    $"Debug ): Updating PlayerDisplay {keyValuePair.Key.nicknameSync.DisplayName}. {string.Join("\n", keyValuePair.Value.ActiveScreen.Elements.Select(e => e.GetText(new HintCtx(e, keyValuePair.Key))))}");
                 keyValuePair.Value.ForceUpdate();
             }
 

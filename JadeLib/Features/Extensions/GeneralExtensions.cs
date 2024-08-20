@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JadeLib.Features.Extensions;
 
@@ -20,5 +21,11 @@ public static class GeneralExtensions
             var k = rng.Next(n + 1);
             (list[k], list[n]) = (list[n], list[k]);
         }
+    }
+
+    public static T Random<T>(this IEnumerable<T> list)
+    {
+        var enumerable = list.ToList();
+        return enumerable[UnityEngine.Random.Range(1, enumerable.Count())];
     }
 }
