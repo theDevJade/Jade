@@ -1,12 +1,13 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
+﻿// <copyright file="EffectTranslations.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 #region
 
 using System;
 using CustomPlayerEffects;
 using Exiled.API.Enums;
+using JadeLib.Features.Extensions;
 using JadeLib.Features.UtilityClasses;
 
 #endregion
@@ -76,6 +77,6 @@ public static class EffectExtensions
 {
     public static string GetTimeLeft(this StatusEffectBase @base)
     {
-        return @base.TimeLeft == 0 ? "∞" : $"{@base.TimeLeft}";
+        return @base.TimeLeft == 0 ? "∞" : $"{@base.TimeLeft.Dplay()}";
     }
 }

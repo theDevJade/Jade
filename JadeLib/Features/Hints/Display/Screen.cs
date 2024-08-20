@@ -1,6 +1,6 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
+﻿// <copyright file="Screen.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 #region
 
@@ -47,7 +47,11 @@ public sealed class Screen
     /// </summary>
     public void ForceUpdate()
     {
-        this.Elements.Add(this.VanillaHint.Element);
+        if (!this.Elements.Contains(this.VanillaHint.Element))
+        {
+            this.Elements.Add(this.VanillaHint.Element);
+        }
+
         var text = ElemCombiner.Combine(this.Elements, this.OwningDisplay.Owner);
 
         var parameter = new HintParameter[] { new StringHintParameter(text) };
@@ -55,6 +59,5 @@ public sealed class Screen
         var hint = new TextHint(text, parameter, effect, float.MaxValue);
 
         this.OwningDisplay.Owner.connectionToClient.Send(new HintMessage(hint));
-        this.Elements.Remove(this.VanillaHint.Element);
     }
 }

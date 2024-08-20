@@ -6,7 +6,6 @@
 
 using Exiled.API.Features;
 using JadeLib.Features.API.Reflection;
-using JadeLib.Features.Hints;
 using JadeLib.Features.Hints.Display;
 using JadeLib.Features.Hints.Hints.Base;
 
@@ -26,7 +25,6 @@ public class HintService : JadeFeature
         Log.Info("Enabling Hint System.");
         var featureGroup = new FeatureGroup("jadehints").Supply(new DisplayEvents());
         featureGroup.Register();
-        HintScheduler.Run();
         CustomHint.ReflectiveRegister();
     }
 }

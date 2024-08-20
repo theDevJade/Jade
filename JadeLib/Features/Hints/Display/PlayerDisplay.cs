@@ -47,12 +47,14 @@ public sealed class PlayerDisplay
         set { this.activeScreen = this.Screens.GetOrAdd(value.Identifier, () => value); }
     }
 
-    internal static void AddDisplay(ReferenceHub hub, PlayerDisplay display)
+    internal static PlayerDisplay AddDisplay(ReferenceHub hub, PlayerDisplay display)
     {
         if (!displays.ContainsKey(hub))
         {
             displays.Add(hub, display);
         }
+
+        return displays[hub];
     }
 
     internal static void RemoveDisplay(ReferenceHub hub)

@@ -1,6 +1,6 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
+﻿// <copyright file="HintPatch.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 #region
 
@@ -20,14 +20,14 @@ internal static class HintPatch
     [HarmonyPrefix]
     private static bool Prefix(HintDisplay __instance, ref Hint hint)
     {
-        HintScheduler.RunIfNot();
+        var plyr = Player.Get(__instance.connectionToClient);
+        HintScheduler.EnsureInit(plyr.ReferenceHub);
         if (hint is not TextHint textHint)
         {
             Log.Debug("Not text hint.");
-            return false;
+            return true;
         }
 
-        var plyr = Player.Get(__instance.connectionToClient);
         plyr.ReferenceHub.GetDisplay().ActiveScreen.VanillaHint.Add(textHint);
 
         return false;
