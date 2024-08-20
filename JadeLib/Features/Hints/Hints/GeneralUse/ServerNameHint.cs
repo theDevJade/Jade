@@ -1,9 +1,13 @@
-﻿// <copyright file="ServerNameHint.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using JadeLib.Features.Hints.Elements;
 using JadeLib.Features.Hints.Hints.Base.CustomHints;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Hints.GeneralUse;
 
@@ -13,10 +17,10 @@ public abstract class ServerNameHint : GlobalHint
 
     public abstract string Name { get; set; }
 
+    public override int Position { get; set; } = 20;
+
     public override string GetContent(HintCtx context)
     {
         return this.Name;
     }
-
-    public override int Position { get; set; } = 20;
 }

@@ -1,8 +1,16 @@
-﻿using System;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+
+#endregion
 
 namespace JadeLib.Features.Extensions;
 
@@ -19,12 +27,12 @@ public static class ReflectionExtensions
         using var reader = new StreamReader(stream);
         return reader.ReadToEnd();
     }
-    
+
     public static List<string> ReadEmbeddedResourceList(this Assembly assembly, string resourceName)
     {
         var lines = new List<string>();
 
-        using Stream stream = assembly.GetManifestResourceStream(resourceName);
+        using var stream = assembly.GetManifestResourceStream(resourceName);
         if (stream == null)
         {
             return null;
@@ -55,7 +63,9 @@ public static class ReflectionExtensions
         var targetType = target.GetType();
 
         var properties = from sourceProperty in sourceType.GetProperties(BindingFlags.Public | BindingFlags.Instance)
-            let targetProperty = targetType.GetProperty(sourceProperty.Name, BindingFlags.Public | BindingFlags.Instance)
+            let targetProperty = targetType.GetProperty(
+                sourceProperty.Name,
+                BindingFlags.Public | BindingFlags.Instance)
             where targetProperty != null
                   && sourceProperty.CanRead
                   && targetProperty.CanWrite
@@ -67,7 +77,8 @@ public static class ReflectionExtensions
             var sourceValue = property.sourceProperty.GetValue(source);
             if (property.sourceProperty.PropertyType.IsClass && property.sourceProperty.PropertyType != typeof(string))
             {
-                var targetValue = property.targetProperty.GetValue(target) ?? Activator.CreateInstance(property.targetProperty.PropertyType);
+                var targetValue = property.targetProperty.GetValue(target) ??
+                                  Activator.CreateInstance(property.targetProperty.PropertyType);
                 property.targetProperty.SetValue(target, targetValue);
                 if (sourceValue != null)
                 {

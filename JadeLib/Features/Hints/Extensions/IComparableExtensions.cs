@@ -1,14 +1,22 @@
-﻿using System;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using System;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Extensions;
 
 /// <summary>
-/// Provides extensions and helpers for working with classes that implement <see cref="IComparable"/>.
+///     Provides extensions and helpers for working with classes that implement <see cref="IComparable" />.
 /// </summary>
 internal static class IComparableExtensions
 {
     /// <summary>
-    /// Gets the maximum of two <see cref="IComparable{T}"/>.
+    ///     Gets the maximum of two <see cref="IComparable{T}" />.
     /// </summary>
     /// <typeparam name="T">The type to use.</typeparam>
     /// <param name="first">The first value.</param>
@@ -21,14 +29,12 @@ internal static class IComparableExtensions
         {
             return first;
         }
-        else
-        {
-            return second;
-        }
+
+        return second;
     }
 
     /// <summary>
-    /// Gets the maximum of two <see cref="IComparable{T}"/>, if a bool is true.
+    ///     Gets the maximum of two <see cref="IComparable{T}" />, if a bool is true.
     /// </summary>
     /// <typeparam name="T">The type to use.</typeparam>
     /// <param name="first">The first value.</param>

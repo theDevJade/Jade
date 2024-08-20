@@ -1,17 +1,21 @@
-﻿namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle closing line height tags.
+///     Provides a way to handle closing line height tags.
 /// </summary>
 [RichTextTag]
 public class CloseLineHeightTag : NoParamsTag
 {
     private const string TAGFORMAT = "<line-height=40.665>";
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "/line-height" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context)
     {
         context.CurrentLineHeight = Constants.DEFAULTHEIGHT;

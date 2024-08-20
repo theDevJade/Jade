@@ -1,15 +1,19 @@
-﻿namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle closing alpha tags.
+///     Provides a way to handle closing alpha tags.
 /// </summary>
 [RichTextTag]
 public class CloseAlphaTag : NoParamsTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { }; // no names, since this tag doesn't really "exist"
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context)
     {
         context.ResultBuilder.Append("<alpha=#FF>");

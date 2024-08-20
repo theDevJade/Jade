@@ -1,12 +1,16 @@
-﻿// <copyright file="PlayerExtensions.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
 using PlayerRoles;
 using UnityEngine;
+
+#endregion
 
 namespace JadeLib.Features.Extensions;
 

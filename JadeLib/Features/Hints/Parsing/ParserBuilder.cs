@@ -1,4 +1,10 @@
-﻿using System;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -6,44 +12,47 @@ using Exiled.API.Features;
 using JadeLib.Features.Hints.Parsing.Tags;
 using NorthwoodLib.Pools;
 
+#endregion
+
 namespace JadeLib.Features.Hints.Parsing;
 
 /// <summary>
-/// Builds <see cref="Parser"/>s.
+///     Builds <see cref="Parser" />s.
 /// </summary>
 public sealed class ParserBuilder
 {
-    private readonly List<RichTextTag> currentTags = ListPool<RichTextTag>.Shared.Rent(10);
     private readonly List<Parser> backups = ListPool<Parser>.Shared.Rent(2);
+    private readonly List<RichTextTag> currentTags = ListPool<RichTextTag>.Shared.Rent(10);
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ParserBuilder"/> class.
+    ///     Initializes a new instance of the <see cref="ParserBuilder" /> class.
     /// </summary>
     public ParserBuilder()
     {
     }
 
     /// <summary>
-    /// Gets the number of tags within this <see cref="ParserBuilder"/>.
+    ///     Gets the number of tags within this <see cref="ParserBuilder" />.
     /// </summary>
     public int TagsCount => this.currentTags.Count;
 
     /// <summary>
-    /// Adds new <see cref="RichTextTag"/>s from an assembly by getting all of the <see cref="RichTextTagAttribute"/> classes.
+    ///     Adds new <see cref="RichTextTag" />s from an assembly by getting all of the <see cref="RichTextTagAttribute" />
+    ///     classes.
     /// </summary>
-    /// <param name="assembly">The <see cref="Assembly"/> to get the classes from.</param>
-    /// <returns>A reference to this <see cref="ParserBuilder"/>.</returns>
+    /// <param name="assembly">The <see cref="Assembly" /> to get the classes from.</param>
+    /// <returns>A reference to this <see cref="ParserBuilder" />.</returns>
     public ParserBuilder AddFromAssembly(Assembly assembly)
     {
-        MethodInfo addTag = typeof(ParserBuilder).GetMethod(nameof(this.AddTag));
+        var addTag = typeof(ParserBuilder).GetMethod(nameof(this.AddTag));
 
-        foreach (Type type in assembly.GetTypes())
+        foreach (var type in assembly.GetTypes())
         {
             if (type.GetCustomAttributes(typeof(RichTextTagAttribute), true).Any())
             {
                 if (type.IsSubclassOf(typeof(RichTextTag)))
                 {
-                    MethodInfo generic = addTag.MakeGenericMethod(type);
+                    var generic = addTag.MakeGenericMethod(type);
                     generic.Invoke(this, Array.Empty<object>());
                 }
                 else
@@ -61,24 +70,24 @@ public sealed class ParserBuilder
     // duplicates of a type may exist, but not different instances
 
     /// <summary>
-    /// Gets the <see cref="SharedTag{T}"/> of a <see cref="RichTextTag"/> type and adds it to the builder.
+    ///     Gets the <see cref="SharedTag{T}" /> of a <see cref="RichTextTag" /> type and adds it to the builder.
     /// </summary>
     /// <typeparam name="T">The type of the tag to create.</typeparam>
-    /// <returns>A reference to this <see cref="ParserBuilder"/>.</returns>
+    /// <returns>A reference to this <see cref="ParserBuilder" />.</returns>
     public ParserBuilder AddTag<T>()
         where T : RichTextTag, new()
     {
-        T tag = SharedTag<T>.Singleton;
+        var tag = SharedTag<T>.Singleton;
         this.currentTags.Add(tag);
 
         return this;
     }
 
     /// <summary>
-    /// Imports all of the <see cref="RichTextTag"/>s from a <see cref="Parser"/>, adding it to the builder.
+    ///     Imports all of the <see cref="RichTextTag" />s from a <see cref="Parser" />, adding it to the builder.
     /// </summary>
-    /// <param name="parser">The <see cref="Parser"/> to import the tags from.</param>
-    /// <returns>A reference to this <see cref="ParserBuilder"/>.</returns>
+    /// <param name="parser">The <see cref="Parser" /> to import the tags from.</param>
+    /// <returns>A reference to this <see cref="ParserBuilder" />.</returns>
     public ParserBuilder ImportFrom(Parser parser)
     {
         this.backups.Add(parser);
@@ -86,18 +95,21 @@ public sealed class ParserBuilder
     }
 
     /// <summary>
-    /// Builds this <see cref="ParserBuilder"/> into a <see cref="Parser"/>.
+    ///     Builds this <see cref="ParserBuilder" /> into a <see cref="Parser" />.
     /// </summary>
-    /// <returns>The built <see cref="Parser"/>.</returns>
-    public Parser Build() => new(this.currentTags, this.backups);
+    /// <returns>The built <see cref="Parser" />.</returns>
+    public Parser Build()
+    {
+        return new Parser(this.currentTags, this.backups);
+    }
 
     /// <summary>
-    /// Adds all of the tags from an <see cref="IEnumerable{RichTextTag}"/>.
+    ///     Adds all of the tags from an <see cref="IEnumerable{RichTextTag}" />.
     /// </summary>
     /// <param name="tags">The tags to add.</param>
     internal void AddTags(IEnumerable<RichTextTag> tags)
     {
-        foreach (RichTextTag tag in tags)
+        foreach (var tag in tags)
         {
             this.currentTags.Add(tag);
         }

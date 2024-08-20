@@ -1,51 +1,61 @@
-﻿using System.Text;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
 using JadeLib.Features.Hints.Parsing.Enums;
 using NorthwoodLib.Pools;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Parsing.Records;
 
 /// <summary>
-/// Defines a record that contains information about measurement info.
+///     Defines a record that contains information about measurement info.
 /// </summary>
 /// <param name="value">The value of the measurement.</param>
 /// <param name="style">The style of the measurement.</param>
 /// <remarks>
-/// This provides a convenient way to specify both the value and unit for a measurement,
-/// as the base value when converted to pixels can differ depending on the
-/// context of the measurement.
+///     This provides a convenient way to specify both the value and unit for a measurement,
+///     as the base value when converted to pixels can differ depending on the
+///     context of the measurement.
 /// </remarks>
 public record struct MeasurementInfo(float value, MeasurementUnit style)
 {
     /// <summary>
-    /// Attempts to extract a <see cref="MeasurementInfo"/> from a string.
+    ///     Attempts to extract a <see cref="MeasurementInfo" /> from a string.
     /// </summary>
     /// <param name="content">The content to parse.</param>
     /// <param name="info">The returned info, if true.</param>
     /// <returns>true if the string was valid, otherwise false.</returns>
     public static bool TryParse(string content, out MeasurementInfo info)
     {
-        StringBuilder paramBuffer = StringBuilderPool.Shared.Rent(25);
-        MeasurementUnit style = MeasurementUnit.Pixels;
+        var paramBuffer = StringBuilderPool.Shared.Rent(25);
+        var style = MeasurementUnit.Pixels;
 
-        bool hasPeriod = false;
+        var hasPeriod = false;
 
-        foreach (char ch in content)
+        foreach (var ch in content)
         {
             if (ch == 'e')
             {
                 style = MeasurementUnit.Ems;
                 break;
             }
-            else if (ch == '%')
+
+            if (ch == '%')
             {
                 style = MeasurementUnit.Percentage;
                 break;
             }
-            else if (ch == 'p') // pixels
+
+            if (ch == 'p') // pixels
             {
                 break;
             }
-            else if (ch == '.')
+
+            if (ch == '.')
             {
                 if (!hasPeriod)
                 {
@@ -59,30 +69,28 @@ public record struct MeasurementInfo(float value, MeasurementUnit style)
             }
         }
 
-        string bufferString = StringBuilderPool.Shared.ToStringReturn(paramBuffer);
-        if (float.TryParse(bufferString, out float result) && result < Constants.MEASUREMENTVALUELIMIT)
+        var bufferString = StringBuilderPool.Shared.ToStringReturn(paramBuffer);
+        if (float.TryParse(bufferString, out var result) && result < Constants.MEASUREMENTVALUELIMIT)
         {
-            info = new(result, style);
+            info = new MeasurementInfo(result, style);
             return true;
         }
-        else
-        {
-            info = default;
-            return false;
-        }
+
+        info = default;
+        return false;
     }
 
     /// <summary>
-    /// Gets a string representation of this <see cref="MeasurementInfo"/>.
+    ///     Gets a string representation of this <see cref="MeasurementInfo" />.
     /// </summary>
     /// <returns>A new value.</returns>
-    public override readonly string ToString()
+    public readonly override string ToString()
     {
-        return value.ToString() + style switch
+        return this.value + this.style switch
         {
             MeasurementUnit.Ems => "e",
             MeasurementUnit.Percentage => "%",
-            _ => string.Empty,
+            _ => string.Empty
         };
     }
 }

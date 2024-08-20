@@ -1,23 +1,31 @@
-﻿using JadeLib.Features.Hints.Parsing.Enums;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using JadeLib.Features.Hints.Parsing.Enums;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle scale tags.
+///     Provides a way to handle scale tags.
 /// </summary>
 [RichTextTag]
 public class ScaleTag : RichTextTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "scale" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override TagStyle TagStyle { get; } = TagStyle.ValueParam;
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context, string content)
     {
-        if (!float.TryParse(content, out float result))
+        if (!float.TryParse(content, out var result))
         {
             return false;
         }

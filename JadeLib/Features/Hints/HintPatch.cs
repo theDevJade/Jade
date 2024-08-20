@@ -1,8 +1,16 @@
-﻿using Exiled.API.Features;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using Exiled.API.Features;
 using HarmonyLib;
 using Hints;
 using JadeLib.Features.Hints.Display;
 using Hint = Hints.Hint;
+
+#endregion
 
 namespace JadeLib.Features.Hints;
 

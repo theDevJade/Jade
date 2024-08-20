@@ -1,21 +1,29 @@
-﻿using JadeLib.Features.Hints.Parsing.Enums;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using JadeLib.Features.Hints.Parsing.Enums;
 using JadeLib.Features.Hints.Parsing.Records;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle line indent tags.
+///     Provides a way to handle line indent tags.
 /// </summary>
 [RichTextTag]
 public class LineIndentTag : MeasurementTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "line-indent" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context, MeasurementInfo info)
     {
-        float value = info.style switch
+        var value = info.style switch
         {
             MeasurementUnit.Percentage => info.value / 100 * Constants.DISPLAYAREAWIDTH,
             MeasurementUnit.Ems => info.value * Constants.EMSTOPIXELS,

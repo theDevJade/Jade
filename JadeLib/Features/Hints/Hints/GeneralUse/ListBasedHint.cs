@@ -1,13 +1,14 @@
-﻿// <copyright file="ListBasedHint.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using System.Collections.Generic;
-using Exiled.API.Features;
 using JadeLib.Features.Hints.Elements;
 using JadeLib.Features.Hints.Hints.Base.CustomHints;
-using Mirror;
-using RemoteAdmin.Communication;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Hints.GeneralUse;
 
@@ -16,7 +17,7 @@ public abstract class ListBasedHint : ConditionalHint
     public override bool Debug { get; set; } = false;
 
     /// <summary>
-    /// Gets or sets the list wrapper, should include a {SPLIT} to indicate where to insert the list.
+    ///     Gets or sets the list wrapper, should include a {SPLIT} to indicate where to insert the list.
     /// </summary>
     public virtual string ListWrapper { get; set; } = "{SPLIT}";
 

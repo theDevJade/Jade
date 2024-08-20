@@ -1,10 +1,14 @@
-﻿// <copyright file="StatsRegister.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using Exiled.API.Features;
 using JadeLib.Features.API.Reflection;
 using JadeLib.Features.Stats;
+
+#endregion
 
 namespace JadeLib.Features.Registers;
 

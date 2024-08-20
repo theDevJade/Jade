@@ -1,9 +1,13 @@
-﻿// <copyright file="AudioFile.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using System;
 using Exiled.API.Features;
+
+#endregion
 
 namespace JadeLib.Features.Audio;
 

@@ -1,16 +1,20 @@
-﻿// <copyright file="GeneralExtensions.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
+#endregion
+
 namespace JadeLib.Features.Extensions;
 
 public static class GeneralExtensions
 {
-    private static Random rng = new();
+    private static readonly Random rng = new();
 
     public static void Shuffle<T>(this IList<T> list)
     {

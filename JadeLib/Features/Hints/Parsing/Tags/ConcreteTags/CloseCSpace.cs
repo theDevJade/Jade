@@ -1,15 +1,19 @@
-﻿namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle closing cspace tags.
+///     Provides a way to handle closing cspace tags.
 /// </summary>
 [RichTextTag]
 public class CloseCSpaceTag : ClosingTag<CloseCSpaceTag>
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string Name { get; } = "/cspace";
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     protected override void ApplyTo(ParserContext context)
     {
         context.CurrentCSpace = 0;

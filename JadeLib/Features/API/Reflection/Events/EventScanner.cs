@@ -1,9 +1,8 @@
-// -----------------------------------------------------------------------
-// <copyright file="EventScanner.cs" company="Exiled Team">
-// Copyright (c) Exiled Team. All rights reserved.
-// Licensed under the CC BY-SA 3.0 license.
-// </copyright>
-// -----------------------------------------------------------------------
+// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using System;
 using System.Collections.Generic;
@@ -13,67 +12,80 @@ using Exiled.Events.EventArgs.Interfaces;
 using Exiled.Events.Features;
 using Exiled.Events.Handlers;
 
-namespace JadeLib.Features.API.Reflection.Events
+#endregion
+
+namespace JadeLib.Features.API.Reflection.Events;
+
+/// <summary>
+///     A utility class that scans for all available events.
+/// </summary>
+public static class EventScanner
 {
     /// <summary>
-    /// A utility class that scans for all available events.
+    ///     Gets or sets a dictionary of event types and their corresponding event instances.
     /// </summary>
-    public static class EventScanner
+    private static Dictionary<Type, object> EventTypes { get; set; }
+
+    /// <summary>
+    ///     Retrieves all available event types and their corresponding instances.
+    /// </summary>
+    /// <returns>A dictionary containing event types as keys and their corresponding instances as values.</returns>
+    public static Dictionary<Type, object> Get()
     {
-        /// <summary>
-        /// Gets or sets a dictionary of event types and their corresponding event instances.
-        /// </summary>
-        private static Dictionary<Type, object> EventTypes { get; set; }
-
-        /// <summary>
-        /// Retrieves all available event types and their corresponding instances.
-        /// </summary>
-        /// <returns>A dictionary containing event types as keys and their corresponding instances as values.</returns>
-        public static Dictionary<Type, object> Get()
+        if (EventTypes != null)
         {
-            if (EventTypes != null)
-                return EventTypes;
-
-            EventTypes = new Dictionary<Type, object>();
-            ScanEvents();
             return EventTypes;
         }
 
-        /// <summary>
-        /// Scans the assembly for event types and populates the <see cref="EventTypes"/> dictionary.
-        /// </summary>
-        private static void ScanEvents()
+        EventTypes = new Dictionary<Type, object>();
+        ScanEvents();
+        return EventTypes;
+    }
+
+    /// <summary>
+    ///     Scans the assembly for event types and populates the <see cref="EventTypes" /> dictionary.
+    /// </summary>
+    private static void ScanEvents()
+    {
+        var exiledHandlersAssembly = typeof(Player).Assembly;
+
+        foreach (var type in exiledHandlersAssembly.GetTypes())
         {
-            Assembly exiledHandlersAssembly = typeof(Player).Assembly;
-
-            foreach (Type type in exiledHandlersAssembly.GetTypes())
+            if (type.Namespace == null || !type.Namespace.StartsWith("Exiled.Events.Handlers"))
             {
-                if (type.Namespace == null || !type.Namespace.StartsWith("Exiled.Events.Handlers"))
-                    continue;
+                continue;
+            }
 
-                FieldInfo[] fields = type.GetFields(BindingFlags.Static | BindingFlags.Public);
-                PropertyInfo[] properties = type.GetProperties(BindingFlags.Static | BindingFlags.Public);
+            var fields = type.GetFields(BindingFlags.Static | BindingFlags.Public);
+            var properties = type.GetProperties(BindingFlags.Static | BindingFlags.Public);
 
-                foreach (FieldInfo field in fields)
+            foreach (var field in fields)
+            {
+                if (!field.FieldType.IsGenericType ||
+                    field.FieldType.GetGenericTypeDefinition() != typeof(Event<>))
                 {
-                    if (!field.FieldType.IsGenericType ||
-                        field.FieldType.GetGenericTypeDefinition() != typeof(Event<>))
-                        continue;
-
-                    Type genericType = field.FieldType.GetGenericArguments().FirstOrDefault();
-                    if (genericType != null && typeof(System.EventArgs).IsAssignableFrom(genericType))
-                        EventTypes[genericType] = field.GetValue(null);
+                    continue;
                 }
 
-                foreach (PropertyInfo property in properties)
+                var genericType = field.FieldType.GetGenericArguments().FirstOrDefault();
+                if (genericType != null && typeof(EventArgs).IsAssignableFrom(genericType))
                 {
-                    if (!property.PropertyType.IsGenericType ||
-                        property.PropertyType.GetGenericTypeDefinition() != typeof(Event<>))
-                        continue;
+                    EventTypes[genericType] = field.GetValue(null);
+                }
+            }
 
-                    Type genericType = property.PropertyType.GetGenericArguments().FirstOrDefault();
-                    if (genericType != null && typeof(IExiledEvent).IsAssignableFrom(genericType))
-                        EventTypes[genericType] = property.GetValue(null);
+            foreach (var property in properties)
+            {
+                if (!property.PropertyType.IsGenericType ||
+                    property.PropertyType.GetGenericTypeDefinition() != typeof(Event<>))
+                {
+                    continue;
+                }
+
+                var genericType = property.PropertyType.GetGenericArguments().FirstOrDefault();
+                if (genericType != null && typeof(IExiledEvent).IsAssignableFrom(genericType))
+                {
+                    EventTypes[genericType] = property.GetValue(null);
                 }
             }
         }

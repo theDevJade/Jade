@@ -1,20 +1,28 @@
-﻿using JadeLib.Features.Hints.Parsing.Enums;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using JadeLib.Features.Hints.Parsing.Enums;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle mark tags.
+///     Provides a way to handle mark tags.
 /// </summary>
 [RichTextTag]
 public class MarkTag : RichTextTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "mark" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override TagStyle TagStyle { get; } = TagStyle.ValueParam;
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context, string content)
     {
         context.ResultBuilder.Append($"<mark={content}>");

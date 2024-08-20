@@ -1,5 +1,13 @@
-﻿using HarmonyLib;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using HarmonyLib;
 using Mirror;
+
+#endregion
 
 namespace JadeLib.Features.PlayerVisibility;
 

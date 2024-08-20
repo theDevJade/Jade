@@ -1,11 +1,15 @@
-﻿namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle closing mark tags.
+///     Provides a way to handle closing mark tags.
 /// </summary>
 [RichTextTag]
 public class CloseMarkTag : ClosingTag<CloseMarkTag>
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string Name { get; } = "/mark";
 }

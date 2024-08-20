@@ -1,20 +1,34 @@
-﻿using System;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Features;
 
+#endregion
+
 namespace JadeLib.Features.Abstract;
 
 /// <summary>
-/// A ModuleSystem that allows dynamic registration of all inheriting classes of <typeparamref name="T"/> via reflection.
-/// Classes inheriting should be abstract and declare a register method.
+///     A ModuleSystem that allows dynamic registration of all inheriting classes of <typeparamref name="T" /> via
+///     reflection.
+///     Classes inheriting should be abstract and declare a register method.
 /// </summary>
-/// <typeparam name="T">A generic reference to the abstract class inheriting the <see cref="ModuleSystem{T}"/>.</typeparam>
+/// <typeparam name="T">A generic reference to the abstract class inheriting the <see cref="ModuleSystem{T}" />.</typeparam>
 public abstract class ModuleSystem<T>
     where T : ModuleSystem<T>
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="ModuleSystem{T}"/> class.
+    ///     A list of all registered instances of the derived modules.
+    /// </summary>
+    private static readonly List<T> RegisteredInstances = [];
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="ModuleSystem{T}" /> class.
     /// </summary>
     protected ModuleSystem()
     {
@@ -23,24 +37,19 @@ public abstract class ModuleSystem<T>
     }
 
     /// <summary>
-    /// Gets or sets the instance of <typeparamref name="T"/>.
-    /// <remarks>Can be null if no instances are made.</remarks>
+    ///     Gets or sets the instance of <typeparamref name="T" />.
+    ///     <remarks>Can be null if no instances are made.</remarks>
     /// </summary>
     public static T Instance { get; protected set; }
 
     /// <summary>
-    /// A list of all registered instances of the derived modules.
-    /// </summary>
-    private static readonly List<T> RegisteredInstances = [];
-
-    /// <summary>
-    /// Method to be implemented in derived classes to handle specific registration logic.
+    ///     Method to be implemented in derived classes to handle specific registration logic.
     /// </summary>
     protected abstract void Register();
 
     /// <summary>
-    /// Reflectively registers all derived classes of <typeparamref name="T"/> found in the loaded assemblies.
-    /// Calls the <see cref="Register"/> method on each registered instance.
+    ///     Reflectively registers all derived classes of <typeparamref name="T" /> found in the loaded assemblies.
+    ///     Calls the <see cref="Register" /> method on each registered instance.
     /// </summary>
     public static void ReflectiveRegister()
     {
@@ -63,7 +72,7 @@ public abstract class ModuleSystem<T>
     }
 
     /// <summary>
-    /// Registers the current instance of the module system.
+    ///     Registers the current instance of the module system.
     /// </summary>
     private void RegisterInstances()
     {
@@ -75,14 +84,14 @@ public abstract class ModuleSystem<T>
 public abstract class TestModuleSystem : ModuleSystem<TestModuleSystem>
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="TestModuleSystem"/> class.
+    ///     Initializes a new instance of the <see cref="TestModuleSystem" /> class.
     /// </summary>
-    protected TestModuleSystem() : base()
+    protected TestModuleSystem()
     {
     }
 
     /// <summary>
-    /// Concrete registration logic for the TestModuleSystem.
+    ///     Concrete registration logic for the TestModuleSystem.
     /// </summary>
     protected override void Register()
     {

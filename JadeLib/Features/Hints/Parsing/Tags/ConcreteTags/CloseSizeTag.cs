@@ -1,17 +1,21 @@
-﻿namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle closing size tags.
+///     Provides a way to handle closing size tags.
 /// </summary>
 [RichTextTag]
 public class CloseSizeTag : NoParamsTag
 {
     private const string TAGFORMAT = "</size>";
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "/size" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context)
     {
         if (context.SizeTags.Count > 0)

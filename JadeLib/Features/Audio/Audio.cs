@@ -1,8 +1,16 @@
-﻿using System;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using System;
 using System.Linq;
 using CentralAuth;
 using Exiled.API.Features;
 using PlayerRoles;
+
+#endregion
 
 namespace JadeLib.Features.Audio;
 
@@ -20,7 +28,7 @@ public class Audio(Npc npc)
     }
 
     /// <summary>
-    /// Creates a new NPC with audio-playing capabilities.
+    ///     Creates a new NPC with audio-playing capabilities.
     /// </summary>
     /// <param name="name">The name of the NPC.</param>
     /// <param name="role">The role to spawn the npc as.</param>
@@ -51,7 +59,7 @@ public class Audio(Npc npc)
             }
             else
             {
-                npc.ReferenceHub.authManager.UserId = userID == string.Empty ? $"Dummy@localhost" : userID;
+                npc.ReferenceHub.authManager.UserId = userID == string.Empty ? "Dummy@localhost" : userID;
             }
         }
         catch (Exception e)
@@ -61,7 +69,7 @@ public class Audio(Npc npc)
 
         var audio = new Audio(npc)
         {
-            Player = npc.GameObject.AddComponent<AudioPlayer>().Initialize(npc.ReferenceHub),
+            Player = npc.GameObject.AddComponent<AudioPlayer>().Initialize(npc.ReferenceHub)
         };
         return audio;
     }

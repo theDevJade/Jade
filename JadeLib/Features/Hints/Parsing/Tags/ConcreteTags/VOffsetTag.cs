@@ -1,20 +1,28 @@
-﻿using JadeLib.Features.Hints.Parsing.Records;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using JadeLib.Features.Hints.Parsing.Records;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle voffset tags.
+///     Provides a way to handle voffset tags.
 /// </summary>
 [RichTextTag]
 public class VOffsetTag : MeasurementTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool AllowPercentages { get; } = false;
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "voffset" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context, MeasurementInfo info)
     {
         // this is far from how voffsets actually work but this works fine enough

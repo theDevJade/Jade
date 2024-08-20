@@ -1,7 +1,15 @@
-﻿using System;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using System;
 using CommandSystem;
 using Exiled.API.Features;
 using UnityEngine;
+
+#endregion
 
 namespace JadeLib.Features.API.RoomPoint;
 

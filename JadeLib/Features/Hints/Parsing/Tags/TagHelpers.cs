@@ -1,18 +1,22 @@
-﻿namespace JadeLib.Features.Hints.Parsing.Tags;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+namespace JadeLib.Features.Hints.Parsing.Tags;
 
 /// <summary>
-/// Provides a number of helper functions for <see cref="RichTextTag"/>s.
+///     Provides a number of helper functions for <see cref="RichTextTag" />s.
 /// </summary>
 public static class TagHelpers
 {
     /// <summary>
-    /// Validates and extracts the text from inside quotations for tag parameters, or returns the original string.
+    ///     Validates and extracts the text from inside quotations for tag parameters, or returns the original string.
     /// </summary>
-    /// <param name="str">The <see cref="string"/> to extract the quotations from.</param>
+    /// <param name="str">The <see cref="string" /> to extract the quotations from.</param>
     /// <returns>The string with the quotes removed, or null if the string is invalid.</returns>
     /// <example>
-    /// This code demonstrates the behavior of <see cref="ExtractFromQuotations(string)"/>.
-    /// <code>
+    ///     This code demonstrates the behavior of <see cref="ExtractFromQuotations(string)" />.
+    ///     <code>
     /// ExtractFromQuotations("\"hello world\"") // -> hello world
     /// ExtractFromQuotations("hello world") // -> hello world
     /// ExtractFromQuotations("\"hello world") // -> null
@@ -26,7 +30,7 @@ public static class TagHelpers
             (true, true) => str.Substring(1, str.Length - 1),
             (false, true) => null,
             (true, false) => null,
-            (false, false) => str,
+            (false, false) => str
         };
     }
 }

@@ -1,5 +1,13 @@
+// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
 using System;
 using UnityEngine;
+
+#endregion
 
 namespace JadeLib.Features.API.RoomPoint;
 
@@ -24,16 +32,16 @@ public class SerializedVector3
     {
     }
 
-    public Vector3 Parse()
-    {
-        return new Vector3(this.X, this.Y, this.Z);
-    }
-
     public float X { get; set; }
 
     public float Y { get; set; }
 
     public float Z { get; set; }
+
+    public Vector3 Parse()
+    {
+        return new Vector3(this.X, this.Y, this.Z);
+    }
 
     public static implicit operator Vector3(SerializedVector3 vector)
     {

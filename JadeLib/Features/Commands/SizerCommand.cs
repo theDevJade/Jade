@@ -1,13 +1,17 @@
-﻿// <copyright file="SizerCommand.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using System;
 using CommandSystem;
 using Exiled.API.Features;
-using Exiled.Permissions.Extensions;
 using JadeLib.Features.Extensions;
 using RemoteAdmin;
+using UnityEngine;
+
+#endregion
 
 namespace JadeLib.Features.Commands;
 
@@ -16,7 +20,7 @@ public class SetSizeCommand : ICommand
 {
     public string Command { get; } = "sizer";
 
-    public string[] Aliases { get; } = new string[] { "setsize" };
+    public string[] Aliases { get; } = { "setsize" };
 
     public string Description { get; } = "Sets the size of the player executing the command.";
 
@@ -62,7 +66,7 @@ public class SetSizeCommand : ICommand
             }
         }
 
-        target.SetScaleNoHitbox(new UnityEngine.Vector3(x, y, z));
+        target.SetScaleNoHitbox(new Vector3(x, y, z));
         response = arguments.Count == 4
             ? $"Player {target.Nickname}'s size has been set to X: {x}, Y: {y}, Z: {z}."
             : $"Your size has been set to X: {x}, Y: {y}, Z: {z}.";

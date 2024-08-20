@@ -1,9 +1,13 @@
-﻿// <copyright file="Commands.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using JadeLib.Features.Commands;
 using RemoteAdmin;
+
+#endregion
 
 namespace JadeLib.Features.Registers;
 

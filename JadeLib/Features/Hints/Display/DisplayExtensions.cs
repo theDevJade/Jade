@@ -1,8 +1,12 @@
-﻿// <copyright file="DisplayExtensions.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using JadeLib.Features.Hints.Elements;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Display;
 

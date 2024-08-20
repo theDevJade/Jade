@@ -1,17 +1,25 @@
-﻿using JadeLib.Features.Hints.Parsing.Records;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using JadeLib.Features.Hints.Parsing.Records;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle rotate tags.
+///     Provides a way to handle rotate tags.
 /// </summary>
 [RichTextTag]
 public class RotateTag : MeasurementTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "rotate" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context, MeasurementInfo info)
     {
         context.ResultBuilder.Append($"<rotate={info}>");

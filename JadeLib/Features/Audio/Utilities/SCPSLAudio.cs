@@ -1,10 +1,14 @@
-﻿// <copyright file="SCPSLAudio.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using Exiled.API.Features;
 using NVorbis;
 using VoiceChat;
+
+#endregion
 
 namespace JadeLib.Features.Audio.Utilities;
 

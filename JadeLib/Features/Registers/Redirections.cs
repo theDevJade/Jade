@@ -1,9 +1,13 @@
-﻿// <copyright file="Redirections.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using Exiled.API.Features;
 using JadeLib.Features.Audio;
+
+#endregion
 
 namespace JadeLib.Features.Registers;
 

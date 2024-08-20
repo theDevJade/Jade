@@ -1,6 +1,8 @@
-﻿// <copyright file="YoutubeUtility.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using System;
 using System.Collections.Generic;
@@ -11,15 +13,17 @@ using NAudio.Lame;
 using NAudio.Wave;
 using VideoLibrary;
 
+#endregion
+
 namespace JadeLib.Features.Audio.Utilities;
 
 /// <summary>
-/// A set of functions that provide interaction with YouTube.
+///     A set of functions that provide interaction with YouTube.
 /// </summary>
 public static class YoutubeUtility
 {
     /// <summary>
-    /// Downloads the audio of a YouTube video from the provided URL.
+    ///     Downloads the audio of a YouTube video from the provided URL.
     /// </summary>
     /// <param name="youtubeUrl">The URL of the YouTube video.</param>
     /// <param name="outputPath">The directory where the audio file will be saved.</param>

@@ -1,15 +1,19 @@
-﻿namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle closing line indent tags.
+///     Provides a way to handle closing line indent tags.
 /// </summary>
 [RichTextTag]
 public class CloseLineIndentTag : ClosingTag<CloseLineIndentTag>
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string Name { get; } = "/line-indent";
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     protected override void ApplyTo(ParserContext context)
     {
         context.LineIndent = 0;

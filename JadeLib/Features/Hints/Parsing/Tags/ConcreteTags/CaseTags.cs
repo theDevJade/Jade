@@ -1,17 +1,25 @@
-﻿using JadeLib.Features.Hints.Parsing.Enums;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using JadeLib.Features.Hints.Parsing.Enums;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle smallcaps tags.
+///     Provides a way to handle smallcaps tags.
 /// </summary>
 [RichTextTag]
 public class SmallcapsTag : NoParamsTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "smallcaps" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context)
     {
         context.CurrentCase = CaseStyle.Smallcaps;
@@ -22,15 +30,15 @@ public class SmallcapsTag : NoParamsTag
 }
 
 /// <summary>
-/// Provides a way to handle closing smallcaps tags.
+///     Provides a way to handle closing smallcaps tags.
 /// </summary>
 [RichTextTag]
 public class CloseSmallcapsTag : NoParamsTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "/smallcaps" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context)
     {
         return true; // always does nothing
@@ -38,15 +46,15 @@ public class CloseSmallcapsTag : NoParamsTag
 }
 
 /// <summary>
-/// Provides a way to handle allcaps tags.
+///     Provides a way to handle allcaps tags.
 /// </summary>
 [RichTextTag]
 public class AllcapsTag : NoParamsTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "allcaps", "uppercase" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context)
     {
         if (context.CurrentCase != CaseStyle.Uppercase)
@@ -61,15 +69,15 @@ public class AllcapsTag : NoParamsTag
 }
 
 /// <summary>
-/// Provides a way to handle closing allcaps tags.
+///     Provides a way to handle closing allcaps tags.
 /// </summary>
 [RichTextTag]
 public class CloseAllcapsTag : NoParamsTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "/allcaps" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context)
     {
         if (context.CurrentCase == CaseStyle.Uppercase)
@@ -82,15 +90,15 @@ public class CloseAllcapsTag : NoParamsTag
 }
 
 /// <summary>
-/// Provides a way to handle lowercase tags.
+///     Provides a way to handle lowercase tags.
 /// </summary>
 [RichTextTag]
 public class LowercaseTag : NoParamsTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "lowercase" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context)
     {
         if (context.CurrentCase != CaseStyle.Lowercase)
@@ -105,15 +113,15 @@ public class LowercaseTag : NoParamsTag
 }
 
 /// <summary>
-/// Provides a way to handle closing lowercase tags.
+///     Provides a way to handle closing lowercase tags.
 /// </summary>
 [RichTextTag]
 public class CloseLowercase : NoParamsTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "/lowercase" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context)
     {
         if (context.CurrentCase == CaseStyle.Lowercase)

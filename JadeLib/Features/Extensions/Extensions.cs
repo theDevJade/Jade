@@ -1,4 +1,12 @@
-﻿using System;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using System;
+
+#endregion
 
 namespace JadeLib.Features.Extensions;
 

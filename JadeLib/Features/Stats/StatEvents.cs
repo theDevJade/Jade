@@ -1,9 +1,13 @@
-﻿// <copyright file="StatEvents.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using Exiled.Events.EventArgs.Player;
 using JadeLib.Features.API.Reflection.Events;
+
+#endregion
 
 namespace JadeLib.Features.Stats;
 

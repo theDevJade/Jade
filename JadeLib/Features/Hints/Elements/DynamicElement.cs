@@ -1,6 +1,6 @@
-﻿// <copyright file="DynamicElement.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
 
 namespace JadeLib.Features.Hints.Elements;
 

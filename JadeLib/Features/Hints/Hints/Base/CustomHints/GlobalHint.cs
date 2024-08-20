@@ -1,22 +1,26 @@
-﻿// <copyright file="GlobalHint.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using Exiled.Events.EventArgs.Player;
 using JadeLib.Features.API.Reflection.Events;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Hints.Base.CustomHints;
 
 /// <inheritdoc />
 public abstract class GlobalHint : CustomHint
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public abstract override string UniqueIdentifier { get; set; }
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool ShouldTick { get; set; } = false;
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override void Tick()
     {
     }

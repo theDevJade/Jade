@@ -1,19 +1,27 @@
-﻿using System.Linq;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using System.Linq;
 using Exiled.API.Features;
 using Mirror;
 using UnityEngine;
 
+#endregion
+
 namespace JadeLib.Features.Extensions;
 
 /// <summary>
-/// A set of questionable networking extensions that can break server.
-/// <remarks>Credit to Zer0Two for some code.</remarks>
+///     A set of questionable networking extensions that can break server.
+///     <remarks>Credit to Zer0Two for some code.</remarks>
 /// </summary>
 public static class NetworkExtensions
 {
     /// <summary>
-    /// Moves a network identity object to a new location, can be extremely buggy, only works with some objects.
-    /// <remarks>Do NOT use with players.</remarks>
+    ///     Moves a network identity object to a new location, can be extremely buggy, only works with some objects.
+    ///     <remarks>Do NOT use with players.</remarks>
     /// </summary>
     /// <param name="identity">The network identity to move.</param>
     /// <param name="pos">The new position.</param>
@@ -22,7 +30,7 @@ public static class NetworkExtensions
         identity.gameObject.transform.position = pos;
         ObjectDestroyMessage objectDestroyMessage = new()
         {
-            netId = identity.netId,
+            netId = identity.netId
         };
         foreach (var ply in Player.List)
         {
@@ -32,18 +40,21 @@ public static class NetworkExtensions
     }
 
     /// <summary>
-    /// Moves a network identity object to a new location, can be extremely buggy, only works with some objects.
-    /// <remarks>Do NOT use with players.</remarks>
+    ///     Moves a network identity object to a new location, can be extremely buggy, only works with some objects.
+    ///     <remarks>Do NOT use with players.</remarks>
     /// </summary>
     /// <param name="identity">The network identity to move.</param>
     /// <param name="pos">The new position.</param>
     /// <param name="players">A list of players to send the change to.</param>
-    public static void MoveNetworkIdentityObjectForPlayers(this NetworkIdentity identity, Vector3 pos, params Player[] players)
+    public static void MoveNetworkIdentityObjectForPlayers(
+        this NetworkIdentity identity,
+        Vector3 pos,
+        params Player[] players)
     {
         identity.gameObject.transform.position = pos;
         ObjectDestroyMessage objectDestroyMessage = new()
         {
-            netId = identity.netId,
+            netId = identity.netId
         };
         foreach (var ply in players)
         {
@@ -53,8 +64,8 @@ public static class NetworkExtensions
     }
 
     /// <summary>
-    /// Spawns a lil' mouse.
-    /// <remarks>Squeak. (Thanks Yamato)</remarks>
+    ///     Spawns a lil' mouse.
+    ///     <remarks>Squeak. (Thanks Yamato)</remarks>
     /// </summary>
     /// <param name="pos">The position to spawn the squeaker at.</param>
     public static void SpawnSqueaker(Vector3 pos)

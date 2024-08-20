@@ -1,15 +1,19 @@
-﻿namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle closing scale tags.
+///     Provides a way to handle closing scale tags.
 /// </summary>
 [RichTextTag]
 public class CloseScaleTag : ClosingTag<CloseScaleTag>
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string Name { get; } = "/scale";
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     protected override void ApplyTo(ParserContext context)
     {
         context.Scale = 1;

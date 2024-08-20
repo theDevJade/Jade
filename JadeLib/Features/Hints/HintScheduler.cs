@@ -1,6 +1,8 @@
-﻿// <copyright file="HintScheduler.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +11,13 @@ using JadeLib.Features.Hints.Display;
 using JadeLib.Features.Hints.Elements;
 using MEC;
 
+#endregion
+
 namespace JadeLib.Features.Hints;
 
 public static class HintScheduler
 {
-    public static CoroutineHandle? Handler { get; private set; } = null;
+    public static CoroutineHandle? Handler { get; private set; }
 
     internal static void Run()
     {
@@ -41,7 +45,7 @@ public static class HintScheduler
         {
             foreach (var keyValuePair in PlayerDisplay.Displays)
             {
-                Log.Info(
+                Log.Debug(
                     $"Debug ): Updating PlayerDisplay {keyValuePair.Key.nicknameSync.DisplayName}. {string.Join("\n", keyValuePair.Value.ActiveScreen.Elements.Select(e => e.GetText(new HintCtx(e, keyValuePair.Key))))}");
                 keyValuePair.Value.ForceUpdate();
             }

@@ -1,8 +1,13 @@
-﻿using System;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using JadeLib.Features.Hints.Enums;
 using JadeLib.Features.Hints.Extensions;
 using JadeLib.Features.Hints.Parsing.Enums;
@@ -11,22 +16,26 @@ using JadeLib.Features.Hints.Parsing.Tags;
 using JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 using NorthwoodLib.Pools;
 
+#endregion
+
 namespace JadeLib.Features.Hints.Parsing;
 
 /// <summary>
-/// Helps parse the content of elements. This class cannot be inherited.
+///     Helps parse the content of elements. This class cannot be inherited.
 /// </summary>
 /// <remarks>
-/// The <see cref="Parser"/> is a sealed, immutable class that provides APIs for parsing (extracting the information of) hints so that
-/// multiple can be displayed at once, along with the ability to add new <see cref="RichTextTag"/>s. In order to create new <see cref="Parser"/>s,
-/// you must use the <see cref="ParserBuilder"/> class.
+///     The <see cref="Parser" /> is a sealed, immutable class that provides APIs for parsing (extracting the information
+///     of) hints so that
+///     multiple can be displayed at once, along with the ability to add new <see cref="RichTextTag" />s. In order to
+///     create new <see cref="Parser" />s,
+///     you must use the <see cref="ParserBuilder" /> class.
 /// </remarks>
-/// <include file='docs.xml' path='docs/members[@name="parser"]/Parser/*'/>
-/// <seealso cref="ParserBuilder"/>
+/// <include file='docs.xml' path='docs/members[@name="parser"]/Parser/*' />
+/// <seealso cref="ParserBuilder" />
 public sealed class Parser
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="Parser"/> class.
+    ///     Initializes a new instance of the <see cref="Parser" /> class.
     /// </summary>
     /// <param name="tags">The list of tags to initialize with.</param>
     /// <param name="backups">The list of parsers to use as a backup.</param>
@@ -34,36 +43,39 @@ public sealed class Parser
     {
         IEnumerable<ValueTuple<string, RichTextTag>> tuplePairs = tags.SelectMany(x => x.Names.Select(y => (y, x)));
         this.Tags = (Lookup<string, RichTextTag>)tuplePairs.ToLookup(x => x.Item1, x => x.Item2);
-        this.TagBackups = new(backups.ToList());
+        this.TagBackups = new ReadOnlyCollection<Parser>(backups.ToList());
     }
 
     /// <summary>
-    /// Gets the default <see cref="Parser"/>.
+    ///     Gets the default <see cref="Parser" />.
     /// </summary>
     public static Parser DefaultParser { get; } = new ParserBuilder().AddFromAssembly(typeof(Parser).Assembly).Build();
 
     /// <summary>
-    /// Gets the tags that will be searched for when parsing.
+    ///     Gets the tags that will be searched for when parsing.
     /// </summary>
     /// <remarks>
-    /// Multiple tags can share the same name.
+    ///     Multiple tags can share the same name.
     /// </remarks>
     public Lookup<string, RichTextTag> Tags { get; }
 
     /// <summary>
-    /// Gets a list of <see cref="Parser"/>s which this <see cref="Parser"/> will include the tags for.
+    ///     Gets a list of <see cref="Parser" />s which this <see cref="Parser" /> will include the tags for.
     /// </summary>
     public ReadOnlyCollection<Parser> TagBackups { get; }
 
     /// <summary>
-    /// Adds a character to a parser context.
+    ///     Adds a character to a parser context.
     /// </summary>
     /// <param name="context">The context of the parser.</param>
     /// <param name="ch">The character to add.</param>
-    /// <param name="append">Whether or not the character should be appended to the <see cref="ParserContext"/>'s <see cref="ParserContext.ResultBuilder"/>.</param>
+    /// <param name="append">
+    ///     Whether or not the character should be appended to the <see cref="ParserContext" />'s
+    ///     <see cref="ParserContext.ResultBuilder" />.
+    /// </param>
     public static void AddCharacter(ParserContext context, char ch, bool append = true)
     {
-        float size = CalculateCharacterLength(context, ch);
+        var size = CalculateCharacterLength(context, ch);
 
         // TODO: support for surrogate pairs and CJK
         if (ch == ' ' || ch == '​') // zero width space
@@ -101,7 +113,7 @@ public sealed class Parser
     }
 
     /// <summary>
-    /// Calculates the length of a <see cref="char"/> with a context.
+    ///     Calculates the length of a <see cref="char" /> with a context.
     /// </summary>
     /// <param name="context">The context to parse the char under.</param>
     /// <param name="ch">The char to calculate the length for.</param>
@@ -113,16 +125,16 @@ public sealed class Parser
             return context.Monospacing + context.CurrentCSpace;
         }
 
-        char functionalCase = context.CurrentCase switch
+        var functionalCase = context.CurrentCase switch
         {
             CaseStyle.Smallcaps or CaseStyle.Uppercase => char.ToUpper(ch),
             CaseStyle.Lowercase => char.ToLower(ch),
             _ => ch
         };
 
-        if (CharacterLengths.Lengths.TryGetValue(functionalCase, out float chSize))
+        if (CharacterLengths.Lengths.TryGetValue(functionalCase, out var chSize))
         {
-            float multiplier = context.Size / Constants.DEFAULTSIZE;
+            var multiplier = context.Size / Constants.DEFAULTSIZE;
             if (context.CurrentCase == CaseStyle.Smallcaps && char.IsLower(ch))
             {
                 multiplier *= 0.8f;
@@ -141,15 +153,13 @@ public sealed class Parser
 
             return chSize * multiplier;
         }
-        else
-        {
-            // TODO: handle warnings
-            return default;
-        }
+
+        // TODO: handle warnings
+        return default;
     }
 
     /// <summary>
-    /// Generates the effects of a linebreak for a parser.
+    ///     Generates the effects of a linebreak for a parser.
     /// </summary>
     /// <param name="context">The context of the parser.</param>
     /// <param name="isOverflow">Whether or not the line break was caused by an overflow.</param>
@@ -176,30 +186,32 @@ public sealed class Parser
     }
 
     /// <summary>
-    /// Attempts to parse the tag attributes of a string.
+    ///     Attempts to parse the tag attributes of a string.
     /// </summary>
     /// <param name="content">The content to parse.</param>
     /// <param name="attributes">The pairs of attributes.</param>
-    /// <returns>true if the content is valid, otherwise false.</returns>,
+    /// <returns>true if the content is valid, otherwise false.</returns>
+    /// ,
     public static bool GetTagAttributes(string content, out Dictionary<string, string> attributes)
     {
-        IEnumerable<string> result = content.Split('"')
-                        .Select((element, index) => index % 2 == 0
-                           ? element.Split(' ')
-                           : new string[] { element })
-                        .SelectMany(element => element);
+        var result = content.Split('"')
+            .Select(
+                (element, index) => index % 2 == 0
+                    ? element.Split(' ')
+                    : new[] { element })
+            .SelectMany(element => element);
 
         Dictionary<string, string> attributePairs = new(3);
         attributes = attributePairs;
 
-        foreach (string possiblePair in result)
+        foreach (var possiblePair in result)
         {
             if (possiblePair == string.Empty)
             {
                 return false;
             }
 
-            string[] results = possiblePair.Split('=');
+            var results = possiblePair.Split('=');
 
             if (results.Length != 2)
             {
@@ -213,22 +225,22 @@ public sealed class Parser
     }
 
     /// <summary>
-    /// Parses a rich text string.
+    ///     Parses a rich text string.
     /// </summary>
     /// <param name="text">The string to parse.</param>
     /// <param name="options">The options of the element.</param>
-    /// <returns>A <see cref="ParsedData"/> containing information about the string.</returns>
+    /// <returns>A <see cref="ParsedData" /> containing information about the string.</returns>
     public ParsedData Parse(string text, ElementOptions options = ElementOptions.Default)
     {
-        ParserState currentState = ParserState.CollectingTags;
+        var currentState = ParserState.CollectingTags;
 
-        StringBuilder tagBuffer = StringBuilderPool.Shared.Rent(Constants.MAXTAGNAMESIZE);
-        int tagBufferSize = 0;
+        var tagBuffer = StringBuilderPool.Shared.Rent(Constants.MAXTAGNAMESIZE);
+        var tagBufferSize = 0;
 
         RichTextTag? currentTag = null;
         char? delimiter = null;
 
-        StringBuilder paramBuffer = StringBuilderPool.Shared.Rent(30);
+        var paramBuffer = StringBuilderPool.Shared.Rent(30);
 
         using ParserContext context = new();
 
@@ -237,7 +249,7 @@ public sealed class Parser
             AddCharacter(context, '<');
 
             AvoidMatch(context);
-            foreach (char ch in tagBuffer.ToString())
+            foreach (var ch in tagBuffer.ToString())
             {
                 AddCharacter(context, ch);
             }
@@ -248,7 +260,7 @@ public sealed class Parser
                 delimiter = null;
             }
 
-            foreach (char ch in paramBuffer.ToString())
+            foreach (var ch in paramBuffer.ToString())
             {
                 AddCharacter(context, ch);
             }
@@ -261,10 +273,10 @@ public sealed class Parser
             tagBufferSize = 0;
         }
 
-        char[] chars = text.ToCharArray();
-        for (int i = 0; i < chars.Length; i++)
+        var chars = text.ToCharArray();
+        for (var i = 0; i < chars.Length; i++)
         {
-            char ch = chars[i];
+            var ch = chars[i];
 
             if (ch == '<') // indicates start of tag
             {
@@ -276,7 +288,8 @@ public sealed class Parser
                 currentState = ParserState.DescendingTag;
                 continue;
             }
-            else if (ch == '\n')
+
+            if (ch == '\n')
             {
                 context.ResultBuilder.Append('\n');
                 CreateLineBreak(context);
@@ -287,9 +300,11 @@ public sealed class Parser
 
                 continue;
             }
-            else if (currentState == ParserState.DescendingTag)
+
+            if (currentState == ParserState.DescendingTag)
             {
-                if ((ch > '\u0060' && ch < '\u007B') || ch == '-' || ch == '/') // detects if a character is a-z, -, or /
+                if ((ch > '\u0060' && ch < '\u007B') || ch == '-' ||
+                    ch == '/') // detects if a character is a-z, -, or /
                 {
                     if (tagBufferSize > Constants.MAXTAGNAMESIZE)
                     {
@@ -299,9 +314,10 @@ public sealed class Parser
                     tagBuffer.Append(ch);
                     continue;
                 }
-                else if (ch == '>')
+
+                if (ch == '>')
                 {
-                    if (this.TryGetBestMatch(tagBuffer.ToString(), TagStyle.NoParams, out RichTextTag? tag))
+                    if (this.TryGetBestMatch(tagBuffer.ToString(), TagStyle.NoParams, out var tag))
                     {
                         if (context.ShouldParse || tag is CloseNoparseTag)
                         {
@@ -315,10 +331,8 @@ public sealed class Parser
                             tagBufferSize = 0;
                             continue;
                         }
-                        else
-                        {
-                            FailTagMatch();
-                        }
+
+                        FailTagMatch();
                     }
                     else
                     {
@@ -329,14 +343,14 @@ public sealed class Parser
                 {
                     if (context.ShouldParse)
                     {
-                        TagStyle style = ch switch
+                        var style = ch switch
                         {
                             ' ' => TagStyle.Attributes,
                             '=' => TagStyle.ValueParam,
-                            _ => throw new ArgumentOutOfRangeException(nameof(ch)),
+                            _ => throw new ArgumentOutOfRangeException(nameof(ch))
                         };
 
-                        if (this.TryGetBestMatch(tagBuffer.ToString(), style, out RichTextTag? tag))
+                        if (this.TryGetBestMatch(tagBuffer.ToString(), style, out var tag))
                         {
                             currentTag = tag;
                             delimiter = ch;
@@ -344,10 +358,8 @@ public sealed class Parser
                             currentState = ParserState.CollectingParams;
                             continue;
                         }
-                        else
-                        {
-                            FailTagMatch();
-                        }
+
+                        FailTagMatch();
                     }
                     else
                     {
@@ -375,10 +387,8 @@ public sealed class Parser
 
                         continue;
                     }
-                    else
-                    {
-                        FailTagMatch();
-                    }
+
+                    FailTagMatch();
                 }
 
                 paramBuffer.Append(ch);
@@ -387,15 +397,15 @@ public sealed class Parser
 
             if (ch == '\\')
             {
-                int original = i;
-                int length = chars.Length;
+                var original = i;
+                var length = chars.Length;
                 for (; i < length && chars[i + 1] == '\\'; i++)
                 {
                     context.ResultBuilder.Append(chars[i]);
                 }
 
-                int matcher = i - original;
-                int times = matcher - (int)Math.Floor(matcher / 3d);
+                var matcher = i - original;
+                var times = matcher - (int)Math.Floor(matcher / 3d);
 
                 // detect if an escape sequence is escaped by backslashes
                 if ((i - original) % 3 == 0)
@@ -415,8 +425,6 @@ public sealed class Parser
                             case 'u':
                                 context.ResultBuilder.Append('\\'); // TODO: add support for unicode literals
                                 break;
-                            default:
-                                break;
                         }
                     }
                     else
@@ -426,7 +434,7 @@ public sealed class Parser
                     }
                 }
 
-                for (int newIndex = 0; newIndex < times; newIndex++)
+                for (var newIndex = 0; newIndex < times; newIndex++)
                 {
                     AddCharacter(context, chars[i + newIndex], false);
                 }
@@ -443,22 +451,33 @@ public sealed class Parser
     }
 
     /// <summary>
-    /// Calculates the size offset that should applied to the parser for a given line.
+    ///     Calculates the size offset that should applied to the parser for a given line.
     /// </summary>
     /// <param name="biggestChar">The size of the biggest char within the line.</param>
     /// <returns>An offset that should be added to the parser.</returns>
-    private static float CalculateSizeOffset(float biggestChar) => (1 - (biggestChar / Constants.DEFAULTSIZE)) * 8.485f; // (((biggestChar / Constants.DEFAULTSIZE * 0.2f) + 0.8f) * Constants.DEFAULTHEIGHT) - Constants.DEFAULTHEIGHT;
+    private static float CalculateSizeOffset(float biggestChar)
+    {
+        return (1 - (biggestChar / Constants.DEFAULTSIZE)) * 8.485f;
 
-    private static bool IsValidTagChar(char ch) => (ch > '\u0060' && ch < '\u007B') || ch == '-' || ch == '/';
+        // (((biggestChar / Constants.DEFAULTSIZE * 0.2f) + 0.8f) * Constants.DEFAULTHEIGHT) - Constants.DEFAULTHEIGHT;
+    }
+
+    private static bool IsValidTagChar(char ch)
+    {
+        return (ch > '\u0060' && ch < '\u007B') || ch == '-' || ch == '/';
+    }
 
     /// <summary>
-    /// Avoids the client TMP matching a tag.
+    ///     Avoids the client TMP matching a tag.
     /// </summary>
     /// <param name="context">The context of the parser.</param>
-    private static void AvoidMatch(ParserContext context) => context.ResultBuilder.Append(context.IsBold ? "<b>" : "</b>");
+    private static void AvoidMatch(ParserContext context)
+    {
+        context.ResultBuilder.Append(context.IsBold ? "<b>" : "</b>");
+    }
 
     /// <summary>
-    /// Tries to get a <see cref="RichTextTag"/> for the given name and <see cref="TagStyle"/>.
+    ///     Tries to get a <see cref="RichTextTag" /> for the given name and <see cref="TagStyle" />.
     /// </summary>
     /// <param name="name">The name of the tag.</param>
     /// <param name="style">The style of the tag.</param>
@@ -471,7 +490,7 @@ public sealed class Parser
         tag = this.Tags[name].FirstOrDefault(x => x.TagStyle == style);
         if (tag == null)
         {
-            foreach (Parser parser in this.TagBackups)
+            foreach (var parser in this.TagBackups)
             {
                 tag = this.Tags[name].FirstOrDefault(x => x.TagStyle == style);
 
@@ -487,9 +506,9 @@ public sealed class Parser
 
     private RichTextTag? GetBestMatch(string name, TagStyle style)
     {
-        foreach (Parser parser in this.TagBackups)
+        foreach (var parser in this.TagBackups)
         {
-            RichTextTag? tag = this.Tags[name].FirstOrDefault(x => x.TagStyle == style);
+            var tag = this.Tags[name].FirstOrDefault(x => x.TagStyle == style);
             if (tag != null)
             {
                 return tag;
@@ -501,9 +520,9 @@ public sealed class Parser
 
     private RichTextTag? GetTagBackups(string name, TagStyle style)
     {
-        foreach (Parser parser in this.TagBackups)
+        foreach (var parser in this.TagBackups)
         {
-            RichTextTag? tag = this.Tags[name].FirstOrDefault(x => x.TagStyle == style);
+            var tag = this.Tags[name].FirstOrDefault(x => x.TagStyle == style);
             if (tag != null)
             {
                 return tag;

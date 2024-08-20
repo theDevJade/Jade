@@ -1,32 +1,34 @@
-﻿// <copyright file="VanillaHint.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using Hints;
 using JadeLib.Features.Hints.Display;
 using JadeLib.Features.Hints.Elements;
-using JadeLib.Features.Hints.Extensions;
 using MEC;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Hints;
 
 public sealed class VanillaHint
 {
-    public readonly Screen Owner;
-
-    public string CurrentText { get; private set; } = string.Empty;
-
     public readonly DynamicElement Element;
-
-    private string Get(HintCtx ctx)
-    {
-        return this.CurrentText;
-    }
+    public readonly Screen Owner;
 
     internal VanillaHint(Screen owner)
     {
         this.Owner = owner;
         this.Element = new DynamicElement(400, this.Get);
+    }
+
+    public string CurrentText { get; private set; } = string.Empty;
+
+    private string Get(HintCtx ctx)
+    {
+        return this.CurrentText;
     }
 
     public void Add(TextHint hint)

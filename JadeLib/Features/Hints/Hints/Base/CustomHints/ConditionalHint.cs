@@ -1,30 +1,34 @@
-﻿// <copyright file="ConditionalHint.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using Exiled.API.Features;
 using JadeLib.Features.Hints.Elements;
 
+#endregion
+
 namespace JadeLib.Features.Hints.Hints.Base.CustomHints;
 
 /// <summary>
-/// A custom hint that takes in a condition to display.
+///     A custom hint that takes in a condition to display.
 /// </summary>
 public abstract class ConditionalHint : GlobalHint
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public abstract override int Position { get; set; }
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public abstract override string UniqueIdentifier { get; set; }
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool ShouldTick { get; set; } = false;
 
     protected abstract string Content(HintCtx context);
 
     /// <summary>
-    /// A function returning if the hint should be enabled.
+    ///     A function returning if the hint should be enabled.
     /// </summary>
     /// <param name="player">The player the condition should check with.</param>
     /// <returns>A value indicating whether the hint should be enabled.</returns>

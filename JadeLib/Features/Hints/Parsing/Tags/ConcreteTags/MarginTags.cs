@@ -1,23 +1,31 @@
-﻿using JadeLib.Features.Hints.Parsing.Enums;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using JadeLib.Features.Hints.Parsing.Enums;
 using JadeLib.Features.Hints.Parsing.Records;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle margin tags.
+///     Provides a way to handle margin tags.
 /// </summary>
 [RichTextTag]
 public class MarginTag : MeasurementTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "margin" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context, MeasurementInfo info)
     {
         var (value, style) = info;
 
-        float convertedValue = style switch
+        var convertedValue = style switch
         {
             MeasurementUnit.Ems => value * Constants.EMSTOPIXELS,
             MeasurementUnit.Percentage => info.value / 100 * Constants.DISPLAYAREAWIDTH,
@@ -27,7 +35,7 @@ public class MarginTag : MeasurementTag
         context.LeftMargin = convertedValue;
         context.RightMargin = convertedValue;
 
-        if (context.LineHasAnyChars && (context.WidthSinceSpace + convertedValue) > context.FunctionalWidth)
+        if (context.LineHasAnyChars && context.WidthSinceSpace + convertedValue > context.FunctionalWidth)
         {
             Parser.CreateLineBreak(context, true);
         }
@@ -43,20 +51,20 @@ public class MarginTag : MeasurementTag
 }
 
 /// <summary>
-/// Provides a way to handle margin tags.
+///     Provides a way to handle margin tags.
 /// </summary>
 [RichTextTag]
 public class MarginLeft : MeasurementTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "margin-left" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context, MeasurementInfo info)
     {
         var (value, style) = info;
 
-        float convertedValue = style switch
+        var convertedValue = style switch
         {
             MeasurementUnit.Ems => value * Constants.EMSTOPIXELS,
             MeasurementUnit.Percentage => info.value / 100 * Constants.DISPLAYAREAWIDTH,
@@ -65,7 +73,7 @@ public class MarginLeft : MeasurementTag
 
         context.LeftMargin = convertedValue;
 
-        if (context.WidthSinceSpace > 0.0001 && (context.WidthSinceSpace + convertedValue) > context.FunctionalWidth)
+        if (context.WidthSinceSpace > 0.0001 && context.WidthSinceSpace + convertedValue > context.FunctionalWidth)
         {
             Parser.CreateLineBreak(context, true);
         }
@@ -81,20 +89,20 @@ public class MarginLeft : MeasurementTag
 }
 
 /// <summary>
-/// Provides a way to handle margin tags.
+///     Provides a way to handle margin tags.
 /// </summary>
 [RichTextTag]
 public class MarginRight : MeasurementTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "margin-right" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context, MeasurementInfo info)
     {
         var (value, style) = info;
 
-        float convertedValue = style switch
+        var convertedValue = style switch
         {
             MeasurementUnit.Ems => value * Constants.EMSTOPIXELS,
             MeasurementUnit.Percentage => info.value / 100 * Constants.DISPLAYAREAWIDTH,
@@ -103,7 +111,7 @@ public class MarginRight : MeasurementTag
 
         context.RightMargin = convertedValue;
 
-        if (context.WidthSinceSpace > 0.0001 && (context.WidthSinceSpace + convertedValue) > context.FunctionalWidth)
+        if (context.WidthSinceSpace > 0.0001 && context.WidthSinceSpace + convertedValue > context.FunctionalWidth)
         {
             Parser.CreateLineBreak(context, true);
         }
@@ -119,15 +127,15 @@ public class MarginRight : MeasurementTag
 }
 
 /// <summary>
-/// Provides a way to handle closing indent tags.
+///     Provides a way to handle closing indent tags.
 /// </summary>
 [RichTextTag]
 public class CloseMarginTag : ClosingTag<CloseMarginTag>
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string Name { get; } = "/margin";
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     protected override void ApplyTo(ParserContext context)
     {
         context.LeftMargin = 0;

@@ -1,6 +1,8 @@
-﻿// <copyright file="VoiceRedirections.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using System;
 using System.Collections.Generic;
@@ -12,39 +14,49 @@ using JadeLib.Features.API.Reflection.Events;
 using VoiceChat;
 using VoiceChat.Networking;
 
+#endregion
+
 namespace JadeLib.Features.Audio;
 
 /// <summary>
-/// Voice Redirections to be used with voice chatting event.
+///     Voice Redirections to be used with voice chatting event.
 /// </summary>
 public sealed class VoiceRedirections
 {
     /// <summary>
-    /// Gets the default voice redirections.
-    /// <remarks>Can be null if not initialized.</remarks>
+    ///     Gets the default voice redirections.
+    ///     <remarks>Can be null if not initialized.</remarks>
     /// </summary>
     public static VoiceRedirections Default { get; private set; }
 
     /// <summary>
-    /// A list of all voice redirections.
+    ///     A list of all voice redirections.
     /// </summary>
-    public Dictionary<Func<Player, bool>, Tuple<Func<Player, bool>, VoiceChatChannel>> Predicates { get; private set; } = new();
+    public Dictionary<Func<Player, bool>, Tuple<Func<Player, bool>, VoiceChatChannel>> Predicates { get; } = new();
 
     /// <summary>
-    /// Add a redirection.
+    ///     Add a redirection.
     /// </summary>
     /// <param name="inputPredicate">An input predicate for players in the VoiceChatting event.</param>
     /// <param name="outputPredicate">A predicate to be applied to Player.List to send the message to.</param>
     /// <param name="channel">The channel (None to use current).</param>
-    public void AddRedirection(Func<Player, bool> inputPredicate, Func<Player, bool> outputPredicate, VoiceChatChannel channel = VoiceChatChannel.None) =>
+    public void AddRedirection(
+        Func<Player, bool> inputPredicate,
+        Func<Player, bool> outputPredicate,
+        VoiceChatChannel channel = VoiceChatChannel.None)
+    {
         this.Predicates.Add(inputPredicate, new Tuple<Func<Player, bool>, VoiceChatChannel>(outputPredicate, channel));
+    }
 
     /// <summary>
-    /// Remove a redirection from the redirections.
+    ///     Remove a redirection from the redirections.
     /// </summary>
     /// <param name="key">The key.</param>
     /// <returns>A value indicating whether the key was removed or not.</returns>
-    public bool RemoveRedirection(Func<Player, bool> key) => this.Predicates.Remove(key);
+    public bool RemoveRedirection(Func<Player, bool> key)
+    {
+        return this.Predicates.Remove(key);
+    }
 
     internal static void Init()
     {
@@ -65,7 +77,13 @@ public sealed class VoiceRedirections
                 pair.Value.Item2 == VoiceChatChannel.None ? args.VoiceMessage.Channel : pair.Value.Item2;
             foreach (var player in Player.List.Where(e => pair.Value.Item1(e)))
             {
-                player.ReferenceHub.connectionToClient.Send(new VoiceMessage(args.Player.ReferenceHub, targetChannel, args.VoiceMessage.Data, args.VoiceMessage.DataLength, args.VoiceMessage.SpeakerNull));
+                player.ReferenceHub.connectionToClient.Send(
+                    new VoiceMessage(
+                        args.Player.ReferenceHub,
+                        targetChannel,
+                        args.VoiceMessage.Data,
+                        args.VoiceMessage.DataLength,
+                        args.VoiceMessage.SpeakerNull));
             }
         }
     }

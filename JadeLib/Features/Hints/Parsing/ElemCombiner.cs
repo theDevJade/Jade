@@ -1,27 +1,35 @@
-﻿using System.Collections.Generic;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using System.Collections.Generic;
 using System.Linq;
-using Exiled.API.Features;
 using JadeLib.Features.Hints.Elements;
 using JadeLib.Features.Hints.Enums;
 using JadeLib.Features.Hints.Extensions;
 using NorthwoodLib.Pools;
 
+#endregion
+
 namespace JadeLib.Features.Hints.Parsing;
 
 /// <summary>
-/// Provides a means of combining <see cref="Element"/>s.
+///     Provides a means of combining <see cref="Element" />s.
 /// </summary>
 /// <remarks>
-/// The <see cref="ElemCombiner"/> is a helper class that combines all of the <see cref="Element"/>s for a <see cref="DisplayCore"/> into a single string,
-/// to be displayed as a hint.
+///     The <see cref="ElemCombiner" /> is a helper class that combines all of the <see cref="Element" />s for a
+///     <see cref="DisplayCore" /> into a single string,
+///     to be displayed as a hint.
 /// </remarks>
 public static class ElemCombiner
 {
     /// <summary>
-    /// Combines multiple <see cref="Element"/>s into a string.
+    ///     Combines multiple <see cref="Element" />s into a string.
     /// </summary>
-    /// <param name="elems">The <see cref="IEnumerable{T}"/> of <see cref="Element"/>s to combine.</param>
-    /// <returns>A <see cref="string"/> with all of the combined <see cref="Element"/>s.</returns>
+    /// <param name="elems">The <see cref="IEnumerable{T}" /> of <see cref="Element" />s to combine.</param>
+    /// <returns>A <see cref="string" /> with all of the combined <see cref="Element" />s.</returns>
     public static string Combine(IEnumerable<Element> elems, ReferenceHub player)
     {
         var elements = ListPool<Element>.Shared.Rent(elems);
@@ -81,7 +89,7 @@ public static class ElemCombiner
     }
 
     /// <summary>
-    /// Calculates the offset for two hints.
+    ///     Calculates the offset for two hints.
     /// </summary>
     /// <param name="hintOnePos">The first hint's vertical position.</param>
     /// <param name="hintOneTotalLines">The first hint's total line-height, excluding the vertical position.</param>

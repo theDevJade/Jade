@@ -1,30 +1,35 @@
-﻿// <copyright file="KillsStat.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using Exiled.Events.EventArgs.Player;
+using Exiled.Events.Handlers;
+
+#endregion
 
 namespace JadeLib.Features.Stats.BuiltinStats;
 
 /// <inheritdoc />
 public sealed class KillsStat(ReferenceHub owner) : NumericalStat<int>(owner)
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override void Handle(int value)
     {
         this.Value += value;
     }
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     protected override void RegisterStat()
     {
-        Exiled.Events.Handlers.Player.Dying += this.OnKill;
+        Player.Dying += this.OnKill;
     }
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     protected override void UnregisterStat()
     {
-        Exiled.Events.Handlers.Player.Dying -= this.OnKill;
+        Player.Dying -= this.OnKill;
     }
 
     private void OnKill(DyingEventArgs args)

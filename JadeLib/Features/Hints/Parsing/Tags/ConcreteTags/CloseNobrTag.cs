@@ -1,15 +1,19 @@
-﻿namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle closing nobr tags.
+///     Provides a way to handle closing nobr tags.
 /// </summary>
 [RichTextTag]
 public class CloseNobrTag : ClosingTag<CloseNobrTag>
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string Name { get; } = "/nobr";
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     protected override void ApplyTo(ParserContext context)
     {
         context.NoBreak = false;

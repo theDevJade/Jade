@@ -1,25 +1,26 @@
-﻿// <copyright file="JadeFeature.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
 
-namespace JadeLib.Features;
+#region
 
-// <copyright file="CoreModule.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Exiled.API.Features;
 
+#endregion
+
+namespace JadeLib.Features;
+
 public abstract class JadeFeature
 {
-    public abstract void Enable();
-
     public static List<JadeFeature> Modules = new();
 
     public static BindingFlags Flags = BindingFlags.Public | BindingFlags.Instance;
+
+    public abstract void Enable();
 
     public static void Register()
     {

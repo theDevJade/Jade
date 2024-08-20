@@ -1,5 +1,13 @@
-﻿using System.Collections.Generic;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using System.Collections.Generic;
 using JadeLib.Features.UtilityClasses;
+
+#endregion
 
 namespace JadeLib.Features.Stats;
 

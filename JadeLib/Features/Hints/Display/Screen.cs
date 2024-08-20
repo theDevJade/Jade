@@ -1,6 +1,8 @@
-﻿// <copyright file="Screen.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using System.Collections.Generic;
 using Hints;
@@ -9,12 +11,14 @@ using JadeLib.Features.Hints.Hints;
 using JadeLib.Features.Hints.Parsing;
 using Utils.NonAllocLINQ;
 
+#endregion
+
 namespace JadeLib.Features.Hints.Display;
 
 public sealed class Screen
 {
-    public readonly PlayerDisplay OwningDisplay;
     public readonly string Identifier;
+    public readonly PlayerDisplay OwningDisplay;
 
     public Screen(PlayerDisplay display, string identifier)
     {
@@ -23,7 +27,7 @@ public sealed class Screen
         this.VanillaHint = new VanillaHint(this);
     }
 
-    public List<Element> Elements { get; private set; } = [];
+    public List<Element> Elements { get; } = [];
 
     public VanillaHint VanillaHint { get; }
 
@@ -39,7 +43,7 @@ public sealed class Screen
     }
 
     /// <summary>
-    /// Forces an update of this <see cref="Screen"/>, ignoring the hint ratelimit.
+    ///     Forces an update of this <see cref="Screen" />, ignoring the hint ratelimit.
     /// </summary>
     public void ForceUpdate()
     {

@@ -1,6 +1,8 @@
-﻿// <copyright file="Manager914.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,8 @@ using JadeLib.Features.API.Reflection;
 using JadeLib.Features.API.Reflection.Events;
 using JadeLib.Features.Extensions;
 using MEC;
+
+#endregion
 
 namespace JadeLib.Features._914;
 
@@ -32,6 +36,10 @@ public class Manager914
             }
         }
     }
+
+    public static List<ItemRecipe914> ItemRecipes { get; } = [];
+
+    public static List<PlayerRecipe914> PlayerRecipes { get; } = [];
 
     [Listener]
     internal void On914Item(UpgradingInventoryItemEventArgs args)
@@ -107,8 +115,4 @@ public class Manager914
                 }
             });
     }
-
-    public static List<ItemRecipe914> ItemRecipes { get; } = [];
-
-    public static List<PlayerRecipe914> PlayerRecipes { get; } = [];
 }

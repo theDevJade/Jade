@@ -1,6 +1,8 @@
-﻿// <copyright file="FfmpegUtility.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using System;
 using System.Collections.Generic;
@@ -16,15 +18,18 @@ using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
 using MEC;
 
+#endregion
+
 namespace JadeLib.Features.Audio.Utilities;
 
 /// <summary>
-/// A utility class for downloading, extracting, and using FFmpeg to convert audio files to OGG format.
+///     A utility class for downloading, extracting, and using FFmpeg to convert audio files to OGG format.
 /// </summary>
 public static class FfmpegUtility
 {
     /// <summary>
-    /// Downloads FFmpeg, extracts it, and converts the specified input file to an OGG file with 48000 sample rate and mono channels.
+    ///     Downloads FFmpeg, extracts it, and converts the specified input file to an OGG file with 48000 sample rate and mono
+    ///     channels.
     /// </summary>
     /// <param name="inputFile">The path to the input audio file.</param>
     /// <param name="outputFile">The path to the output OGG file.</param>
@@ -44,7 +49,7 @@ public static class FfmpegUtility
     }
 
     /// <summary>
-    /// Downloads and extracts FFmpeg asynchronously.
+    ///     Downloads and extracts FFmpeg asynchronously.
     /// </summary>
     /// <param name="callback">A callback function that receives the path to the FFmpeg binary.</param>
     /// <returns>An IEnumerator<float> for use with MEC coroutines.</returns>
@@ -100,7 +105,7 @@ public static class FfmpegUtility
     }
 
     /// <summary>
-    /// Gets the appropriate FFmpeg download URL based on the current operating system.
+    ///     Gets the appropriate FFmpeg download URL based on the current operating system.
     /// </summary>
     /// <returns>The URL to download FFmpeg.</returns>
     private static string GetFfmpegUrl()
@@ -124,7 +129,7 @@ public static class FfmpegUtility
     }
 
     /// <summary>
-    /// Extracts a .tar.xz archive to the specified extraction path.
+    ///     Extracts a .tar.xz archive to the specified extraction path.
     /// </summary>
     /// <param name="archivePath">The path to the .tar.xz archive.</param>
     /// <param name="extractPath">The path to extract the archive contents to.</param>
@@ -137,7 +142,7 @@ public static class FfmpegUtility
     }
 
     /// <summary>
-    /// Converts the specified input audio file to an OGG file with 48000 sample rate and mono channels using FFmpeg.
+    ///     Converts the specified input audio file to an OGG file with 48000 sample rate and mono channels using FFmpeg.
     /// </summary>
     /// <param name="ffmpegPath">The path to the FFmpeg binary.</param>
     /// <param name="inputFile">The path to the input audio file.</param>

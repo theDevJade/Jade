@@ -1,15 +1,19 @@
-﻿// <copyright file="CustomStat.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using Exiled.API.Features;
+
+#endregion
 
 namespace JadeLib.Features.Stats;
 
 /// <inheritdoc />
 public abstract class CustomStat(ReferenceHub owner) : Stat(owner)
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     protected override void RegisterStat()
     {
         if (!((this.Owner != null) & !Player.Get(owner).DoNotTrack))
@@ -23,7 +27,7 @@ public abstract class CustomStat(ReferenceHub owner) : Stat(owner)
     }
 
     /// <summary>
-    /// Registers the custom stat, for events and such.
+    ///     Registers the custom stat, for events and such.
     /// </summary>
     protected abstract void RegisterCustomStat();
 }

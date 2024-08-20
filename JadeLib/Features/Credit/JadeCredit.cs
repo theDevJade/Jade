@@ -1,7 +1,15 @@
-﻿using Exiled.Events.EventArgs.Player;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using Exiled.Events.EventArgs.Player;
 using JadeLib.Features.API.Reflection.Events;
 using JadeLib.Features.Extensions;
 using UnityEngine;
+
+#endregion
 
 namespace JadeLib.Features.Credit;
 

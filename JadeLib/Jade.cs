@@ -1,37 +1,44 @@
-﻿using System;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Exiled.API.Features;
 using HarmonyLib;
 using JadeLib.Features;
 using JadeLib.Features.API.Reflection;
-using JadeLib.Features.Audio;
 using JadeLib.Features.Audio.Utilities;
 using JadeLib.Features.Credit;
 using JadeLib.Features.Extensions;
 using MEC;
 using Utils.NonAllocLINQ;
 
+#endregion
+
 namespace JadeLib;
 
 /// <summary>
-/// The entry point to JadeLib.
+///     The entry point to JadeLib.
 /// </summary>
 public static class Jade
 {
     internal static Harmony _harmony;
 
-    /// <summary>
-    /// Gets a value indicating whether JadeLib is initialized or not.
-    /// </summary>
-    public static bool Initialized { get; private set; } = false;
-
-    public static JadeSettings Settings { get; set; } = JadeSettings.Default;
-
     internal static List<Assembly> UsingAssemblies = [];
 
     /// <summary>
-    /// A function that initializes JadeLib.
+    ///     Gets a value indicating whether JadeLib is initialized or not.
+    /// </summary>
+    public static bool Initialized { get; private set; }
+
+    public static JadeSettings Settings { get; set; } = JadeSettings.Default;
+
+    /// <summary>
+    ///     A function that initializes JadeLib.
     /// </summary>
     /// <returns>A bool indicating if it was successfully initialized or not.</returns>
     public static bool Initialize(JadeSettings settings = null)
@@ -73,7 +80,7 @@ public static class Jade
     }
 
     /// <summary>
-    /// A function that uninitializes JadeLib.
+    ///     A function that uninitializes JadeLib.
     /// </summary>
     /// <returns>A bool indicating if it was successfully uninitialized or not.</returns>
     public static bool Uninitialize()

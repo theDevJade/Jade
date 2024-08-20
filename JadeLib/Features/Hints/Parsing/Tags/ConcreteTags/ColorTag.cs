@@ -1,20 +1,28 @@
-﻿using JadeLib.Features.Hints.Parsing.Enums;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using JadeLib.Features.Hints.Parsing.Enums;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Parsing.Tags.ConcreteTags;
 
 /// <summary>
-/// Provides a way to handle color tags.
+///     Provides a way to handle color tags.
 /// </summary>
 [RichTextTag]
 public class ColorTag : RichTextTag
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override string[] Names { get; } = { "color" };
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override TagStyle TagStyle { get; } = TagStyle.ValueParam;
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public override bool HandleTag(ParserContext context, string content)
     {
         if (content.StartsWith("#"))
@@ -26,7 +34,7 @@ public class ColorTag : RichTextTag
         }
         else
         {
-            string? unquoted = TagHelpers.ExtractFromQuotations(content);
+            var unquoted = TagHelpers.ExtractFromQuotations(content);
             if (unquoted == null || !Constants.Colors.Contains(unquoted))
             {
                 return false;
@@ -34,7 +42,7 @@ public class ColorTag : RichTextTag
         }
 
         context.ResultBuilder.Append($"<color={content}>");
-        context.AddEndingTag<CloseColorTag>(allowDuplicates: true);
+        context.AddEndingTag<CloseColorTag>(true);
         return true;
     }
 }

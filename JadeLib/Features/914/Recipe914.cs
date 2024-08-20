@@ -1,10 +1,14 @@
-﻿// <copyright file="Recipe914.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
 
 using System;
 using System.Collections.Generic;
 using Exiled.API.Features;
+
+#endregion
 
 namespace JadeLib.Features._914;
 

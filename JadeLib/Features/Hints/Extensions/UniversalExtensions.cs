@@ -1,19 +1,27 @@
-﻿using System.Collections.Generic;
+﻿// # --------------------------------------
+// # Made by theDevJade with <3
+// # --------------------------------------
+
+#region
+
+using System.Collections.Generic;
+
+#endregion
 
 namespace JadeLib.Features.Hints.Extensions;
 
 /// <summary>
-/// Provides extensions for working with all types.
+///     Provides extensions for working with all types.
 /// </summary>
 internal static class UniversalExtensions
 {
     /// <summary>
-    /// Adds this instance to an <see cref="ICollection{T}"/>.
+    ///     Adds this instance to an <see cref="ICollection{T}" />.
     /// </summary>
     /// <typeparam name="T">The type of this instance and the collection to add to.</typeparam>
     /// <param name="item">The instance to add.</param>
     /// <param name="collection">The collection to add the elements to.</param>
-    /// <returns>A reference to <paramref name="item"/>.</returns>
+    /// <returns>A reference to <paramref name="item" />.</returns>
     public static T AddTo<T>(this T item, ICollection<T> collection)
         where T : class
     {
