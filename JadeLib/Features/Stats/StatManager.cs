@@ -26,7 +26,10 @@ public static class StatManager
 
     private static void OnJoin(VerifiedEventArgs args)
     {
-        StatPools.Add(args.Player, new StatPool(args.Player.ReferenceHub));
+        if (!args.Player.DoNotTrack)
+        {
+            StatPools.Add(args.Player, new StatPool(args.Player.ReferenceHub));
+        }
     }
 
     private static void OnLeave(LeftEventArgs args)
