@@ -48,6 +48,7 @@ public static class Jade
         Settings = settings;
 
         UsingAssemblies.Add(Assembly.GetCallingAssembly());
+        UsingAssemblies.Add(Assembly.GetAssembly(typeof(Jade)));
         if (Initialized)
         {
             return false;

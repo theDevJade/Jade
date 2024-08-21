@@ -2,15 +2,16 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Exiled.API.Features;
 using JadeLib.Features.Abstract;
 
 #endregion
 
 namespace JadeLib.Features.Stats;
 
-public abstract class Stat(ReferenceHub owner) : ModuleSystem<Stat>
+public abstract class Stat : ModuleSystem<Stat>
 {
-    public readonly ReferenceHub Owner = owner;
+    public ReferenceHub Owner;
 
     /// <summary>
     ///     The threshold of this statistic for it to show on the Leaderboard.
@@ -32,9 +33,15 @@ public abstract class Stat(ReferenceHub owner) : ModuleSystem<Stat>
     /// </summary>
     public virtual float Value { get; protected set; } = 0;
 
+    public void Init(ReferenceHub hub)
+    {
+        this.Owner = hub;
+    }
+
     protected override void Register()
     {
         StatManager.AvailableStats.Add(this.GetType());
+        Log.Info($"{this.GetType().Name} Registering to availablestats");
     }
 
     /// <summary>

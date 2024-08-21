@@ -15,24 +15,32 @@ public class Leaderboard
 
     public List<LeaderboardItem> LeaderboardItems { get; private set; } = [];
 
-    public string BuildBroadcast()
+    public string BuildBroadcast(int items = 4)
     {
-        return this.LeaderboardItems
+        return this.LeaderboardItems.Take(items)
             .Aggregate(
                 "<size=20>End Of Round Statistics:</size> ",
-                (current, item) => current + $"\n <size=40>{item.Message}</size> ");
+                (current, item) => current + $"\n <size=25>{item.Message}</size> ");
     }
 
     public static Leaderboard BuildLeaderboard()
     {
         var leaderboard = new Leaderboard();
 
-        foreach (var value in StatManager.StatPools.SelectMany(keyValuePair => keyValuePair.Value.Stats))
+        foreach (var value in StatManager.StatPools.SelectMany(keyValuePair => keyValuePair.Value.Stats)
+                     .Select(e => e.FindHighestStat(StatManager.GetOfType(e.GetType()))))
         {
-            if (value.Value >= value.LeaderboardThreshold)
+            if (value.Value >= value.LeaderboardThreshold &&
+                leaderboard.LeaderboardItems.All(e => e.Type != value.GetType())
+               )
             {
                 leaderboard.LeaderboardItems.Add(
-                    new LeaderboardItem(value.Owner, value.Value, value.LeaderboardMessage, value.LeaderboardPriority));
+                    new LeaderboardItem(
+                        value.Owner,
+                        value.Value,
+                        value.LeaderboardMessage,
+                        value.LeaderboardPriority,
+                        value.GetType()));
             }
         }
 

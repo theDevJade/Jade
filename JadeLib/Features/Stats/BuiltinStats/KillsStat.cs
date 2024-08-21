@@ -14,14 +14,14 @@ using Player = Exiled.Events.Handlers.Player;
 namespace JadeLib.Features.Stats.BuiltinStats;
 
 /// <inheritdoc />
-public sealed class KillsStat(ReferenceHub owner) : Stat(owner)
+public sealed class KillsStat : Stat
 {
     public override float LeaderboardThreshold { get; set; } = 3;
 
     public override int LeaderboardPriority { get; set; } = 1;
 
     public override string LeaderboardMessage =>
-        $"<color=red>{this.Owner.nicknameSync.DisplayName}</color> killed the most people at <color=red>{this.Value.Dplay()}</color> kills";
+        $"<color=red>{this.Owner.nicknameSync.DisplayName}</color> killed<color=red>{this.Value.Dplay()}</color> people";
 
     /// <inheritdoc />
     public override void Handle(float value)
