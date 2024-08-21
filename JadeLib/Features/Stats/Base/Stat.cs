@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 
 namespace JadeLib.Features.Stats;
 
-public abstract class Stat : ModuleSystem<Stat>
+public abstract partial class Stat : ModuleSystem<Stat>
 {
     [CanBeNull] public readonly ReferenceHub Owner;
 

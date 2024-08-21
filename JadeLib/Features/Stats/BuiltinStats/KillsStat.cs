@@ -13,9 +13,9 @@ using JadeLib.Features.Extensions;
 namespace JadeLib.Features.Stats.BuiltinStats;
 
 /// <inheritdoc />
-public sealed class KillsStat : Stat<KillsStat>
+public sealed class KillsStat : Stat
 {
-    public override float LeaderboardThreshold { get; set; } = 7;
+    public override float LeaderboardThreshold { get; set; } = 3;
 
     public override int LeaderboardPriority { get; set; } = 1;
 
@@ -29,13 +29,13 @@ public sealed class KillsStat : Stat<KillsStat>
     }
 
     /// <inheritdoc />
-    protected override void RegisterStat()
+    internal override void RegisterStat()
     {
         Player.Dying += this.OnKill;
     }
 
     /// <inheritdoc />
-    protected override void UnregisterStat()
+    internal override void UnregisterStat()
     {
         Player.Dying -= this.OnKill;
     }

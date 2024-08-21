@@ -71,6 +71,7 @@ public sealed class StatPool
         foreach (var availableStat in PlayerStats.AvailableStats)
         {
             var stat = Activator.CreateInstance(availableStat) as Stat;
+            stat.RegisterStat();
             this.Stats.Add(stat);
         }
     }
@@ -86,15 +87,15 @@ public sealed class StatPool
     /// <param name="type">The type.</param>
     /// <typeparam name="T">The typeparam (Defaulted to type).</typeparam>
     /// <returns>A <see cref="NullableObject{T}" /> (possibly) containing the custom stat.</returns>
-    public NullableObject<Stat<T>> GetCustomStat<T>(T type)
-        where T : Stat<T>
+    public NullableObject<Stat> GetCustomStat<T>(T type)
+        where T : Stat
     {
-        return new NullableObject<Stat<T>>((Stat<T>)this.Stats.Get(type).Value);
+        return new NullableObject<Stat>(this.Stats.Get(type).Value);
     }
 
-    public NullableObject<Stat<T>> GetCustomStat<T>()
-        where T : Stat<T>
+    public NullableObject<Stat> GetCustomStat<T>()
+        where T : Stat
     {
-        return new NullableObject<Stat<T>>((Stat<T>)this.Stats.Get(Activator.CreateInstance<T>()).Value);
+        return new NullableObject<Stat>(this.Stats.Get(Activator.CreateInstance<T>()).Value);
     }
 }

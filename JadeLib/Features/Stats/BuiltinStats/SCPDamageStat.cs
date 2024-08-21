@@ -9,7 +9,7 @@ using PlayerRoles;
 
 namespace JadeLib.Features.Stats.BuiltinStats;
 
-public sealed class SCPDamageStat : Stat<SCPDamageStat>
+public sealed class SCPDamageStat : Stat
 {
     public override float LeaderboardThreshold { get; set; } = 2000;
 
@@ -18,12 +18,12 @@ public sealed class SCPDamageStat : Stat<SCPDamageStat>
     public override string LeaderboardMessage =>
         $"<color=red>{this.Owner.nicknameSync.DisplayName}</color> did the most damage at <color=red>{this.Value.Dplay()}</color>hp";
 
-    protected override void RegisterStat()
+    internal override void RegisterStat()
     {
         Player.Hurt += this.OnDamage;
     }
 
-    protected override void UnregisterStat()
+    internal override void UnregisterStat()
     {
         Player.Hurt -= this.OnDamage;
     }

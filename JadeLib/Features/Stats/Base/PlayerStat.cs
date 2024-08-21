@@ -16,8 +16,7 @@ namespace JadeLib.Features.Stats;
 /// <summary>
 ///     A statistic for a player.
 /// </summary>
-public abstract class Stat<TSelf> : Stat
-    where TSelf : Stat<TSelf>
+public abstract partial class Stat
 {
     /// <summary>
     ///     The handler for the statistic
@@ -34,29 +33,30 @@ public abstract class Stat<TSelf> : Stat
     /// <summary>
     ///     Runs when registering, used to register events and such for this stat.
     /// </summary>
-    protected abstract void RegisterStat();
+    internal abstract void RegisterStat();
 
     /// <summary>
     ///     Runs when unregistering, used to unregister events and such for this stat.
     /// </summary>
-    protected abstract void UnregisterStat();
+    internal abstract void UnregisterStat();
 
-    protected virtual TSelf FindHighestStat(Dictionary<ReferenceHub, TSelf> dictionary)
+    protected virtual Stat FindHighestStat(Dictionary<ReferenceHub, Stat> dictionary)
     {
         return dictionary.Aggregate((x, y) => x.Value.Value > y.Value.Value ? x : y).Value;
     }
 
-    public static TSelf GetHighestStat()
+    public static Stat GetHighestStat<T>()
+        where T : Stat
     {
-        var self = Activator.CreateInstance<TSelf>();
-        var dict = new Dictionary<ReferenceHub, TSelf>();
+        var self = Activator.CreateInstance<T>();
+        var dict = new Dictionary<ReferenceHub, Stat>();
         foreach (var pair in PlayerStats.StatPools)
         {
             var property = pair.Value.GetCustomStat(self);
 
             if (!property.IsNull)
             {
-                dict.Add(pair.Key, (TSelf)property.Value);
+                dict.Add(pair.Key, property.Value);
             }
         }
 
