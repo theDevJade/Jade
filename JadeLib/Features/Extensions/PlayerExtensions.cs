@@ -26,7 +26,7 @@ public static class PlayerExtensions
         target.Teleport(player.Position);
         target.ResetInventory(items);
         target.Inventory.UserInventory.ReserveAmmo = ammo;
-        player.CopyAllProperties(target);
+        player.CopyAllProperties(target, "ReferenceHub");
     }
 
     public static void SetScaleNoHitbox(this Player player, Vector3 scale)

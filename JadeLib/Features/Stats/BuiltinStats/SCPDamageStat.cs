@@ -8,12 +8,8 @@ using PlayerRoles;
 
 namespace JadeLib.Features.Stats.BuiltinStats;
 
-public sealed class SCPDamageStat(ReferenceHub owner) : Stat<SCPDamageStat>(owner)
+public sealed class SCPDamageStat : Stat<SCPDamageStat>
 {
-    public SCPDamageStat() : this(null)
-    {
-    }
-
     protected override void RegisterStat()
     {
         Player.Hurt += this.OnDamage;

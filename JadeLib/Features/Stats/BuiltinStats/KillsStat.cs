@@ -12,7 +12,7 @@ using Exiled.Events.Handlers;
 namespace JadeLib.Features.Stats.BuiltinStats;
 
 /// <inheritdoc />
-public sealed class KillsStat(ReferenceHub owner) : Stat<KillsStat>(owner)
+public sealed class KillsStat : Stat<KillsStat>
 {
     /// <inheritdoc />
     public override void Handle(float value)

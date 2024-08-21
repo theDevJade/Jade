@@ -40,14 +40,14 @@ public sealed class EffectTranslations : EnumTranslation<EffectTranslations, Eff
             EffectType.BodyshotReduction =>
                 $"<color=green>Bodyshot Reduction | {(passer.Intensity / 100f * 100).Dplay()}% | {passer.GetTimeLeft()}s left.</color>",
             EffectType.Poisoned => $"<color=red>Poisoned | {passer.GetTimeLeft()}s left.</color>",
-            EffectType.Scp207 => $"<color=#9F2B68>SCP-207 {passer.Intensity}</color>",
+            EffectType.Scp207 => $"<color=#9F2B68>SCP-207 {passer.Intensity}x</color>",
             EffectType.Invisible => $"<color=green>Invisible | {passer.GetTimeLeft()}</color>",
             EffectType.SinkHole => "<color=red>Sinkhole</color>",
             EffectType.DamageReduction =>
                 $"<color=green>Damage Reduction | {(passer.Intensity / 100f * 100).Dplay()}% | {passer.GetTimeLeft()}s left.</color>",
             EffectType.MovementBoost =>
                 $"<color=green>Movement Boost | {(passer.Intensity / 100f * 100).Dplay()}% | {passer.GetTimeLeft()}s left.</color>",
-            EffectType.RainbowTaste => "<color=rainbow>Rainbow Taste</color>",
+            EffectType.RainbowTaste => "<color=green>Rainbow Taste</color>",
             EffectType.SeveredHands => "<color=red>Severed Hands</color>",
             EffectType.Stained => $"<color=red>Stained | {passer.GetTimeLeft()}s left.</color>",
             EffectType.Vitality => $"<color=green>Vitality | {passer.GetTimeLeft()}s left.</color>",
@@ -58,7 +58,7 @@ public sealed class EffectTranslations : EnumTranslation<EffectTranslations, Eff
             EffectType.SoundtrackMute => "<color=yellow>Soundtrack Mute</color>",
             EffectType.SpawnProtected => "<color=yellow>Spawn Protected</color>",
             EffectType.Traumatized => "<color=red>Traumatized</color>",
-            EffectType.AntiScp207 => $"<color=#9F2B68>SCP-207? {passer.Intensity}</color>",
+            EffectType.AntiScp207 => $"<color=#9F2B68>SCP-207? {passer.Intensity}x</color>",
             EffectType.Scanned => "<color=yellow>Scanned</color>",
             EffectType.PocketCorroding => "<color=red>Pocket Corroding</color>",
             EffectType.SilentWalk => $"<color=grey>Silent Walk | {passer.GetTimeLeft()}s left.</color>",
@@ -75,6 +75,6 @@ public static class EffectExtensions
 {
     public static string GetTimeLeft(this StatusEffectBase @base)
     {
-        return @base.TimeLeft == 0 ? "∞" : $"{@base.TimeLeft.Dplay()}";
+        return @base.TimeLeft is 0 or < 0 ? "∞" : $"{@base.TimeLeft.Dplay()}";
     }
 }

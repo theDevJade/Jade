@@ -4,11 +4,11 @@
 
 #region
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Exiled.API.Features;
 using HarmonyLib;
-using JadeLib.Features.Stats.BuiltinStats;
 using JadeLib.Features.UtilityClasses;
 
 #endregion
@@ -20,7 +20,7 @@ namespace JadeLib.Features.Stats;
 /// </summary>
 public static class PlayerStats
 {
-    internal static List<IStat> stats = [];
+    internal static List<Type> stats = [];
 
     /// <summary>
     ///     Gets the round-based stat pools.
@@ -31,7 +31,7 @@ public static class PlayerStats
     ///     Gets the available statics.
     ///     <remarks>The Owner in each statistic is always null.</remarks>
     /// </summary>
-    public static ReadOnlyCollection<IStat> AvailableStats => stats.AsReadOnly();
+    public static ReadOnlyCollection<Type> AvailableStats => stats.AsReadOnly();
 
     /// <summary>
     ///     Gets the statistic pool for a reference hub.
@@ -58,27 +58,27 @@ public static class PlayerStats
 ///     A statistic pool for players.
 /// </summary>
 /// <param name="owner">The owner of this pool.</param>
-public sealed class StatPool(ReferenceHub owner)
+public sealed class StatPool
 {
     /// <summary>
     ///     The owner of this pool.
     /// </summary>
-    public readonly ReferenceHub Owner = owner;
+    public readonly ReferenceHub Owner;
 
-    /// <summary>
-    ///     The <see cref="KillsStat" /> for this player.
-    /// </summary>
-    public KillsStat Kills { get; } = new(owner);
-
-    /// <summary>
-    ///     The <see cref="SCPDamageStat" /> for this player.
-    /// </summary>
-    public SCPDamageStat ScpDamage { get; } = new(owner);
+    public StatPool(ReferenceHub owner)
+    {
+        this.Owner = owner;
+        foreach (var availableStat in PlayerStats.AvailableStats)
+        {
+            var stat = Activator.CreateInstance(availableStat) as IStat;
+            this.Stats.Add(stat);
+        }
+    }
 
     /// <summary>
     ///     Gets a list of custom statistics for this pool.
     /// </summary>
-    public CustomList<IStat> CustomStats { get; } = [];
+    public CustomList<IStat> Stats { get; } = [];
 
     /// <summary>
     ///     Get a custom statistic based on a type.
@@ -89,6 +89,6 @@ public sealed class StatPool(ReferenceHub owner)
     public NullableObject<Stat<T>> GetCustomStat<T>(T type)
         where T : Stat<T>
     {
-        return new NullableObject<Stat<T>>((Stat<T>)this.CustomStats.Get(type).Value);
+        return new NullableObject<Stat<T>>((Stat<T>)this.Stats.Get(type).Value);
     }
 }
