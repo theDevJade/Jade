@@ -20,7 +20,7 @@ namespace JadeLib.Features.Stats;
 /// </summary>
 public static class PlayerStats
 {
-    internal static List<Stat> stats = [];
+    internal static List<IStat> stats = [];
 
     /// <summary>
     ///     Gets the round-based stat pools.
@@ -31,7 +31,7 @@ public static class PlayerStats
     ///     Gets the available statics.
     ///     <remarks>The Owner in each statistic is always null.</remarks>
     /// </summary>
-    public static ReadOnlyCollection<Stat> AvailableStats => stats.AsReadOnly();
+    public static ReadOnlyCollection<IStat> AvailableStats => stats.AsReadOnly();
 
     /// <summary>
     ///     Gets the statistic pool for a reference hub.
@@ -71,9 +71,14 @@ public sealed class StatPool(ReferenceHub owner)
     public KillsStat Kills { get; } = new(owner);
 
     /// <summary>
+    ///     The <see cref="SCPDamageStat" /> for this player.
+    /// </summary>
+    public SCPDamageStat ScpDamage { get; } = new(owner);
+
+    /// <summary>
     ///     Gets a list of custom statistics for this pool.
     /// </summary>
-    public CustomList<Stat> CustomStats { get; } = [];
+    public CustomList<IStat> CustomStats { get; } = [];
 
     /// <summary>
     ///     Get a custom statistic based on a type.
@@ -81,9 +86,9 @@ public sealed class StatPool(ReferenceHub owner)
     /// <param name="type">The type.</param>
     /// <typeparam name="T">The typeparam (Defaulted to type).</typeparam>
     /// <returns>A <see cref="NullableObject{T}" /> (possibly) containing the custom stat.</returns>
-    public NullableObject<Stat> GetCustomStat<T>(T type)
-        where T : Stat
+    public NullableObject<Stat<T>> GetCustomStat<T>(T type)
+        where T : Stat<T>
     {
-        return this.CustomStats.Get(type);
+        return new NullableObject<Stat<T>>((Stat<T>)this.CustomStats.Get(type).Value);
     }
 }

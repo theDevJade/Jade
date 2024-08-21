@@ -20,11 +20,13 @@ public static class PlayerExtensions
     {
         var items = player.Inventory.UserInventory.Items.Values.ToList().Select(e => new Item(e));
         var ammo = player.Inventory.UserInventory.ReserveAmmo;
+        target.Health = player.Health;
+        target.MaxHealth = player.MaxHealth;
         target.Role.Set(player.Role, RoleSpawnFlags.None);
         target.Teleport(player.Position);
         target.ResetInventory(items);
         target.Inventory.UserInventory.ReserveAmmo = ammo;
-        player.CopyAllProperties(target, "ReferenceHub");
+        player.CopyAllProperties(target);
     }
 
     public static void SetScaleNoHitbox(this Player player, Vector3 scale)

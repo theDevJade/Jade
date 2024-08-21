@@ -1,8 +1,4 @@
-﻿// <copyright file="EffectTranslations.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-#region
+﻿#region
 
 using System;
 using CustomPlayerEffects;
@@ -42,29 +38,31 @@ public sealed class EffectTranslations : EnumTranslation<EffectTranslations, Eff
             EffectType.Hemorrhage => $"<color=red>Hemorrhage | {passer.GetTimeLeft()}s left.</color>",
             EffectType.Invigorated => $"<color=green>Invigorated | {passer.GetTimeLeft()}s left.</color>",
             EffectType.BodyshotReduction =>
-                $"<color=green>Bodyshot Reduction | {passer.Intensity} | {passer.GetTimeLeft()}s left.</color>",
+                $"<color=green>Bodyshot Reduction | {(passer.Intensity / 100f * 100).Dplay()}% | {passer.GetTimeLeft()}s left.</color>",
             EffectType.Poisoned => $"<color=red>Poisoned | {passer.GetTimeLeft()}s left.</color>",
-            EffectType.Scp207 => "<color=blue>SCP-207</color>",
-            EffectType.Invisible => "<color=green>Invisible</color>",
+            EffectType.Scp207 => $"<color=#9F2B68>SCP-207 {passer.Intensity}</color>",
+            EffectType.Invisible => $"<color=green>Invisible | {passer.GetTimeLeft()}</color>",
             EffectType.SinkHole => "<color=red>Sinkhole</color>",
-            EffectType.DamageReduction => $"<color=green>Damage Reduction | {passer.GetTimeLeft()}s left.</color>",
-            EffectType.MovementBoost => $"<color=green>Movement Boost | {passer.GetTimeLeft()}s left.</color>",
+            EffectType.DamageReduction =>
+                $"<color=green>Damage Reduction | {(passer.Intensity / 100f * 100).Dplay()}% | {passer.GetTimeLeft()}s left.</color>",
+            EffectType.MovementBoost =>
+                $"<color=green>Movement Boost | {(passer.Intensity / 100f * 100).Dplay()}% | {passer.GetTimeLeft()}s left.</color>",
             EffectType.RainbowTaste => "<color=rainbow>Rainbow Taste</color>",
             EffectType.SeveredHands => "<color=red>Severed Hands</color>",
             EffectType.Stained => $"<color=red>Stained | {passer.GetTimeLeft()}s left.</color>",
             EffectType.Vitality => $"<color=green>Vitality | {passer.GetTimeLeft()}s left.</color>",
             EffectType.Hypothermia => $"<color=blue>Hypothermia | {passer.GetTimeLeft()}s left.</color>",
-            EffectType.Scp1853 => "<color=red>SCP-1853</color>",
+            EffectType.Scp1853 => "<color=green>SCP-1853</color>",
             EffectType.CardiacArrest => $"<color=red>Cardiac Arrest | {passer.GetTimeLeft()}s left.</color>",
-            EffectType.InsufficientLighting => "<color=red>Insufficient Lighting</color>",
-            EffectType.SoundtrackMute => "<color=grey>Soundtrack Mute</color>",
-            EffectType.SpawnProtected => "<color=green>Spawn Protected</color>",
+            EffectType.InsufficientLighting => "<color=yellow>Insufficient Lighting</color>",
+            EffectType.SoundtrackMute => "<color=yellow>Soundtrack Mute</color>",
+            EffectType.SpawnProtected => "<color=yellow>Spawn Protected</color>",
             EffectType.Traumatized => "<color=red>Traumatized</color>",
-            EffectType.AntiScp207 => "<color=blue>SCP-207?</color>",
+            EffectType.AntiScp207 => $"<color=#9F2B68>SCP-207? {passer.Intensity}</color>",
             EffectType.Scanned => "<color=yellow>Scanned</color>",
             EffectType.PocketCorroding => "<color=red>Pocket Corroding</color>",
             EffectType.SilentWalk => $"<color=grey>Silent Walk | {passer.GetTimeLeft()}s left.</color>",
-            EffectType.Strangled => $"<color=red>Strangled | {passer.GetTimeLeft()}s left.</color>",
+            EffectType.Strangled => "<color=red>Strangled</color>",
             EffectType.Ghostly => "<color=white>Ghostly</color>",
             EffectType.FogControl => "<color=grey>Fog Control</color>",
             EffectType.Slowness => $"<color=red>Slowness | {passer.GetTimeLeft()}s left.</color>",

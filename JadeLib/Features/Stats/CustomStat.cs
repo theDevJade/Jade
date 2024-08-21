@@ -11,12 +11,13 @@ using Exiled.API.Features;
 namespace JadeLib.Features.Stats;
 
 /// <inheritdoc />
-public abstract class CustomStat(ReferenceHub owner) : Stat(owner)
+public abstract class CustomStat<TSelf>(ReferenceHub owner) : Stat<TSelf>(owner)
+    where TSelf : Stat<TSelf>
 {
     /// <inheritdoc />
     protected override void RegisterStat()
     {
-        if (!((this.Owner != null) & !Player.Get(owner).DoNotTrack))
+        if (!((this.Owner != null) & !Player.Get(this.Owner).DoNotTrack))
         {
             return;
         }

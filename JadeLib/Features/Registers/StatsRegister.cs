@@ -17,7 +17,7 @@ public class StatsRegister : JadeFeature
     public override void Enable()
     {
         Log.Info("Registering Player Statistics");
-        Stat.ReflectiveRegister();
+        IStat.ReflectiveRegister();
         var group = new FeatureGroup("stats").Supply(new StatEvents());
         group.Register();
     }

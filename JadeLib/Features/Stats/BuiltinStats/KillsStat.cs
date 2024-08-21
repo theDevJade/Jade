@@ -12,10 +12,10 @@ using Exiled.Events.Handlers;
 namespace JadeLib.Features.Stats.BuiltinStats;
 
 /// <inheritdoc />
-public sealed class KillsStat(ReferenceHub owner) : NumericalStat<int>(owner)
+public sealed class KillsStat(ReferenceHub owner) : Stat<KillsStat>(owner)
 {
     /// <inheritdoc />
-    public override void Handle(int value)
+    public override void Handle(float value)
     {
         this.Value += value;
     }
