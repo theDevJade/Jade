@@ -70,7 +70,7 @@ public sealed class StatPool
         this.Owner = owner;
         foreach (var availableStat in PlayerStats.AvailableStats)
         {
-            var stat = Activator.CreateInstance(availableStat) as IStat;
+            var stat = Activator.CreateInstance(availableStat) as Stat;
             this.Stats.Add(stat);
         }
     }
@@ -78,7 +78,7 @@ public sealed class StatPool
     /// <summary>
     ///     Gets a list of custom statistics for this pool.
     /// </summary>
-    public CustomList<IStat> Stats { get; } = [];
+    public CustomList<Stat> Stats { get; } = [];
 
     /// <summary>
     ///     Get a custom statistic based on a type.
@@ -90,5 +90,11 @@ public sealed class StatPool
         where T : Stat<T>
     {
         return new NullableObject<Stat<T>>((Stat<T>)this.Stats.Get(type).Value);
+    }
+
+    public NullableObject<Stat<T>> GetCustomStat<T>()
+        where T : Stat<T>
+    {
+        return new NullableObject<Stat<T>>((Stat<T>)this.Stats.Get(Activator.CreateInstance<T>()).Value);
     }
 }

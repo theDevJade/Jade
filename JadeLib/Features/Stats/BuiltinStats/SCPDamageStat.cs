@@ -2,6 +2,7 @@
 
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.Handlers;
+using JadeLib.Features.Extensions;
 using PlayerRoles;
 
 #endregion
@@ -10,6 +11,13 @@ namespace JadeLib.Features.Stats.BuiltinStats;
 
 public sealed class SCPDamageStat : Stat<SCPDamageStat>
 {
+    public override float LeaderboardThreshold { get; set; } = 2000;
+
+    public override int LeaderboardPriority { get; set; } = 1;
+
+    public override string LeaderboardMessage =>
+        $"<color=red>{this.Owner.nicknameSync.DisplayName}</color> did the most damage at <color=red>{this.Value.Dplay()}</color>hp";
+
     protected override void RegisterStat()
     {
         Player.Hurt += this.OnDamage;

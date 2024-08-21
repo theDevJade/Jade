@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using JetBrains.Annotations;
 
 #endregion
 
@@ -17,16 +16,9 @@ namespace JadeLib.Features.Stats;
 /// <summary>
 ///     A statistic for a player.
 /// </summary>
-public abstract class Stat<TSelf> : IStat
+public abstract class Stat<TSelf> : Stat
     where TSelf : Stat<TSelf>
 {
-    [CanBeNull] public readonly ReferenceHub Owner;
-
-    /// <summary>
-    ///     Gets or sets the value of this <see cref="Stat{T}" />
-    /// </summary>
-    public virtual float Value { get; protected set; } = 0;
-
     /// <summary>
     ///     The handler for the statistic
     /// </summary>
