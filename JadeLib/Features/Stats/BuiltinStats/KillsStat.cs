@@ -4,16 +4,17 @@
 
 #region
 
+using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
-using Exiled.Events.Handlers;
 using JadeLib.Features.Extensions;
+using Player = Exiled.Events.Handlers.Player;
 
 #endregion
 
 namespace JadeLib.Features.Stats.BuiltinStats;
 
 /// <inheritdoc />
-public sealed class KillsStat : Stat
+public sealed class KillsStat(ReferenceHub owner) : Stat(owner)
 {
     public override float LeaderboardThreshold { get; set; } = 3;
 
@@ -26,16 +27,17 @@ public sealed class KillsStat : Stat
     public override void Handle(float value)
     {
         this.Value += value;
+        Log.Info($"Adding value {this.Owner.nicknameSync.DisplayName} value at {this.Value}");
     }
 
     /// <inheritdoc />
-    internal override void RegisterStat()
+    public override void RegisterStat()
     {
         Player.Dying += this.OnKill;
     }
 
     /// <inheritdoc />
-    internal override void UnregisterStat()
+    public override void UnregisterStat()
     {
         Player.Dying -= this.OnKill;
     }

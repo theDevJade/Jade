@@ -5,7 +5,6 @@
 #region
 
 using Exiled.API.Features;
-using JadeLib.Features.API.Reflection;
 using JadeLib.Features.Stats;
 
 #endregion
@@ -18,7 +17,6 @@ public class StatsRegister : JadeFeature
     {
         Log.Info("Registering Player Statistics");
         Stat.ReflectiveRegister();
-        var group = new FeatureGroup("stats").Supply(new StatEvents());
-        group.Register();
+        StatManager.Register();
     }
 }

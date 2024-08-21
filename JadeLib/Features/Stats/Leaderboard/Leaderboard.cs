@@ -1,6 +1,5 @@
 ﻿#region
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -27,19 +26,14 @@ public class Leaderboard
     public static Leaderboard BuildLeaderboard()
     {
         var leaderboard = new Leaderboard();
-        foreach (var value in from pool in PlayerStats.StatPools
-                 from availableStat in PlayerStats.AvailableStats.Where(e => e.IsSubclassOf(typeof(Stat)))
-                 let activated = Activator.CreateInstance(availableStat) as Stat
-                 select pool.Value.Stats.Get(activated)
-                 into obj
-                 where !obj.IsNull
-                 select obj.Value
-                 into value
-                 where value.Value >= value.LeaderboardThreshold
-                 select value)
+
+        foreach (var value in StatManager.StatPools.SelectMany(keyValuePair => keyValuePair.Value.Stats))
         {
-            leaderboard.LeaderboardItems.Add(
-                new LeaderboardItem(value.Owner, value.Value, value.LeaderboardMessage, value.LeaderboardPriority));
+            if (value.Value >= value.LeaderboardThreshold)
+            {
+                leaderboard.LeaderboardItems.Add(
+                    new LeaderboardItem(value.Owner, value.Value, value.LeaderboardMessage, value.LeaderboardPriority));
+            }
         }
 
         leaderboard.LeaderboardItems = leaderboard.LeaderboardItems.OrderBy(e => e.Priority).ToList();
