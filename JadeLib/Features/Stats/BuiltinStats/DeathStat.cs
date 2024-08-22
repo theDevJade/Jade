@@ -10,7 +10,7 @@ namespace JadeLib.Features.Stats.BuiltinStats;
 
 public class DeathStat : Stat
 {
-    public override float LeaderboardThreshold { get; set; } = 5;
+    public override float LeaderboardThreshold { get; set; } = 2;
 
     public override int LeaderboardPriority { get; set; } = 4;
 

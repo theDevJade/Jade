@@ -21,7 +21,7 @@ public sealed class KillsStat : Stat
     public override int LeaderboardPriority { get; set; } = 1;
 
     public override string LeaderboardMessage =>
-        $"<color=red>{this.Owner.nicknameSync.DisplayName}</color> killed<color=red>{this.Value.Dplay()}</color> people";
+        $"<color=red>{this.Owner.nicknameSync.DisplayName}</color> killed <color=red>{this.Value.Dplay()}</color> people";
 
     /// <inheritdoc />
     public override void Handle(float value)

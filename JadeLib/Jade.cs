@@ -62,8 +62,11 @@ public static class Jade
         _harmony.PatchAll();
         Log.Info("All harmony patches have been applied");
 
-        Timing.RunCoroutine(FfmpegUtility.DownloadAndExtractFfmpegAsync(Log.Info));
-        Log.Info("Ffmpeg has been installed.");
+        if (Settings.InitializeFFmpeg)
+        {
+            Timing.RunCoroutine(FfmpegUtility.DownloadAndExtractFfmpegAsync(Log.Info));
+            Log.Info("Ffmpeg has been installed.");
+        }
 
         JadeFeature.Register();
 

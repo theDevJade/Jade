@@ -7,11 +7,4 @@
         <!-- Define the REFERENCES property pointing to the folder containing assemblies -->
         <REFERENCES>..\..\..\Useful\assemblies</REFERENCES>
     </PropertyGroup>
-
-    <ItemGroup>
-        <!-- Include all DLLs from the REFERENCES folder -->
-        <Reference Include="*">
-            <HintPath>$(REFERENCES)\%(Filename)%(Extension)</HintPath>
-        </Reference>
-    </ItemGroup>
 </Project>

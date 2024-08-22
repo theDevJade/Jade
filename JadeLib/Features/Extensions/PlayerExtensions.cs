@@ -4,6 +4,7 @@
 
 #region
 
+using System;
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
@@ -23,10 +24,67 @@ public static class PlayerExtensions
         target.Health = player.Health;
         target.MaxHealth = player.MaxHealth;
         target.Role.Set(player.Role, RoleSpawnFlags.None);
+        target.ClearInventory();
         target.Teleport(player.Position);
         target.ResetInventory(items);
         target.Inventory.UserInventory.ReserveAmmo = ammo;
-        player.CopyAllProperties(target, "ReferenceHub");
+        target.HumeShield = player.HumeShield;
+        target.Rotation = player.Rotation;
+        switch (player.Role.Type)
+        {
+            case RoleTypeId.None:
+                break;
+            case RoleTypeId.Scp173:
+                break;
+            case RoleTypeId.ClassD:
+                break;
+            case RoleTypeId.Spectator:
+                break;
+            case RoleTypeId.Scp106:
+                break;
+            case RoleTypeId.NtfSpecialist:
+                break;
+            case RoleTypeId.Scp049:
+                break;
+            case RoleTypeId.Scientist:
+                break;
+            case RoleTypeId.Scp079:
+                break;
+            case RoleTypeId.ChaosConscript:
+                break;
+            case RoleTypeId.Scp096:
+                break;
+            case RoleTypeId.Scp0492:
+                break;
+            case RoleTypeId.NtfSergeant:
+                break;
+            case RoleTypeId.NtfCaptain:
+                break;
+            case RoleTypeId.NtfPrivate:
+                break;
+            case RoleTypeId.Tutorial:
+                break;
+            case RoleTypeId.FacilityGuard:
+                break;
+            case RoleTypeId.Scp939:
+                break;
+            case RoleTypeId.CustomRole:
+                break;
+            case RoleTypeId.ChaosRifleman:
+                break;
+            case RoleTypeId.ChaosMarauder:
+                break;
+            case RoleTypeId.ChaosRepressor:
+                break;
+            case RoleTypeId.Overwatch:
+                break;
+            case RoleTypeId.Filmmaker:
+                break;
+            case RoleTypeId.Scp3114:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     public static void SetScaleNoHitbox(this Player player, Vector3 scale)
