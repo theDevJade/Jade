@@ -11,10 +11,11 @@ using RemoteAdmin;
 
 namespace JadeLib.Features.Registers;
 
-public class Commands : JadeFeature
+internal sealed class Commands : JadeFeature
 {
     public override void Enable()
     {
         CommandProcessor.RemoteAdminCommandHandler.RegisterCommand(new SetSizeCommand());
+        JadeCommandBase.ReflectiveRegister();
     }
 }

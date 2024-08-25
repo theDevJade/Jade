@@ -52,7 +52,7 @@ public static class FfmpegUtility
     ///     Downloads and extracts FFmpeg asynchronously.
     /// </summary>
     /// <param name="callback">A callback function that receives the path to the FFmpeg binary.</param>
-    /// <returns>An IEnumerator<float> for use with MEC coroutines.</returns>
+    /// <returns>An IEnumerator for use with MEC coroutines.</returns>
     public static IEnumerator<float> DownloadAndExtractFfmpegAsync(Action<string> callback)
     {
         var ffmpegUrl = GetFfmpegUrl();

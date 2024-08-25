@@ -5,7 +5,7 @@
 #region
 
 using Exiled.API.Features;
-using JadeLib.Features.API.Reflection;
+using JadeLib.Features.Abstract.FeatureGroups;
 using JadeLib.Features.Hints.Display;
 using JadeLib.Features.Hints.Hints.Base;
 
@@ -13,7 +13,7 @@ using JadeLib.Features.Hints.Hints.Base;
 
 namespace JadeLib.Features.Registers;
 
-public class HintService : JadeFeature
+internal sealed class HintService : JadeFeature
 {
     public override void Enable()
     {

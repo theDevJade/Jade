@@ -5,7 +5,7 @@
 #region
 
 using Exiled.Events.EventArgs.Player;
-using JadeLib.Features.API.Reflection.Events;
+using JadeLib.Features.Abstract.FeatureGroups.Events;
 
 #endregion
 

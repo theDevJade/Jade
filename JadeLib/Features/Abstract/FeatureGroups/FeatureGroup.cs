@@ -7,12 +7,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Exiled.API.Features;
-using JadeLib.Features.API.Reflection.Events;
+using JadeLib.Features.Abstract.FeatureGroups.Events;
 
 #endregion
 
-namespace JadeLib.Features.API.Reflection;
+namespace JadeLib.Features.Abstract.FeatureGroups;
 
 /// <summary>
 ///     Represents a group of features for a plugin, managing event handlers and coroutines.
@@ -27,19 +28,17 @@ public class FeatureGroup
     /// <summary>
     ///     The key identifying this feature group.
     /// </summary>
-#pragma warning disable SA1401
-    public readonly string Key;
-#pragma warning restore SA1401
+    private readonly string Key;
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="FeatureGroup" /> class.
     ///     Adds the feature group to the dictionary.
     /// </summary>
     /// <param name="key">The key the feature group should be identified by.</param>
-    public FeatureGroup(string key)
+    public FeatureGroup([CallerMemberName] string key = null)
     {
         this.Key = key;
-        Features.Add(this.Key, this);
+        Features.Add(this.Key ?? string.Empty, this);
     }
 
     /// <summary>
@@ -50,12 +49,12 @@ public class FeatureGroup
     /// <summary>
     ///     Gets the list of events pertaining to the <see cref="EventGroup" />.
     /// </summary>
-    public List<object> Events { get; private set; } = new();
+    public List<object> Events { get; private set; } = [];
 
     /// <summary>
     ///     Gets the list of MEC coroutines added to this <see cref="FeatureGroup" />.
     /// </summary>
-    public List<Func<IEnumerator<float>>> Coroutines { get; } = new();
+    public List<Func<IEnumerator<float>>> Coroutines { get; } = [];
 
     /// <summary>
     ///     Gets a value indicating whether the features in this group are registered.

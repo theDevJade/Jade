@@ -11,7 +11,7 @@ using MEC;
 
 #endregion
 
-namespace JadeLib.Features.API.Reflection;
+namespace JadeLib.Features.Abstract.FeatureGroups;
 
 /// <summary>
 ///     A simple coroutine manager wrapping MEC.

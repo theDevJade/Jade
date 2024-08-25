@@ -13,7 +13,6 @@ using JadeLib.Features.Audio.Utilities;
 using MEC;
 using NVorbis;
 using UnityEngine;
-using UnityEngine.Networking;
 using VoiceChat;
 using VoiceChat.Codec;
 using VoiceChat.Codec.Enums;
@@ -186,21 +185,7 @@ public sealed class AudioPlayer : MonoBehaviour
     {
         try
         {
-            if (Uri.TryCreate(trackPath, UriKind.Absolute, out _))
-            {
-                using var www = UnityWebRequest.Get(trackPath);
-                www.SendWebRequest();
-                if (www.result != UnityWebRequest.Result.Success)
-                {
-                    throw new Exception("Failed to load audio from URL.");
-                }
-
-                this.currentPlayStream = new MemoryStream(www.downloadHandler.data);
-            }
-            else
-            {
-                this.currentPlayStream = new MemoryStream(File.ReadAllBytes(trackPath));
-            }
+            this.currentPlayStream = new MemoryStream(File.ReadAllBytes(trackPath));
 
             return true;
         }

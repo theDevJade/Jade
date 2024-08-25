@@ -10,7 +10,8 @@ public sealed class JadeSettings
     {
         UseHintSystem = true,
         JadeCredit = true,
-        InitializeFFmpeg = false
+        InitializeFFmpeg = false,
+        UseRoundEvents = false
     };
 
     public bool UseHintSystem { get; set; }
@@ -18,4 +19,6 @@ public sealed class JadeSettings
     public bool JadeCredit { get; set; }
 
     public bool InitializeFFmpeg { get; set; }
+
+    public bool UseRoundEvents { get; set; }
 }

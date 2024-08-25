@@ -57,11 +57,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Commands\"/>
-        <Folder Include="Features\EventArgs\"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <EmbeddedResource Include="banner.txt"/>
         <PackageReference Include="NAudio" Version="2.2.1"/>
         <PackageReference Include="NAudio.Lame" Version="2.1.0"/>

@@ -8,12 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Exiled.API.Features;
 using Exiled.Events.Features;
 
 #endregion
 
-namespace JadeLib.Features.API.Reflection.Events;
+namespace JadeLib.Features.Abstract.FeatureGroups.Events;
 
 /// <summary>
 ///     A versatile tool for dynamically and bulk registering/unregistering events.
@@ -58,7 +57,6 @@ public class EventGroup
             .Where(m => m.GetCustomAttributes(typeof(ListenerAttribute), false).Length > 0);
 
         var methodInfos = methods.ToList();
-        Log.Warn($"Beginning event handlers, total of {methodInfos.Count} found");
 
         foreach (var method in methodInfos)
         {
@@ -67,7 +65,7 @@ public class EventGroup
             var delegateType = typeof(CustomEventHandler<>).MakeGenericType(eventType);
             var handler = Delegate.CreateDelegate(delegateType, instance, method);
             var eventMethods = eventInstance.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public);
-            eventMethods.First(e => e.Name == "Subscribe").Invoke(eventInstance, new object[] { handler });
+            eventMethods.First(e => e.Name == "Subscribe").Invoke(eventInstance, [handler]);
 
             this.dynamicHandlers.Add(Tuple.Create(handler, instance, method));
         }
@@ -90,7 +88,7 @@ public class EventGroup
             var eventType = handler.Item3.GetParameters().First().ParameterType;
             var eventInstance = EventScanner.Get()[eventType];
             var eventMethods = eventInstance.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public);
-            eventMethods.First(e => e.Name == "Unsubscribe").Invoke(eventInstance, new object[] { handler.Item1 });
+            eventMethods.First(e => e.Name == "Unsubscribe").Invoke(eventInstance, [handler.Item1]);
         }
 
         this.dynamicHandlers.Clear();

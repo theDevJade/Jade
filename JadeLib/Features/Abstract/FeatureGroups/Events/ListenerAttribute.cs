@@ -8,7 +8,7 @@ using System;
 
 #endregion
 
-namespace JadeLib.Features.API.Reflection.Events;
+namespace JadeLib.Features.Abstract.FeatureGroups.Events;
 
 /// <summary>
 ///     An attribute to mark listeners.

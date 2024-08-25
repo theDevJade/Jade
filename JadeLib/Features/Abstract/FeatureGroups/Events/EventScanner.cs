@@ -14,7 +14,7 @@ using Exiled.Events.Handlers;
 
 #endregion
 
-namespace JadeLib.Features.API.Reflection.Events;
+namespace JadeLib.Features.Abstract.FeatureGroups.Events;
 
 /// <summary>
 ///     A utility class that scans for all available events.

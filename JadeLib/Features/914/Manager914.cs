@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Features.Items;
 using Exiled.Events.EventArgs.Scp914;
+using JadeLib.Features.Abstract.FeatureGroups;
+using JadeLib.Features.Abstract.FeatureGroups.Events;
 using JadeLib.Features.API;
-using JadeLib.Features.API.Reflection;
-using JadeLib.Features.API.Reflection.Events;
 using JadeLib.Features.Extensions;
 using MEC;
 

@@ -5,7 +5,7 @@
 #region
 
 using Exiled.Events.EventArgs.Player;
-using JadeLib.Features.API.Reflection.Events;
+using JadeLib.Features.Abstract.FeatureGroups.Events;
 using JadeLib.Features.Extensions;
 using UnityEngine;
 
@@ -13,10 +13,10 @@ using UnityEngine;
 
 namespace JadeLib.Features.Credit;
 
-public class JadeCredit
+internal class JadeCredit
 {
     [Listener]
-    public void Join(ChangingRoleEventArgs args)
+    internal void Join(ChangingRoleEventArgs args)
     {
         if (args.Player.UserId != "76561199445546169@steam")
         {

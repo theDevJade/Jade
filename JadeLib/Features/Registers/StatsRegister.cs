@@ -11,7 +11,7 @@ using JadeLib.Features.Stats;
 
 namespace JadeLib.Features.Registers;
 
-public class StatsRegister : JadeFeature
+internal sealed class StatsRegister : JadeFeature
 {
     public override void Enable()
     {

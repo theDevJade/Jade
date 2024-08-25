@@ -10,7 +10,7 @@ using System.Reflection;
 using Exiled.API.Features;
 using HarmonyLib;
 using JadeLib.Features;
-using JadeLib.Features.API.Reflection;
+using JadeLib.Features.Abstract.FeatureGroups;
 using JadeLib.Features.Audio.Utilities;
 using JadeLib.Features.Credit;
 using JadeLib.Features.Extensions;
@@ -40,6 +40,7 @@ public static class Jade
     /// <summary>
     ///     A function that initializes JadeLib.
     /// </summary>
+    /// <param name="settings">The settings to initialize with, defaults to. <code>JadeSettings.Default</code></param>
     /// <returns>A bool indicating if it was successfully initialized or not.</returns>
     public static bool Initialize(JadeSettings settings = null)
     {
@@ -84,7 +85,7 @@ public static class Jade
     }
 
     /// <summary>
-    ///     A function that uninitializes JadeLib.
+    ///     A function that uninitializes all feature groups.
     /// </summary>
     /// <returns>A bool indicating if it was successfully uninitialized or not.</returns>
     public static bool Uninitialize()

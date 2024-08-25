@@ -9,8 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
-using JadeLib.Features.API.Reflection;
-using JadeLib.Features.API.Reflection.Events;
+using JadeLib.Features.Abstract.FeatureGroups;
+using JadeLib.Features.Abstract.FeatureGroups.Events;
 using VoiceChat;
 using VoiceChat.Networking;
 

@@ -11,7 +11,7 @@ using JadeLib.Features._914;
 
 namespace JadeLib.Features.Registers;
 
-internal class Register914 : JadeFeature
+internal sealed class Register914 : JadeFeature
 {
     public override void Enable()
     {
