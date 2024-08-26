@@ -12,7 +12,6 @@ using HarmonyLib;
 using JadeLib.Features;
 using JadeLib.Features.Abstract.FeatureGroups;
 using JadeLib.Features.Audio.Utilities;
-using JadeLib.Features.Credit;
 using JadeLib.Features.Extensions;
 using MEC;
 using Utils.NonAllocLINQ;
@@ -70,11 +69,6 @@ public static class Jade
         }
 
         JadeFeature.Register();
-
-        if (settings.JadeCredit)
-        {
-            new FeatureGroup("creditjadelib").Supply(new JadeCredit()).Register();
-        }
 
         var banner = Assembly.GetExecutingAssembly().ReadEmbeddedResource("JadeLib.banner.txt");
         ServerConsole.AddLog("JadeLib is ready to go! \n" + banner, ConsoleColor.White);

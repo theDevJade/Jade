@@ -52,12 +52,14 @@
 
     <ItemGroup>
         <Content Include="banner.txt"/>
+        <Content Include="bannerPlaceholders.txt"/>
         <Content Include="FodyWeavers.xml"/>
         <Content Include="References.props"/>
     </ItemGroup>
 
     <ItemGroup>
         <EmbeddedResource Include="banner.txt"/>
+        <EmbeddedResource Include="bannerPlaceholders.txt"/>
         <PackageReference Include="NAudio" Version="2.2.1"/>
         <PackageReference Include="NAudio.Lame" Version="2.1.0"/>
         <PackageReference Include="NAudio.Vorbis" Version="1.5.0"/>
@@ -71,6 +73,12 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Mono.Cecil">
+            <HintPath>..\..\..\Useful\assemblies\Mono.Cecil.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>

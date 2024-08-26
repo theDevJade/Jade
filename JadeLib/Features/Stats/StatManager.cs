@@ -12,6 +12,10 @@ namespace JadeLib.Features.Stats;
 
 public static class StatManager
 {
+    /// <summary>
+    ///     A Dictionary containing <see cref="StatPool" />s for each player.
+    ///     <remarks>WILL BE NULL if the player has DNT</remarks>
+    /// </summary>
     public static Dictionary<Player, StatPool> StatPools = [];
 
     public static List<Type> AvailableStats { get; } = [];
@@ -61,23 +65,31 @@ public class StatPool
 
     public StatPool(ReferenceHub owner)
     {
-        Log.Info("Creating Stat Pool for " + owner.nicknameSync.DisplayName);
         this.Owner = owner;
         foreach (var stat in StatManager.AvailableStats.Select(
                      availableStat => Activator.CreateInstance(availableStat) as Stat))
         {
-            Log.Info("Registering stat for " + owner.nicknameSync.DisplayName + " stat " + stat.GetType().Name);
-            stat.Init(owner);
+            stat?.Init(owner);
             stat?.RegisterStat();
             this.Stats.Add(stat);
         }
     }
 
+    /// <summary>
+    ///     Retrieves a stat for this statpool.
+    /// </summary>
+    /// <typeparam name="T">The type of stat.</typeparam>
+    /// <returns>The stat.</returns>
     public Stat GetStat<T>()
     {
         return this.Stats.FirstOrDefault(e => e is T);
     }
 
+    /// <summary>
+    ///     Retrieves a stat for this statpool.
+    /// </summary>
+    /// <param name="type">The type of stat.</param>
+    /// <returns>The stat.</returns>
     public Stat GetStat(Type type)
     {
         return this.Stats.FirstOrDefault(e => type == e.GetType());
