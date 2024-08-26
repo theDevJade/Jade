@@ -1,0 +1,3 @@
+# Easy Hints
+
+Start typing here...

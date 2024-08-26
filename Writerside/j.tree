@@ -7,6 +7,10 @@
                  start-page="starting-out.md">
 
     <toc-element topic="starting-out.md"/>
+    <toc-element topic="Hints.md">
+        <toc-element topic="Easy-Hints.md"/>
+        <toc-element topic="Elements.md"/>
+    </toc-element>
     <toc-element topic="Features.md">
         <toc-element topic="FeatureGroup.md"/>
     </toc-element>
