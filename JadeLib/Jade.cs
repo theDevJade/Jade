@@ -13,6 +13,7 @@ using JadeLib.Features;
 using JadeLib.Features.Abstract.FeatureGroups;
 using JadeLib.Features.Audio.Utilities;
 using JadeLib.Features.Extensions;
+using JadeLib.Features.Placeholders;
 using MEC;
 using Utils.NonAllocLINQ;
 
@@ -46,9 +47,16 @@ public static class Jade
         settings ??= Settings;
 
         Settings = settings;
+        _harmony = new Harmony("jade");
+
+        var callingAssembly = Assembly.GetCallingAssembly();
+        if (!UsingAssemblies.Contains(callingAssembly))
+        {
+            PlaceholderPatcher.ApplyPatches(callingAssembly, _harmony);
+        }
 
         UsingAssemblies.Add(Assembly.GetCallingAssembly());
-        UsingAssemblies.Add(Assembly.GetAssembly(typeof(Jade)));
+        UsingAssemblies.AddIfNotContains(Assembly.GetAssembly(typeof(Jade)));
         if (Initialized)
         {
             return false;
@@ -58,7 +66,6 @@ public static class Jade
         CosturaUtility.Initialize();
         Log.Info("Initialized Embedded DLL's");
 
-        _harmony = new Harmony("jade");
         _harmony.PatchAll();
         Log.Info("All harmony patches have been applied");
 
