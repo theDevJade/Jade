@@ -60,6 +60,7 @@
     <ItemGroup>
         <EmbeddedResource Include="banner.txt"/>
         <EmbeddedResource Include="bannerPlaceholders.txt"/>
+        <PackageReference Include="EXILEDOFFICIAL" Version="8.11.0"/>
         <PackageReference Include="NAudio" Version="2.2.1"/>
         <PackageReference Include="NAudio.Lame" Version="2.1.0"/>
         <PackageReference Include="NAudio.Vorbis" Version="1.5.0"/>

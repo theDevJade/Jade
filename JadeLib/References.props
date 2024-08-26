@@ -21,27 +21,6 @@
         <Reference Include="Costura">
             <HintPath>..\packages\Costura.Fody.5.7.0\lib\netstandard1.0\Costura.dll</HintPath>
         </Reference>
-        <Reference Include="Exiled.API">
-            <HintPath>..\packages\EXILED.8.9.11\lib\net48\Exiled.API.dll</HintPath>
-        </Reference>
-        <Reference Include="Exiled.CreditTags">
-            <HintPath>..\packages\EXILED.8.9.11\lib\net48\Exiled.CreditTags.dll</HintPath>
-        </Reference>
-        <Reference Include="Exiled.CustomItems">
-            <HintPath>..\packages\EXILED.8.9.11\lib\net48\Exiled.CustomItems.dll</HintPath>
-        </Reference>
-        <Reference Include="Exiled.CustomRoles">
-            <HintPath>..\packages\EXILED.8.9.11\lib\net48\Exiled.CustomRoles.dll</HintPath>
-        </Reference>
-        <Reference Include="Exiled.Events">
-            <HintPath>..\packages\EXILED.8.9.11\lib\net48\Exiled.Events.dll</HintPath>
-        </Reference>
-        <Reference Include="Exiled.Loader">
-            <HintPath>..\packages\EXILED.8.9.11\lib\net48\Exiled.Loader.dll</HintPath>
-        </Reference>
-        <Reference Include="Exiled.Permissions">
-            <HintPath>..\packages\EXILED.8.9.11\lib\net48\Exiled.Permissions.dll</HintPath>
-        </Reference>
         <Reference Include="Mirror">
             <HintPath>$(REFERENCES)\Mirror-Publicized.dll</HintPath>
         </Reference>
