@@ -28,4 +28,7 @@ Ensure you don't have duplicate assemblies, check `FodyWeavers.xml` for any alre
 ### Credits:
 - RueI for hint parsing and ElemCombiner
 - Fody Weavers w/ Costura.
+- VideoLibrary by omansak
 
+### Licenses for included dependencies
+- libvideo: BSD 2-Clause License
