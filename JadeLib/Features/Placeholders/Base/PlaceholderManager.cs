@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 #endregion
 
-namespace JadeLib.Features.Placeholders;
+namespace JadeLib.Features.Placeholders.Base;
 
 public static class PlaceholderManager
 {

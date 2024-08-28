@@ -8,7 +8,7 @@ using System;
 
 #endregion
 
-namespace JadeLib.Features.API;
+namespace JadeLib.Features.Positioning;
 
 /// <summary>
 ///     Wow

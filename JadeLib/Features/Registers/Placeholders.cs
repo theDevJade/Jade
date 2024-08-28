@@ -1,6 +1,6 @@
 ﻿#region
 
-using JadeLib.Features.Placeholders;
+using JadeLib.Features.Placeholders.Base;
 
 #endregion
 

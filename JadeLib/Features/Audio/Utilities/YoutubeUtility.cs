@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Exiled.API.Features;
 using MEC;
 using NAudio.Lame;
 using NAudio.Wave;
@@ -37,6 +38,7 @@ public static class YoutubeUtility
         Action<string> onComplete,
         Action<string> onError)
     {
+        Log.Info($"Downloading audio from {youtubeUrl}");
         if (string.IsNullOrWhiteSpace(youtubeUrl))
         {
             onError?.Invoke("YouTube URL cannot be null or empty.");
@@ -49,14 +51,18 @@ public static class YoutubeUtility
             yield break;
         }
 
+        Log.Info("Debug, starting video download.");
         var youTube = YouTube.Default;
         var video = youTube.GetAllVideos(youtubeUrl).FirstOrDefault(v => v.AdaptiveKind == AdaptiveKind.Audio);
 
         if (video == null)
         {
+            Log.Info("Debug, no audio found.");
             onError?.Invoke("No audio found for the given YouTube URL.");
             yield break;
         }
+
+        Log.Info($"Downloading video from {video.Title}...");
 
         var tempVideoPath = Path.Combine(outputPath, $"{video.FullName}");
         var audioFilePath = Path.Combine(outputPath, $"{Path.GetFileNameWithoutExtension(video.FullName)}.mp3");
@@ -74,7 +80,7 @@ public static class YoutubeUtility
         }
 
         // Clean up temporary video file
-        File.Delete(tempVideoPath);
+        //File.Delete(tempVideoPath);
 
         onComplete?.Invoke(audioFilePath);
     }

@@ -4,6 +4,7 @@
 
 #region
 
+using JadeLib.Commands;
 using JadeLib.Features.Commands;
 using RemoteAdmin;
 

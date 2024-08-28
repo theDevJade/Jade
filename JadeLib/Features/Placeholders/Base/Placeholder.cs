@@ -4,8 +4,11 @@ using JadeLib.Features.Abstract;
 
 #endregion
 
-namespace JadeLib.Features.Placeholders;
+namespace JadeLib.Features.Placeholders.Base;
 
+/// <summary>
+///     The base of a placeholder, without the generic.
+/// </summary>
 public abstract class PlaceholderBase : ModuleSystem<PlaceholderBase>
 {
     /// <summary>

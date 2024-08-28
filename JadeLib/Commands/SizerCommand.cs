@@ -13,7 +13,7 @@ using UnityEngine;
 
 #endregion
 
-namespace JadeLib.Features.Commands;
+namespace JadeLib.Commands;
 
 [CommandHandler(typeof(RemoteAdminCommandHandler))]
 public class SetSizeCommand : ICommand

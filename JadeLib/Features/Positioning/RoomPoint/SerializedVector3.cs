@@ -9,7 +9,7 @@ using UnityEngine;
 
 #endregion
 
-namespace JadeLib.Features.API.RoomPoint;
+namespace JadeLib.Features.Positioning.RoomPoint;
 
 [Serializable]
 public class SerializedVector3

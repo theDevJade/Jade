@@ -10,7 +10,7 @@ using HarmonyLib;
 
 #endregion
 
-namespace JadeLib.Features.Placeholders;
+namespace JadeLib.Features.Placeholders.Base;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class Placeholders : Attribute

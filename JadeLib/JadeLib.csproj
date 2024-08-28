@@ -82,6 +82,11 @@
         </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+        <Folder Include="Features\Placeholders\BuiltIn\Player\"/>
+        <Folder Include="Features\Placeholders\BuiltIn\Server\"/>
+    </ItemGroup>
+
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <Import Project="..\packages\Fody.6.8.1\build\Fody.targets" Condition="Exists('..\packages\Fody.6.8.1\build\Fody.targets')"/>
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

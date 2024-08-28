@@ -11,7 +11,7 @@ using UnityEngine;
 
 #endregion
 
-namespace JadeLib.Features.API.RoomPoint;
+namespace JadeLib.Features.Positioning.RoomPoint;
 
 [CommandHandler(typeof(RemoteAdminCommandHandler))]
 public class RoomPoint : ICommand

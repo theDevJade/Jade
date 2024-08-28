@@ -13,7 +13,7 @@ using Random = UnityEngine.Random;
 
 #endregion
 
-namespace JadeLib.Features.API;
+namespace JadeLib.Features.Positioning;
 
 /// <summary>
 ///     A set of various extension functions for utility purposes.

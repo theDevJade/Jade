@@ -13,7 +13,7 @@ using JadeLib.Features;
 using JadeLib.Features.Abstract.FeatureGroups;
 using JadeLib.Features.Audio.Utilities;
 using JadeLib.Features.Extensions;
-using JadeLib.Features.Placeholders;
+using JadeLib.Features.Placeholders.Base;
 using MEC;
 using Utils.NonAllocLINQ;
 
