@@ -1,4 +1,4 @@
-﻿<div style="text-align: center;">
+﻿<p align="center">
 
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
 ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
@@ -7,7 +7,7 @@
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/theDevJade/Jade?logo=GitHub)](https://github.com/theDevJade/Jade/releases)
 ![Docs](https://github.com/theDevJade/Jade/actions/workflows/docs.yml/badge.svg?branch=docs)
 
-</div>
+</p>
 
 ---
 # JadeLib
@@ -23,7 +23,7 @@
 ---
 <br>
 
-<div style="text-align: center;">
+<p align="center">
 
 ### Project Information & Documentation
 ### ↓
@@ -32,7 +32,7 @@
 ### Support & Bug Reports (`#tinybrain-sanctum`)
 [![](https://dcbadge.limes.pink/api/server/https://discord.gg/gEFWHvBNRX)](https://discord.gg/gEFWHvBNRX)
 
-</div>
+</p>
 
 ## Contributions
 Contributions are **always** welcome, report any bug reports or other issues, or if you just need help ask on the *Exiled* discord.
@@ -88,8 +88,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ---
 
-<div style="color: indianred; text-align: center;">
+<p align="center">
 
-## Made with ❤ by Jade <3
+```diff
+- Made with ❤ by Jade <3
+```
 
-</div>
+</p>
