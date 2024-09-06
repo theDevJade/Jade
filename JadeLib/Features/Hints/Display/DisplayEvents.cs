@@ -4,7 +4,6 @@
 
 #region
 
-using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
 using JadeLib.Features.Abstract.FeatureGroups.Events;
 
@@ -17,7 +16,6 @@ internal class DisplayEvents
     [Listener]
     internal void OnVerify(VerifiedEventArgs args)
     {
-        Log.Info($"{args.Player.CustomName} joined, adding playerdisplay.");
         HintScheduler.EnsureInit(args.Player.ReferenceHub);
     }
 }

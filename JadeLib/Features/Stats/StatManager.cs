@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
+using JetBrains.Annotations;
 
 #endregion
 
@@ -14,7 +15,7 @@ public static class StatManager
 {
     /// <summary>
     ///     A Dictionary containing <see cref="StatPool" />s for each player.
-    ///     <remarks>WILL BE NULL if the player has DNT</remarks>
+    ///     <remarks>WILL BE NULL if the player has DNT enabled</remarks>
     /// </summary>
     public static Dictionary<Player, StatPool> StatPools = [];
 
@@ -39,9 +40,15 @@ public static class StatManager
         StatPools.Remove(args.Player);
     }
 
+    /// <summary>
+    ///     Gets the StatPool for a player.
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <returns>The StatPool, or null if the player has DNT.</returns>
+    [CanBeNull]
     public static StatPool GetStats(this Player player)
     {
-        return StatPools[player];
+        return StatPools.ContainsKey(player) ? null : StatPools[player];
     }
 
     public static Dictionary<ReferenceHub, Stat> GetOfType(Type type)

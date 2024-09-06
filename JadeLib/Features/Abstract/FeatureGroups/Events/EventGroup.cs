@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Exiled.Events.EventArgs.Interfaces;
 using Exiled.Events.Features;
 
 #endregion
@@ -66,11 +67,31 @@ public class EventGroup
             var handler = Delegate.CreateDelegate(delegateType, instance, method);
             var eventMethods = eventInstance.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public);
             eventMethods.First(e => e.Name == "Subscribe").Invoke(eventInstance, [handler]);
-
-            this.dynamicHandlers.Add(Tuple.Create(handler, instance, method));
         }
 
         this.IsHandlerAdded = true;
+    }
+
+    private static void RegisterEventsMethods(object instance, IEnumerable<MethodInfo> methodInfos)
+    {
+        foreach (var method in methodInfos)
+        {
+            var eventType = method.GetParameters().First().ParameterType;
+            var eventInstance = EventScanner.Get()[eventType];
+            var delegateType = typeof(CustomEventHandler<>).MakeGenericType(eventType);
+            var handler = Delegate.CreateDelegate(delegateType, instance, method);
+            var eventMethods = eventInstance.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public);
+            eventMethods.First(e => e.Name == "Subscribe").Invoke(eventInstance, [handler]);
+        }
+    }
+
+    public static void RegisterAllEventsForMethods(Type instance)
+    {
+        RegisterEventsMethods(
+            null,
+            instance.GetMethods().Where(
+                e => e.GetParameters().Count() == 1 &&
+                     e.GetParameters().First().ParameterType.IsSubclassOf(typeof(IExiledEvent))));
     }
 
     /// <summary>

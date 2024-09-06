@@ -19,7 +19,7 @@ public abstract class Element
     /// <summary>
     ///     Gets or sets the options for this element.
     /// </summary>
-    public virtual ElementOptions Options { get; protected set; } = ElementOptions.Default;
+    public virtual ElementOptions Options { get; protected set; } = ElementOptions.PreserveSpacing;
 
     /// <summary>
     ///     Gets or sets a value indicating whether or not this element is enabled and will show.
