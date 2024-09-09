@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JadeTesting", "JadeTesting\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LarsCore", "LarsCore\LarsCore.csproj", "{A24057A9-9D77-495A-9475-4267A423DC94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPSystem", "XPSystem\XPSystem.csproj", "{A5B39664-F1FE-4729-A724-2E33070750E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{A24057A9-9D77-495A-9475-4267A423DC94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A24057A9-9D77-495A-9475-4267A423DC94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A24057A9-9D77-495A-9475-4267A423DC94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B39664-F1FE-4729-A724-2E33070750E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B39664-F1FE-4729-A724-2E33070750E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B39664-F1FE-4729-A724-2E33070750E6}.Debug|Any CPU.ActiveCfg = Release EXILED|Any CPU
+		{A5B39664-F1FE-4729-A724-2E33070750E6}.Debug|Any CPU.Build.0 = Release EXILED|Any CPU
 	EndGlobalSection
 EndGlobal

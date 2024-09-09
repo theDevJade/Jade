@@ -7,6 +7,7 @@
 using System;
 using CommandSystem;
 using Exiled.API.Features;
+using Exiled.Permissions.Extensions;
 using JadeLib.Features.Extensions;
 using RemoteAdmin;
 using UnityEngine;
@@ -26,15 +27,22 @@ public class SetSizeCommand : ICommand
 
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
-        if (!(sender is PlayerCommandSender playerSender))
+        if (sender is not PlayerCommandSender playerSender)
         {
             response = "This command can only be executed by a player.";
             return false;
         }
 
+        if (Jade.Settings.CommandPermission.SizerPermissions != string.Empty &&
+            playerSender.CheckPermission(Jade.Settings.CommandPermission.SizerPermissions))
+        {
+            response = "You do not have permission to use this command.";
+            return false;
+        }
+
         var executor = Player.Get(playerSender.ReferenceHub);
 
-        if (arguments.Count < 3 || arguments.Count > 4)
+        if (arguments.Count is < 3 or > 4)
         {
             response = "Usage: setsize <x> <y> <z> [playerID]";
             return false;

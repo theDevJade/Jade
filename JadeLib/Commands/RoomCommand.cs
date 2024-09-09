@@ -7,18 +7,27 @@
 using System;
 using CommandSystem;
 using Exiled.API.Features;
+using Exiled.Permissions.Extensions;
+using JadeLib.Features.Positioning.RoomPoint;
 using UnityEngine;
 
 #endregion
 
-namespace JadeLib.Features.Positioning.RoomPoint;
+namespace JadeLib.Commands;
 
 [CommandHandler(typeof(RemoteAdminCommandHandler))]
-public class RoomPoint : ICommand
+public class RoomPointCommand : ICommand
 {
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
         var player = Player.Get(sender);
+
+        if (player == null || (Jade.Settings.CommandPermission.RoompointPermissions != string.Empty &&
+                               player.CheckPermission(Jade.Settings.CommandPermission.RoompointPermissions)))
+        {
+            response = "You do not have permission to use this command.";
+            return false;
+        }
 
         var cameraTransform = player.CameraTransform.transform;
 

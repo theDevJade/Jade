@@ -4,6 +4,7 @@
 
 #region
 
+#nullable enable
 using JetBrains.Annotations;
 
 #endregion
@@ -15,7 +16,7 @@ namespace JadeLib.Features.UtilityClasses;
 /// </summary>
 /// <param name="obj">The object to pass, can be null.</param>
 /// <typeparam name="T">The type of object.</typeparam>
-public sealed class NullableObject<T>([CanBeNull] T obj)
+public sealed class NullableObject<T>([CanBeNull] T? obj)
 {
     /// <summary>
     ///     Gets a value indicating whether the nullable object is indeed null.
@@ -25,5 +26,5 @@ public sealed class NullableObject<T>([CanBeNull] T obj)
     /// <summary>
     ///     Gets the value, can be null.
     /// </summary>
-    public T Value => obj;
+    public T? Value => obj;
 }

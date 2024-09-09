@@ -88,7 +88,8 @@ public abstract class JadeCommand<TArgument> : JadeCommandBase, ICommand
 
     protected override void Register()
     {
-        if (CommandProcessor.GetAllCommands().Contains(this))
+        if (CommandProcessor.GetAllCommands().Contains(this) ||
+            QueryProcessor.DotCommandHandler.AllCommands.Contains(this))
         {
             return;
         }
