@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using System;
 using System.Collections.ObjectModel;
@@ -81,7 +77,7 @@ public static class Constants
             3,
             4,
             6,
-            8
+            8,
         });
 
     /// <summary>
@@ -94,7 +90,7 @@ public static class Constants
             "center",
             "right",
             "justified",
-            "flush"
+            "flush",
         });
 
     /// <summary>
@@ -110,6 +106,6 @@ public static class Constants
             "purple",
             "red",
             "white",
-            "yellow"
+            "yellow",
         });
 }

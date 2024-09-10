@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-namespace JadeLib.Features.Hints.Extensions;
+﻿namespace JadeLib.Features.Hints.Extensions;
 
 /// <summary>
 ///     Provides helpful functions for dealing with elements and hints.

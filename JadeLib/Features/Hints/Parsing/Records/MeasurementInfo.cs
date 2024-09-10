@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using JadeLib.Features.Hints.Parsing.Enums;
 using NorthwoodLib.Pools;
@@ -90,7 +86,7 @@ public record struct MeasurementInfo(float value, MeasurementUnit style)
         {
             MeasurementUnit.Ems => "e",
             MeasurementUnit.Percentage => "%",
-            _ => string.Empty
+            _ => string.Empty,
         };
     }
 }

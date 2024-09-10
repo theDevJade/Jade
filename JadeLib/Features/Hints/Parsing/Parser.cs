@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -30,7 +26,6 @@ namespace JadeLib.Features.Hints.Parsing;
 ///     create new <see cref="Parser" />s,
 ///     you must use the <see cref="ParserBuilder" /> class.
 /// </remarks>
-/// <include file='docs.xml' path='docs/members[@name="parser"]/Parser/*' />
 /// <seealso cref="ParserBuilder" />
 public sealed class Parser
 {
@@ -129,7 +124,7 @@ public sealed class Parser
         {
             CaseStyle.Smallcaps or CaseStyle.Uppercase => char.ToUpper(ch),
             CaseStyle.Lowercase => char.ToLower(ch),
-            _ => ch
+            _ => ch,
         };
 
         if (CharacterLengths.Lengths.TryGetValue(functionalCase, out var chSize))
@@ -347,7 +342,7 @@ public sealed class Parser
                         {
                             ' ' => TagStyle.Attributes,
                             '=' => TagStyle.ValueParam,
-                            _ => throw new ArgumentOutOfRangeException(nameof(ch))
+                            _ => throw new ArgumentOutOfRangeException(nameof(ch)),
                         };
 
                         if (this.TryGetBestMatch(tagBuffer.ToString(), style, out var tag))

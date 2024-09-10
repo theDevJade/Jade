@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using JadeLib.Features.Hints.Parsing.Enums;
 using JadeLib.Features.Hints.Parsing.Records;
@@ -29,7 +25,7 @@ public class PosTag : MeasurementTag
         {
             MeasurementUnit.Ems => value * Constants.EMSTOPIXELS,
             MeasurementUnit.Percentage => info.value / 100 * Constants.DISPLAYAREAWIDTH,
-            _ => value
+            _ => value,
         };
 
         context.CurrentLineWidth = convertedValue;

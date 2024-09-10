@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -18,7 +14,7 @@ namespace JadeLib.Features.Positioning;
 /// <summary>
 ///     A set of various extension functions for utility purposes.
 /// </summary>
-public static class Util
+public static class GeneralUtil
 {
     /// <summary>
     ///     Retrieves or initializes a <see cref="KeyValuePair{TKey,TValue}" /> for a dictionary.

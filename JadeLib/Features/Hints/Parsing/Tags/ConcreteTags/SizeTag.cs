@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using JadeLib.Features.Hints.Parsing.Enums;
 using JadeLib.Features.Hints.Parsing.Records;
@@ -30,7 +26,7 @@ public class SizeTag : MeasurementTag
         {
             MeasurementUnit.Percentage => info.value / 100 * Constants.DEFAULTSIZE,
             MeasurementUnit.Ems => info.value * Constants.EMSTOPIXELS,
-            _ => info.value
+            _ => info.value,
         };
 
         context.Size = value;

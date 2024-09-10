@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-namespace JadeLib.Features.Hints.Parsing.Enums;
+﻿namespace JadeLib.Features.Hints.Parsing.Enums;
 
 /// <summary>
 ///     Represents the valid characters for a delimiter.
@@ -22,5 +18,5 @@ public enum TagStyle
     /// <summary>
     ///     Indicates that a tag takes in only attributes (space delimiter).
     /// </summary>
-    Attributes
+    Attributes,
 }

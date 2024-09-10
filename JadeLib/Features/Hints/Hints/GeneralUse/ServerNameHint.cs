@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using JadeLib.Features.Hints.Elements;
 using JadeLib.Features.Hints.Hints.Base.CustomHints;

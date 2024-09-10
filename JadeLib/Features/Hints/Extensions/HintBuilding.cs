@@ -1,7 +1,3 @@
-// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
 #region
 
 using System.Drawing;
@@ -47,7 +43,7 @@ public static class HintBuilding
         /// <summary>
         ///     Indicates that every line should be stretched to fill the display area. This includes the last line.
         /// </summary>
-        Flush
+        Flush,
     }
 
     /// <summary>
@@ -60,7 +56,7 @@ public static class HintBuilding
         var alphaInclude = color.A switch
         {
             255 => string.Empty,
-            _ => color.A.ToString("X2")
+            _ => color.A.ToString("X2"),
         };
 
         return $"#{color.R:X2}{color.G:X2}{color.B:X2}{alphaInclude}";
@@ -105,7 +101,7 @@ public static class HintBuilding
             AlignStyle.Right => "right",
             AlignStyle.Justified => "justified",
             AlignStyle.Flush => "flush",
-            _ => "center"
+            _ => "center",
         };
 
         return sb.Append($"<align={alignment}>");
@@ -127,7 +123,7 @@ public static class HintBuilding
         {
             MeasurementUnit.Percentage => "%",
             MeasurementUnit.Ems => "ems",
-            _ => string.Empty
+            _ => string.Empty,
         };
 
         return sb.Append($"<size={size}{format}>");
@@ -149,7 +145,7 @@ public static class HintBuilding
         {
             MeasurementUnit.Percentage => "%",
             MeasurementUnit.Ems => "ems",
-            _ => string.Empty
+            _ => string.Empty,
         };
 
         return sb.Append($"<line-height={size}{format}>");
@@ -315,7 +311,7 @@ public static class HintBuilding
         {
             MeasurementUnit.Percentage => "%",
             MeasurementUnit.Ems => "ems",
-            _ => string.Empty
+            _ => string.Empty,
         };
 
         return sb.Append($"<indent={indent}{format}>");
@@ -348,7 +344,7 @@ public static class HintBuilding
         {
             MeasurementUnit.Percentage => "%",
             MeasurementUnit.Ems => "ems",
-            _ => string.Empty
+            _ => string.Empty,
         };
 
         return sb.Append($"<mspace={spacing}{format}>");
@@ -366,7 +362,7 @@ public static class HintBuilding
         {
             CaseStyle.Uppercase => "allcaps",
             CaseStyle.Lowercase => "lowercase",
-            _ => "smallcaps"
+            _ => "smallcaps",
         };
 
         return sb.Append($"<{format}>");
@@ -388,7 +384,7 @@ public static class HintBuilding
         {
             MeasurementUnit.Percentage => "%",
             MeasurementUnit.Ems => "ems",
-            _ => string.Empty
+            _ => string.Empty,
         };
 
         return sb.Append($"<margin={margins}{format}>");
@@ -461,7 +457,7 @@ public static class HintBuilding
         {
             MeasurementUnit.Percentage => "%",
             MeasurementUnit.Ems => "ems",
-            _ => string.Empty
+            _ => string.Empty,
         };
 
         return sb.Append($"<width={offset}{format}>");
@@ -483,7 +479,7 @@ public static class HintBuilding
         {
             MeasurementUnit.Percentage => "%",
             MeasurementUnit.Ems => "ems",
-            _ => string.Empty
+            _ => string.Empty,
         };
 
         return sb.Append($"<pos={margins}{format}>");
@@ -505,7 +501,7 @@ public static class HintBuilding
         {
             MeasurementUnit.Percentage => "%",
             MeasurementUnit.Ems => "ems",
-            _ => string.Empty
+            _ => string.Empty,
         };
 
         return sb.Append($"<space={margins}{format}>");
@@ -527,7 +523,7 @@ public static class HintBuilding
         {
             MeasurementUnit.Percentage => "%",
             MeasurementUnit.Ems => "ems",
-            _ => string.Empty
+            _ => string.Empty,
         };
 
         return sb.Append($"<voffset={offset}{format}>");

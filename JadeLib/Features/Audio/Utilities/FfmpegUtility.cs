@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -156,7 +152,7 @@ public static class FfmpegUtility
             Arguments = $"-i \"{inputFile}\" -ar 48000 -ac 1 \"{outputFile}\"",
             RedirectStandardOutput = true,
             UseShellExecute = false,
-            CreateNoWindow = true
+            CreateNoWindow = true,
         };
 
         using var process = new Process();

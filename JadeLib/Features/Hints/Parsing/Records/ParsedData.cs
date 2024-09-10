@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-namespace JadeLib.Features.Hints.Parsing.Records;
+﻿namespace JadeLib.Features.Hints.Parsing.Records;
 
 /// <summary>
 ///     Defines a class that contains parsed information about a single element, used for displaying multiple at a time.

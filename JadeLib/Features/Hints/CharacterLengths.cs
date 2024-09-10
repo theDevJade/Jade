@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -462,7 +458,7 @@ public static class CharacterLengths
                 { 'ύ', 18.553078772189348f },
                 { 'ώ', 28.601192677514792f },
                 { 'ǰ', 7.929091161242604f },
-                { 'ʼ', 6.167783838757397f }
+                { 'ʼ', 6.167783838757397f },
             };
 
         #endregion

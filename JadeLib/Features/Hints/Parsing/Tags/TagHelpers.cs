@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-namespace JadeLib.Features.Hints.Parsing.Tags;
+﻿namespace JadeLib.Features.Hints.Parsing.Tags;
 
 /// <summary>
 ///     Provides a number of helper functions for <see cref="RichTextTag" />s.
@@ -30,7 +26,7 @@ public static class TagHelpers
             (true, true) => str.Substring(1, str.Length - 1),
             (false, true) => null,
             (true, false) => null,
-            (false, false) => str
+            (false, false) => str,
         };
     }
 }

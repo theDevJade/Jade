@@ -66,7 +66,7 @@ public sealed class EffectTranslations : EnumTranslation<EffectTranslations, Eff
             EffectType.Ghostly => "<color=white>Ghostly</color>",
             EffectType.FogControl => "<color=grey>Fog Control</color>",
             EffectType.Slowness => $"<color=red>Slowness | {passer.GetTimeLeft()}s left.</color>",
-            _ => "None"
+            _ => "None",
         };
     }
 }

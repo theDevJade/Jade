@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-namespace JadeLib.Features.Hints.Parsing.Tags;
+﻿namespace JadeLib.Features.Hints.Parsing.Tags;
 
 /// <summary>
 ///     Defines the base class for all rich text tags.

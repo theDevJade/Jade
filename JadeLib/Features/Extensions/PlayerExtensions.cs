@@ -1,10 +1,5 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
+﻿#region
 
-#region
-
-using System;
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;

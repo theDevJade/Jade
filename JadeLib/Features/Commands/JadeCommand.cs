@@ -129,5 +129,5 @@ public enum CommandType
     /// <summary>
     ///     A game console command.
     /// </summary>
-    GameConsole
+    GameConsole,
 }

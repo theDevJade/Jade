@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using Exiled.API.Features;
 using JadeLib.Features.Hints.Elements;
@@ -40,7 +36,7 @@ public abstract class ConditionalHint : GlobalHint
         return this.Condition(player) switch
         {
             true => this.Content(context),
-            false => string.Empty
+            false => string.Empty,
         };
     }
 }

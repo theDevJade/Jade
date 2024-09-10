@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-namespace JadeLib;
+﻿namespace JadeLib;
 
 public sealed class JadeSettings
 {
@@ -17,7 +13,6 @@ public sealed class JadeSettings
         RegisterCommands = true,
         CommandPermission = new CommandPermissions
         {
-            RoompointPermissions = string.Empty,
             SizerPermissions = "jadelib.sizer",
             SpawnRatPermissions = "jadelib.spawnrat",
         },
@@ -57,7 +52,5 @@ public sealed class JadeSettings
         public string SizerPermissions { get; set; }
 
         public string SpawnRatPermissions { get; set; }
-
-        public string RoompointPermissions { get; set; }
     }
 }

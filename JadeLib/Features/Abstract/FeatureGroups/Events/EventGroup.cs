@@ -1,7 +1,3 @@
-// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
 #region
 
 using System;
@@ -57,6 +53,13 @@ public class EventGroup
             .GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static)
             .Where(m => m.GetCustomAttributes(typeof(ListenerAttribute), false).Length > 0);
 
+        var methodsNoArgs = instance.GetType()
+            .GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static)
+            .Where(
+                m => m.GetCustomAttributes(typeof(NoargListener), false).Length > 0 &&
+                     m.GetCustomAttribute<NoargListener>().TargetType.GetEvents().Any())
+            .Select(e => (e, e.GetCustomAttribute<NoargListener>()));
+
         var methodInfos = methods.ToList();
 
         foreach (var method in methodInfos)
@@ -67,6 +70,21 @@ public class EventGroup
             var handler = Delegate.CreateDelegate(delegateType, instance, method);
             var eventMethods = eventInstance.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public);
             eventMethods.First(e => e.Name == "Subscribe").Invoke(eventInstance, [handler]);
+            this.dynamicHandlers.Add(new Tuple<Delegate, object, MethodInfo>(handler, instance, method));
+        }
+
+        foreach (var (e, noargListener) in methodsNoArgs)
+        {
+            var eventType = noargListener.TargetType;
+            var eventName = eventType.GetEvent(noargListener.EventName);
+            var delegateType = typeof(CustomEventHandler);
+            var handler = Delegate.CreateDelegate(delegateType, instance, e) as CustomEventHandler;
+            if (eventType.GetProperty(noargListener.EventName)?.GetValue(null) is not Event @event)
+            {
+                continue;
+            }
+
+            @event.Subscribe(handler);
         }
 
         this.IsHandlerAdded = true;

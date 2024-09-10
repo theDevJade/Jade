@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using JadeLib.Commands;
 using JadeLib.Features.Commands;
@@ -22,7 +18,6 @@ internal sealed class Commands : JadeFeature
         }
 
         CommandProcessor.RemoteAdminCommandHandler.RegisterCommand(new SetSizeCommand());
-        CommandProcessor.RemoteAdminCommandHandler.RegisterCommand(new RoomPointCommand());
         CommandProcessor.RemoteAdminCommandHandler.RegisterCommand(new RatCommand());
         JadeCommandBase.ReflectiveRegister();
     }

@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using JadeLib.Features.Hints.Parsing.Enums;
 using JadeLib.Features.Hints.Parsing.Records;
@@ -27,7 +23,7 @@ public class LineIndentTag : MeasurementTag
         {
             MeasurementUnit.Percentage => info.value / 100 * Constants.DISPLAYAREAWIDTH,
             MeasurementUnit.Ems => info.value * Constants.EMSTOPIXELS,
-            _ => info.value
+            _ => info.value,
         };
 
         context.Indent = value;

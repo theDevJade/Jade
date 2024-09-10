@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using JadeLib.Features.Hints.Parsing.Enums;
 using JadeLib.Features.Hints.Parsing.Records;
@@ -33,7 +29,7 @@ public class LineHeightTag : MeasurementTag
             MeasurementUnit.Percentage => value / 100 * Constants.DEFAULTHEIGHT *
                                           (context.Size / Constants.DEFAULTSIZE),
             MeasurementUnit.Ems => value * Constants.EMSTOPIXELS * (context.Size / Constants.DEFAULTSIZE),
-            _ => value
+            _ => value,
         };
 
         context.CurrentLineHeight = convertedValue;

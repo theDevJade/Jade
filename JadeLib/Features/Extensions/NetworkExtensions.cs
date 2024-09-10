@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using System.Linq;
 using Exiled.API.Features;
@@ -30,7 +26,7 @@ public static class NetworkExtensions
         identity.gameObject.transform.position = pos;
         ObjectDestroyMessage objectDestroyMessage = new()
         {
-            netId = identity.netId
+            netId = identity.netId,
         };
         foreach (var ply in Player.List)
         {
@@ -54,7 +50,7 @@ public static class NetworkExtensions
         identity.gameObject.transform.position = pos;
         ObjectDestroyMessage objectDestroyMessage = new()
         {
-            netId = identity.netId
+            netId = identity.netId,
         };
         foreach (var ply in players)
         {

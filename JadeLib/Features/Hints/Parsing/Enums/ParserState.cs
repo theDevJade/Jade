@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-namespace JadeLib.Features.Hints.Parsing.Enums;
+﻿namespace JadeLib.Features.Hints.Parsing.Enums;
 
 /// <summary>
 ///     Represents the state of the parser.
@@ -22,5 +18,5 @@ internal enum ParserState
     /// <summary>
     ///     Indicates that the parser is currently collecting characters for a param.
     /// </summary>
-    CollectingParams
+    CollectingParams,
 }

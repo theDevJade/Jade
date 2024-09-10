@@ -17,7 +17,7 @@ public class RatCommand : ICommand
     {
         var player = Player.Get(sender);
 
-        if (player == null || (Jade.Settings.CommandPermission.RoompointPermissions != string.Empty &&
+        if (player == null || (Jade.Settings.CommandPermission.SpawnRatPermissions != string.Empty &&
                                player.CheckPermission(Jade.Settings.CommandPermission.SpawnRatPermissions)))
         {
             response = "You do not have permission to use this command.";

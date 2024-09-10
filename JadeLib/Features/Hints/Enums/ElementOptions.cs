@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using System;
 using JadeLib.Features.Hints.Extensions;
@@ -46,5 +42,5 @@ public enum ElementOptions
     /// <summary>
     ///     Gets the vanilla options for hints.
     /// </summary>
-    Vanilla = PreserveSpacing | UseFunctionalPosition | NoparseParsesEscape
+    Vanilla = PreserveSpacing | UseFunctionalPosition | NoparseParsesEscape,
 }

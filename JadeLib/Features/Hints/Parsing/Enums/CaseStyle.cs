@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-namespace JadeLib.Features.Hints.Parsing.Enums;
+﻿namespace JadeLib.Features.Hints.Parsing.Enums;
 
 /// <summary>
 ///     Represents the case style of the parser.
@@ -22,5 +18,5 @@ public enum CaseStyle
     /// <summary>
     ///     Indicates that all text will be in uppercase.
     /// </summary>
-    Uppercase
+    Uppercase,
 }

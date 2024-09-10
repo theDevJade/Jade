@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-namespace JadeLib.Features.Hints.Parsing.Enums;
+﻿namespace JadeLib.Features.Hints.Parsing.Enums;
 
 /// <summary>
 ///     Represents the unit used for a measurement parameter.
@@ -22,5 +18,5 @@ public enum MeasurementUnit
     /// <summary>
     ///     Indicates that the measurement is in ems.
     /// </summary>
-    Ems
+    Ems,
 }

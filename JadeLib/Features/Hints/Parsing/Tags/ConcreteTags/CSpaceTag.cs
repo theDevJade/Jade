@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using JadeLib.Features.Hints.Parsing.Enums;
 using JadeLib.Features.Hints.Parsing.Records;
@@ -31,7 +27,7 @@ public class CSpaceTag : MeasurementTag
         var convertedValue = style switch
         {
             MeasurementUnit.Ems => value * Constants.EMSTOPIXELS,
-            _ => value
+            _ => value,
         };
 
         context.CurrentCSpace = convertedValue;

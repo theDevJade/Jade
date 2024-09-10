@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-#region
+﻿#region
 
 using Exiled.Events.EventArgs.Player;
 using JadeLib.Features.Abstract.FeatureGroups.Events;

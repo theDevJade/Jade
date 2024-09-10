@@ -1,8 +1,4 @@
-﻿// # --------------------------------------
-// # Made by theDevJade with <3
-// # --------------------------------------
-
-namespace JadeLib.Features.Hints.Parsing.Enums;
+﻿namespace JadeLib.Features.Hints.Parsing.Enums;
 
 /// <summary>
 ///     Represents the style used for a color parameter.
@@ -17,5 +13,5 @@ public enum ColorStyle
     /// <summary>
     ///     Indicates that the color parameter is a hex code.
     /// </summary>
-    HexCode
+    HexCode,
 }
