@@ -40,7 +40,7 @@ public class AutoUpdater : LoaderSegment
                 await JadeAutoUpdate.CheckAndUpdateDllAsync(
                     "theDevJade",
                     "Jade",
-                    "1.0.0",
+                    "v1.5.0",
                     Assembly.GetExecutingAssembly().Location);
             });
     }
