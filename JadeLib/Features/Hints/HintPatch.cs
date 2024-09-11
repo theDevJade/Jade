@@ -20,6 +20,11 @@ internal static class HintPatch
     [HarmonyPrefix]
     private static bool Prefix(HintDisplay __instance, ref Hint hint)
     {
+        if (!Jade.Settings.UseHintSystem)
+        {
+            return true;
+        }
+
         var plyr = Player.Get(__instance.connectionToClient);
         HintScheduler.EnsureInit(plyr.ReferenceHub);
         if (hint is not TextHint textHint)

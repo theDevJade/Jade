@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Exiled.API.Features;
 using Exiled.Events.EventArgs.Interfaces;
 using Exiled.Events.Features;
 
@@ -62,6 +63,10 @@ public class EventGroup
 
         var methodInfos = methods.ToList();
 
+        var valueTuples = methodsNoArgs.ToList();
+        Log.Info(
+            $"Registering event handlers for {instance.GetType().Name}, total of {valueTuples.Count()} noarg handlers & {methodInfos.Count()} arg handlers.");
+
         foreach (var method in methodInfos)
         {
             var eventType = method.GetParameters().First().ParameterType;
@@ -73,7 +78,7 @@ public class EventGroup
             this.dynamicHandlers.Add(new Tuple<Delegate, object, MethodInfo>(handler, instance, method));
         }
 
-        foreach (var (e, noargListener) in methodsNoArgs)
+        foreach (var (e, noargListener) in valueTuples)
         {
             var eventType = noargListener.TargetType;
             var eventName = eventType.GetEvent(noargListener.EventName);

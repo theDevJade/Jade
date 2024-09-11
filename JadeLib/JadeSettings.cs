@@ -11,6 +11,7 @@ public sealed class JadeSettings
         InitializeFFmpeg = false,
         UseRoundEvents = false,
         RegisterCommands = true,
+        AutoUpdate = true,
         CommandPermission = new CommandPermissions
         {
             SizerPermissions = "jadelib.sizer",
@@ -38,6 +39,11 @@ public sealed class JadeSettings
     ///     <remarks>All commands are registered for remote admin only.</remarks>
     /// </summary>
     public bool RegisterCommands { get; set; }
+
+    /// <summary>
+    ///     Gets or sets a value indicating whether JadeLib should automatically update on startup.
+    /// </summary>
+    public bool AutoUpdate { get; set; }
 
     /// <summary>
     ///     The permissions for commands if they are registered.

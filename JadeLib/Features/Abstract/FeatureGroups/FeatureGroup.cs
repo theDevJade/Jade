@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Exiled.API.Features;
 using JadeLib.Features.Abstract.FeatureGroups.Events;
 
 #endregion
@@ -62,7 +61,6 @@ public class FeatureGroup
     /// </summary>
     public void Register()
     {
-        Log.Info("Registering Feature Group: " + this.Key);
         foreach (var @event in this.Events)
         {
             this.EventGroup.AddEventHandlers(@event);
@@ -81,7 +79,6 @@ public class FeatureGroup
     /// </summary>
     public void Unregister()
     {
-        Log.Info("Unregistering Feature Group: " + this.Key);
         this.EventGroup.RemoveEvents();
         foreach (var coroutine in this.Coroutines)
         {

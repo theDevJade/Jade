@@ -1,16 +1,10 @@
 ﻿#region
 
-using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Exiled.API.Features;
 using HarmonyLib;
-using JadeLib.Features;
 using JadeLib.Features.Abstract.FeatureGroups;
-using JadeLib.Features.Audio.Utilities;
-using JadeLib.Features.Extensions;
-using JadeLib.Features.Placeholders.Base;
-using MEC;
+using JadeLib.Loader;
 using Utils.NonAllocLINQ;
 
 #endregion
@@ -25,6 +19,8 @@ public static class Jade
     internal static Harmony _harmony;
 
     internal static List<Assembly> UsingAssemblies = [];
+
+    public static BindingFlags Flags = BindingFlags.Public | BindingFlags.Instance;
 
     /// <summary>
     ///     Gets a value indicating whether JadeLib is initialized or not.
@@ -43,38 +39,20 @@ public static class Jade
         settings ??= Settings;
 
         Settings = settings;
-        _harmony = new Harmony("jade");
 
-        var callingAssembly = Assembly.GetCallingAssembly();
-        if (!UsingAssemblies.Contains(callingAssembly))
-        {
-            PlaceholderPatcher.ApplyPatches(callingAssembly, _harmony);
-        }
+        UsingAssemblies.AddIfNotContains(Assembly.GetAssembly(typeof(Jade)));
+
+        _harmony = new Harmony("jade");
+        LoaderSegment.ReflectiveRegister();
 
         UsingAssemblies.Add(Assembly.GetCallingAssembly());
-        UsingAssemblies.AddIfNotContains(Assembly.GetAssembly(typeof(Jade)));
+
         if (Initialized)
         {
             return false;
         }
 
-        Log.Info("Initializing JadeLib");
-        CosturaUtility.Initialize();
-        Log.Info("Initialized Embedded DLL's");
-
-        _harmony.PatchAll();
-        Log.Info("All harmony patches have been applied");
-
-        if (Settings.InitializeFFmpeg)
-        {
-            Timing.RunCoroutine(FfmpegUtility.DownloadAndExtractFfmpegAsync(Log.Info));
-            Log.Info("Ffmpeg has been installed.");
-        }
-
-        JadeFeature.Register();
-
-        var banner = Assembly.GetExecutingAssembly().ReadEmbeddedResource("JadeLib.banner.txt");
-        ServerConsole.AddLog("JadeLib is ready to go! \n" + banner, ConsoleColor.White);
+        JadeLoader.Load();
 
         Initialized = true;
 
@@ -92,11 +70,9 @@ public static class Jade
             return false;
         }
 
-        _harmony.UnpatchAll(_harmony.Id);
+        JadeLoader.Unload();
 
         FeatureGroup.Features.ForEach(e => { e.Value.Unregister(); });
-
-        _harmony.UnpatchAll(_harmony.Id);
         Initialized = false;
         return true;
     }

@@ -27,8 +27,8 @@ public class Manager914
         {
             foreach (var type in assembly.GetTypes().Where(e => e.IsSubclassOf(typeof(Recipes914))))
             {
-                var instance = Activator.CreateInstance(type, JadeFeature.Flags, null) as Recipes914;
-                type.GetMethod("RegisterRecipes", JadeFeature.Flags, null, [], null)?.Invoke(instance, []);
+                var instance = Activator.CreateInstance(type, Jade.Flags, null) as Recipes914;
+                type.GetMethod("RegisterRecipes", Jade.Flags, null, [], null)?.Invoke(instance, []);
             }
         }
     }

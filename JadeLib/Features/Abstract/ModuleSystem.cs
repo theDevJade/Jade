@@ -49,16 +49,16 @@ public abstract class ModuleSystem<T>
     /// </summary>
     public static void ReflectiveRegister()
     {
-        Log.Info($"Reflective Register {nameof(T)}");
+        var counter = 0;
         foreach (var type in Jade.UsingAssemblies.SelectMany(
-                     assembly => assembly.GetTypes().Where(e => !e.IsAbstract & e.IsSubclassOf(typeof(T)))))
+                         assembly => assembly.GetTypes().Where(e => !e.IsAbstract & e.IsSubclassOf(typeof(T))))
+                     .Distinct(new ModuleSystemTypeComparer()))
         {
-            Log.Info($"Reflective Register, current type {typeof(T).Name}, subclass {type.Name}");
-            if (Activator.CreateInstance(type) is T instance)
-            {
-                RegisteredInstances.Add(instance);
-            }
+            counter++;
+            var instance = Activator.CreateInstance(type) as T;
         }
+
+        Log.Info($"ModuleSystem registered | Name: {typeof(T).Name} | Total Modules: {counter}");
 
         // Call the Register method on all registered instances
         foreach (var instance in RegisteredInstances)
@@ -76,23 +76,33 @@ public abstract class ModuleSystem<T>
     }
 }
 
-/// <inheritdoc />
-public abstract class TestModuleSystem : ModuleSystem<TestModuleSystem>
+internal class ModuleSystemTypeComparer : IEqualityComparer<Type>
 {
-    /// <summary>
-    ///     Initializes a new instance of the <see cref="TestModuleSystem" /> class.
-    /// </summary>
-    protected TestModuleSystem()
+    public bool Equals(Type x, Type y)
     {
+        if (ReferenceEquals(x, y))
+        {
+            return true;
+        }
+
+        if (x is null)
+        {
+            return false;
+        }
+
+        if (y is null)
+        {
+            return false;
+        }
+
+        return string.Equals(x.Name, y.Name, StringComparison.OrdinalIgnoreCase) && string.Equals(
+            x.FullName,
+            y.FullName,
+            StringComparison.OrdinalIgnoreCase);
     }
 
-    /// <summary>
-    ///     Concrete registration logic for the TestModuleSystem.
-    /// </summary>
-    protected override void Register()
+    public int GetHashCode(Type obj)
     {
-        Console.WriteLine("Registering TestModuleSystem");
-
-        // Custom registration logic for TestModuleSystem
+        return obj.GetHashCode();
     }
 }
