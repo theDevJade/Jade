@@ -29,9 +29,9 @@ public class AutoUpdater : LoaderSegment
 
     private static void AutoUpdaterCallback(object state)
     {
-        if (AutoUpdaterTask is null || !AutoUpdaterTask.IsCompleted)
+        if (AutoUpdaterTask is not null && AutoUpdaterTask.IsCompleted)
         {
-            return;
+            AutoUpdaterTask = null;
         }
 
         AutoUpdaterTask = Task.Run(
