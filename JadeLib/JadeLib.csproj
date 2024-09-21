@@ -51,6 +51,21 @@
     </ItemGroup>
 
     <ItemGroup>
+        <AssemblyFiles Include="$(REFERENCES)\**\*.dll"/>
+    </ItemGroup>
+
+    <Target Name="LogReferences">
+        <Message Text="References Folder: $(REFERENCES)" Importance="high"/>
+        <Message Text="DLL file: %(AssemblyFiles.FullPath)" Importance="high"/>
+    </Target>
+
+    <ItemGroup>
+        <Reference Include="@(AssemblyFiles->'%(Filename)')">
+            <HintPath>%(AssemblyFiles.FullPath)</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
         <Content Include="banner.txt"/>
         <Content Include="bannerPlaceholders.txt"/>
         <Content Include="FodyWeavers.xml"/>
@@ -60,7 +75,19 @@
     <ItemGroup>
         <EmbeddedResource Include="banner.txt"/>
         <EmbeddedResource Include="bannerPlaceholders.txt"/>
+        <PackageReference Include="Costura.Fody" Version="5.7.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <Reference Include="Costura, Version=5.8.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d">
+            <HintPath>..\packages\Costura.Fody.5.8.0-alpha0098\lib\netstandard1.0\Costura.dll</HintPath>
+            <Private>True</Private>
+        </Reference>
         <PackageReference Include="EXILEDOFFICIAL" Version="8.11.0"/>
+        <PackageReference Include="Fody" Version="6.8.2">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="NAudio" Version="2.2.1"/>
         <PackageReference Include="NAudio.Lame" Version="2.1.0"/>
         <PackageReference Include="NAudio.Vorbis" Version="1.5.0"/>
@@ -70,18 +97,18 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="VideoLibrary" Version="3.2.5"/>
-        <PackageReference Include="Fody" Version="6.8.1">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="Mono.Cecil">
-            <HintPath>..\..\..\Useful\assemblies\Mono.Cecil.dll</HintPath>
+        <!-- Collect all DLL files in the $(REFERENCES) directory -->
+        <Reference Include="@(DllFiles)">
+            <HintPath>%(DllFiles.Identity)</HintPath>
         </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+        <DllFiles Include="$(REFERENCES)\**\*.dll"/>
+    </ItemGroup>
     <ItemGroup>
         <Folder Include="Features\Placeholders\BuiltIn\Player\"/>
         <Folder Include="Features\Placeholders\BuiltIn\Server\"/>
