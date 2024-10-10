@@ -4,6 +4,6 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/!/LarsCore/LarsCore.csproj
 /LarsCore/
+/RPCore/
 /XPSystem/
-/RPCore/*
 /JadeLib/Features/Testing.cs

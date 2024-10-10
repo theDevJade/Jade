@@ -61,18 +61,15 @@ public static class GeneralUtil
     {
         var positions = new List<Vector3>();
 
-        // Calculate the angle between each point in radians
         var angleStep = 2f * Mathf.PI / numPoints;
 
         for (var i = 0; i < numPoints; i++)
         {
-            // Current angle for this point
             var angle = i * angleStep;
 
-            // Calculate position using polar coordinates in the XZ plane
             var x = center.x + (radius * Mathf.Cos(angle));
             var z = center.z + (radius * Mathf.Sin(angle));
-            var y = center.y; // Y remains constant
+            var y = center.y;
 
             positions.Add(new Vector3(x, y, z));
         }
