@@ -4,7 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using CentralAuth;
+using Exiled.API.Features;
+using Exiled.API.Features.Components;
+using MEC;
+using Mirror;
+using PlayerRoles;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 #endregion
@@ -41,6 +48,124 @@ public static class GeneralUtil
     public static Vector3 CenterRoom(GameObject gameObject, Vector3 localPos)
     {
         return gameObject.transform.TransformPoint(localPos);
+    }
+
+    /// <summary>
+    ///     Generates a list of positions equally spaced around a circle in the XZ plane.
+    /// </summary>
+    /// <param name="radius">The radius of the circle (x).</param>
+    /// <param name="numPoints">The number of points to generate (n).</param>
+    /// <param name="center">The center position of the circle (y).</param>
+    /// <returns>A list of Vector3 positions on the circle.</returns>
+    public static List<Vector3> GenerateCirclePoints(float radius, int numPoints, Vector3 center)
+    {
+        var positions = new List<Vector3>();
+
+        // Calculate the angle between each point in radians
+        var angleStep = 2f * Mathf.PI / numPoints;
+
+        for (var i = 0; i < numPoints; i++)
+        {
+            // Current angle for this point
+            var angle = i * angleStep;
+
+            // Calculate position using polar coordinates in the XZ plane
+            var x = center.x + (radius * Mathf.Cos(angle));
+            var z = center.z + (radius * Mathf.Sin(angle));
+            var y = center.y; // Y remains constant
+
+            positions.Add(new Vector3(x, y, z));
+        }
+
+        return positions;
+    }
+
+    /// <summary>
+    ///     Creates new NPC.
+    /// </summary>
+    /// <param name="name">Name setted to NPC.</param>
+    /// <param name="role">Role setted to NPC.</param>
+    /// <param name="userID">UserID setted to NPC. Default value hides NPC from list.</param>
+    /// <returns>Returns Npc.</returns>
+    public static Npc CreateNPC(
+        string name,
+        RoleTypeId role = RoleTypeId.None,
+        string userID = PlayerAuthenticationManager.DedicatedId)
+    {
+        var gameObject = Object.Instantiate(NetworkManager.singleton.playerPrefab);
+
+        var npc = new Npc(gameObject)
+        {
+            IsNPC = true,
+        };
+
+        try
+        {
+            npc.ReferenceHub.roleManager.InitializeNewRole(RoleTypeId.None, RoleChangeReason.None);
+        }
+        catch (Exception arg)
+        {
+            Log.Debug($"Ignore: {arg}");
+        }
+
+        var fakeConnection = new FakeConnection(int.MaxValue);
+
+        NetworkServer.AddPlayerForConnection(fakeConnection, gameObject);
+
+        try
+        {
+            npc.ReferenceHub.authManager.UserId = string.IsNullOrEmpty(userID) ? "Dummy@localhost" : userID;
+        }
+        catch (Exception arg2)
+        {
+            Log.Debug($"Ignore: {arg2}");
+        }
+
+        npc.ReferenceHub.nicknameSync.Network_myNickSync = name;
+        Player.Dictionary.Add(gameObject, npc);
+
+        Timing.CallDelayed(0.3f, () => { npc.Role.Set(role); });
+
+        npc.RemoteAdminPermissions = PlayerPermissions.AFKImmunity;
+
+        try
+        {
+            if (userID == PlayerAuthenticationManager.DedicatedId)
+            {
+                npc.ReferenceHub.authManager.SyncedUserId = userID;
+                try
+                {
+                    npc.ReferenceHub.authManager.InstanceMode = ClientInstanceMode.DedicatedServer;
+                }
+                catch (Exception e)
+                {
+                    Log.Debug($"Ignore: {e}");
+                }
+            }
+            else
+            {
+                npc.ReferenceHub.authManager.UserId = userID == string.Empty ? "Dummy@localhost" : userID;
+            }
+        }
+        catch (Exception e)
+        {
+            Log.Debug($"Ignore: {e}");
+        }
+
+        return npc;
+    }
+
+    public static string GetRandomNumbers(int amount)
+    {
+        var randomNumberString = string.Empty;
+
+        for (var i = 0; i < amount; i++)
+        {
+            var randomDigit = Random.Range(0, 10); // Generates a number between 0 and 9
+            randomNumberString += randomDigit.ToString();
+        }
+
+        return randomNumberString;
     }
 
     /// <summary>

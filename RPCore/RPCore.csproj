@@ -8,10 +8,11 @@
         <ProjectGuid>{0C687C3E-B438-4E7F-8D1E-56AFDEBC36AD}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>JadeTesting</RootNamespace>
-        <AssemblyName>JadeTesting</AssemblyName>
+        <RootNamespace>RPCore</RootNamespace>
+        <AssemblyName>RPCore</AssemblyName>
         <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -370,8 +371,13 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Config.cs" />
+        <Compile Include="GeneralEvents.cs" />
         <Compile Include="Plugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="RadioChannels\RadioEvents.cs" />
+        <Compile Include="RadioChannels\RadioSys.cs" />
+        <Compile Include="RPNames\Names.cs" />
+        <Compile Include="RPNames\NamesEvents.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

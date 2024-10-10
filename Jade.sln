@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JadeLib", "JadeLib\JadeLib.csproj", "{A62CD976-75DF-4185-A6C4-5AB8D4EFC0BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JadeTesting", "JadeTesting\JadeTesting.csproj", "{0C687C3E-B438-4E7F-8D1E-56AFDEBC36AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPCore", "RPCore\RPCore.csproj", "{0C687C3E-B438-4E7F-8D1E-56AFDEBC36AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LarsCore", "LarsCore\LarsCore.csproj", "{A24057A9-9D77-495A-9475-4267A423DC94}"
 EndProject

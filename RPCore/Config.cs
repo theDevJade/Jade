@@ -1,6 +1,6 @@
 ﻿using Exiled.API.Interfaces;
 
-namespace JadeTesting
+namespace RPCore
 {
     public class Config : IConfig
     {
