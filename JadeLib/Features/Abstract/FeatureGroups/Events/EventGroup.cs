@@ -127,6 +127,8 @@ public class EventGroup
             return;
         }
 
+        Log.Info($"Unregistering event handlers, total of {this.dynamicHandlers.Count}.");
+
         foreach (var handler in this.dynamicHandlers)
         {
             var eventType = handler.Item3.GetParameters().First().ParameterType;

@@ -14,7 +14,7 @@ public sealed class JadeSettings
         AutoUpdate = true,
         CommandPermission = new CommandPermissions
         {
-            SizerPermissions = "",
+            SizerPermissions = string.Empty,
             SpawnRatPermissions = "jadelib.spawnrat",
         },
     };
